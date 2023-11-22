@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Assets.Scripts.Inputs
 {
-    public class OnMouseInputSystem : MonoBehaviour, IPointerDownHandler
+    public class Selectable : MonoBehaviour, IPointerDownHandler
     {
         private ISelectable m_relatedSelectable;
 
@@ -19,7 +15,8 @@ namespace Assets.Scripts.Inputs
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            m_relatedSelectable.OnSelect();
+            if (eventData.button == PointerEventData.InputButton.Left)
+                m_relatedSelectable.OnSelect();
         }
     }
 }

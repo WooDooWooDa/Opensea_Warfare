@@ -134,6 +134,33 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ScrollWheel"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""a06d0885-413d-4bd7-b391-15c51120d980"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RightClick"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""37176e5b-039b-4ac9-8e08-d8bc60b6f4d1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RightClickDrag"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""70a2dce9-d8b0-4d68-b313-31efd93e11c0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold(duration=0.05,pressPoint=0.1)"",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -433,6 +460,39 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
                     ""action"": ""Point"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c7aa9f24-4a08-4406-8fc9-359ef24cac58"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ScrollWheel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ea5e94c4-5f68-4ab8-916d-4ed1b7653f20"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""43bd8f40-c4da-4210-835b-bb64755b9dbc"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightClickDrag"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -459,6 +519,9 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
         m_BattleMap_Select10 = m_BattleMap.FindAction("Select10", throwIfNotFound: true);
         m_BattleMap_LeftClick = m_BattleMap.FindAction("LeftClick", throwIfNotFound: true);
         m_BattleMap_Point = m_BattleMap.FindAction("Point", throwIfNotFound: true);
+        m_BattleMap_ScrollWheel = m_BattleMap.FindAction("ScrollWheel", throwIfNotFound: true);
+        m_BattleMap_RightClick = m_BattleMap.FindAction("RightClick", throwIfNotFound: true);
+        m_BattleMap_RightClickDrag = m_BattleMap.FindAction("RightClickDrag", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -530,6 +593,9 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_BattleMap_Select10;
     private readonly InputAction m_BattleMap_LeftClick;
     private readonly InputAction m_BattleMap_Point;
+    private readonly InputAction m_BattleMap_ScrollWheel;
+    private readonly InputAction m_BattleMap_RightClick;
+    private readonly InputAction m_BattleMap_RightClickDrag;
     public struct BattleMapActions
     {
         private @GameInputs m_Wrapper;
@@ -546,6 +612,9 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
         public InputAction @Select10 => m_Wrapper.m_BattleMap_Select10;
         public InputAction @LeftClick => m_Wrapper.m_BattleMap_LeftClick;
         public InputAction @Point => m_Wrapper.m_BattleMap_Point;
+        public InputAction @ScrollWheel => m_Wrapper.m_BattleMap_ScrollWheel;
+        public InputAction @RightClick => m_Wrapper.m_BattleMap_RightClick;
+        public InputAction @RightClickDrag => m_Wrapper.m_BattleMap_RightClickDrag;
         public InputActionMap Get() { return m_Wrapper.m_BattleMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -591,6 +660,15 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
                 @Point.started -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnPoint;
                 @Point.performed -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnPoint;
                 @Point.canceled -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnPoint;
+                @ScrollWheel.started -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnScrollWheel;
+                @ScrollWheel.performed -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnScrollWheel;
+                @ScrollWheel.canceled -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnScrollWheel;
+                @RightClick.started -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnRightClick;
+                @RightClick.performed -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnRightClick;
+                @RightClick.canceled -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnRightClick;
+                @RightClickDrag.started -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnRightClickDrag;
+                @RightClickDrag.performed -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnRightClickDrag;
+                @RightClickDrag.canceled -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnRightClickDrag;
             }
             m_Wrapper.m_BattleMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -631,6 +709,15 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
                 @Point.started += instance.OnPoint;
                 @Point.performed += instance.OnPoint;
                 @Point.canceled += instance.OnPoint;
+                @ScrollWheel.started += instance.OnScrollWheel;
+                @ScrollWheel.performed += instance.OnScrollWheel;
+                @ScrollWheel.canceled += instance.OnScrollWheel;
+                @RightClick.started += instance.OnRightClick;
+                @RightClick.performed += instance.OnRightClick;
+                @RightClick.canceled += instance.OnRightClick;
+                @RightClickDrag.started += instance.OnRightClickDrag;
+                @RightClickDrag.performed += instance.OnRightClickDrag;
+                @RightClickDrag.canceled += instance.OnRightClickDrag;
             }
         }
     }
@@ -658,5 +745,8 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
         void OnSelect10(InputAction.CallbackContext context);
         void OnLeftClick(InputAction.CallbackContext context);
         void OnPoint(InputAction.CallbackContext context);
+        void OnScrollWheel(InputAction.CallbackContext context);
+        void OnRightClick(InputAction.CallbackContext context);
+        void OnRightClickDrag(InputAction.CallbackContext context);
     }
 }
