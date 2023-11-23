@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Assets.Scripts.Helpers;
+using Assets.Scripts.Inputs;
+using Assets.Scripts.Ships;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.U2D;
 
@@ -18,6 +15,7 @@ namespace Assets.Scripts.Managers
         private float zoom;
         private float minZoom = 6;
         private float maxZoom = 42;
+        private float realMaxZoom = 33;
         private float smoothZoom = 0.1f;
 
         private Vector3 m_origin;
@@ -26,6 +24,10 @@ namespace Assets.Scripts.Managers
         private Camera m_mainCamera;
         private PixelPerfectCamera m_pixelPerfectCamera;
         private bool m_isDragging = false;
+
+        [SerializeField] private AnimationCurve m_easeTimeCruve;
+        private bool m_easeToTarget = false;
+        private Vector3 m_target;
 
         private void Awake()
         {
@@ -48,6 +50,8 @@ namespace Assets.Scripts.Managers
         {
             m_inputActions.BattleMap.RightClickDrag.started += OnDrag;
             m_inputActions.BattleMap.RightClickDrag.canceled += OnDrag;
+
+            Events.Actions.OnSelected += OnSelected;
         }
 
         private void Update()
@@ -61,16 +65,23 @@ namespace Assets.Scripts.Managers
 
         private void FixedUpdate()
         {
-            if (!m_isDragging) return;
+            if (m_isDragging) {
+                m_diff = m_mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - transform.position;
+                transform.position = m_origin - m_diff;
+            }
 
-            m_diff = m_mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - transform.position;
-            transform.position = m_origin - m_diff;
+            if (m_easeToTarget) {
+                transform.position = Vector3.MoveTowards(m_mainCamera.transform.position, m_target, m_easeTimeCruve.Evaluate(1f - (m_pixelPerfectCamera.assetsPPU / realMaxZoom)));
+                if (Vector3.Distance(transform.position, m_target) <= 0.5f) m_easeToTarget = false;
+            }
         }
 
         private void OnDestroy()
         {
             m_inputActions.BattleMap.RightClickDrag.started -= OnDrag;
             m_inputActions.BattleMap.RightClickDrag.canceled -= OnDrag;
+
+            Events.Actions.OnSelected -= OnSelected;
         }
 
         private void OnDrag(InputAction.CallbackContext ctx)
@@ -78,6 +89,15 @@ namespace Assets.Scripts.Managers
             if (ctx.started)
                 m_origin = m_mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             m_isDragging = ctx.performed || ctx.started;
+        }
+
+        private void OnSelected(Selectable obj)
+        {
+            if (!GameParameters.Instance.Value.FocusOnObjectWhenSelected) return;
+
+            m_easeToTarget = true;
+            m_target = obj.transform.position;
+            m_target = new Vector3(m_target.x, m_target.y, m_mainCamera.transform.position.z);
         }
     }
 }

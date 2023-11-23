@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Helpers;
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -15,8 +16,10 @@ namespace Assets.Scripts.Inputs
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            if (eventData.button == PointerEventData.InputButton.Left)
+            if (eventData.button == PointerEventData.InputButton.Left) {
                 m_relatedSelectable.OnSelect();
+                Events.Actions.FireOnSelected(this);
+            }
         }
     }
 }
