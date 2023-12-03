@@ -3,6 +3,7 @@ using Assets.Scripts.Inputs;
 using Assets.Scripts.Ships;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using UnityEngine.U2D;
 
 namespace Assets.Scripts.Managers
@@ -11,12 +12,12 @@ namespace Assets.Scripts.Managers
     {
         private GameInputs m_inputActions;
 
-        private float scrollDelta;
-        private float zoom;
-        private float minZoom = 6;
-        private float maxZoom = 42;
-        private float realMaxZoom = 33;
-        private float smoothZoom = 0.1f;
+        private float m_scrollDelta;
+        private float m_zoom;
+        private float m_minZoom = 10;
+        private float m_maxZoom = 42;
+        private float m_realMaxZoom = 32;
+        private float m_smoothZoom = 0.1f;
 
         private Vector3 m_origin;
         private Vector3 m_diff;
@@ -56,10 +57,10 @@ namespace Assets.Scripts.Managers
 
         private void Update()
         {
-            scrollDelta = m_inputActions.BattleMap.ScrollWheel.ReadValue<Vector2>().y;
-            if (scrollDelta != 0) {
-                zoom = Mathf.Clamp(scrollDelta, minZoom, maxZoom);
-                m_pixelPerfectCamera.assetsPPU = (int)Mathf.Lerp(m_pixelPerfectCamera.assetsPPU, zoom, smoothZoom);
+            m_scrollDelta = m_inputActions.BattleMap.ScrollWheel.ReadValue<Vector2>().y;
+            if (m_scrollDelta != 0) {
+                m_zoom = Mathf.Clamp(m_scrollDelta, m_minZoom, m_maxZoom);
+                m_pixelPerfectCamera.assetsPPU = (int)Mathf.Lerp(m_pixelPerfectCamera.assetsPPU, m_zoom, m_smoothZoom);
             }
         }
 
@@ -71,7 +72,7 @@ namespace Assets.Scripts.Managers
             }
 
             if (m_easeToTarget) {
-                transform.position = Vector3.MoveTowards(m_mainCamera.transform.position, m_target, m_easeTimeCruve.Evaluate(1f - (m_pixelPerfectCamera.assetsPPU / realMaxZoom)));
+                transform.position = Vector3.MoveTowards(m_mainCamera.transform.position, m_target, m_easeTimeCruve.Evaluate(1f - (m_pixelPerfectCamera.assetsPPU / m_realMaxZoom)));
                 if (Vector3.Distance(transform.position, m_target) <= 0.5f) m_easeToTarget = false;
             }
         }

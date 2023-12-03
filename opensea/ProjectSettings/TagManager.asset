@@ -11,7 +11,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Ship
   - 
   - 
   - 
@@ -43,4 +43,13 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Main
+    uniqueID: 4259550761
+    locked: 0
+  - name: UpperMain
+    uniqueID: 1010244769
+    locked: 0
+  - name: UI
+    uniqueID: 3877206519
     locked: 0

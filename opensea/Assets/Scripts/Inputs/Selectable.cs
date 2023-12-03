@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 namespace Assets.Scripts.Inputs
 {
+    [RequireComponent(typeof(Collider2D))]
     public class Selectable : MonoBehaviour, IPointerDownHandler
     {
         private ISelectable m_relatedSelectable;
@@ -16,10 +17,9 @@ namespace Assets.Scripts.Inputs
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            if (eventData.button == PointerEventData.InputButton.Left) {
-                m_relatedSelectable.OnSelect();
-                Events.Actions.FireOnSelected(this);
-            }
+            if (eventData.button != PointerEventData.InputButton.Left) return;
+            
+            m_relatedSelectable.OnSelect();
         }
     }
 }

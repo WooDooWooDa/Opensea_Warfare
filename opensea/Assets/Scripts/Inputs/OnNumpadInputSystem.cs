@@ -5,7 +5,7 @@ namespace Assets.Scripts.Inputs
 {
     public class OnNumpadInputSystem : MonoBehaviour
     {
-        [SerializeField] private GameInputs m_inputActions;
+        private GameInputs m_inputActions;
 
         private void Awake()
         {
@@ -34,20 +34,6 @@ namespace Assets.Scripts.Inputs
             m_inputActions.BattleMap.Select8.performed += ctx => Events.Inputs.FireOnNumPressed(8);
             m_inputActions.BattleMap.Select9.performed += ctx => Events.Inputs.FireOnNumPressed(9);
             m_inputActions.BattleMap.Select10.performed += ctx => Events.Inputs.FireOnNumPressed(10);
-        }
-
-        private void OnDestroy()
-        {
-            m_inputActions.BattleMap.Select1.performed -= ctx => Events.Inputs.FireOnNumPressed(1);
-            m_inputActions.BattleMap.Select2.performed -= ctx => Events.Inputs.FireOnNumPressed(2);
-            m_inputActions.BattleMap.Select3.performed -= ctx => Events.Inputs.FireOnNumPressed(3);
-            m_inputActions.BattleMap.Select4.performed -= ctx => Events.Inputs.FireOnNumPressed(4);
-            m_inputActions.BattleMap.Select5.performed -= ctx => Events.Inputs.FireOnNumPressed(5);
-            m_inputActions.BattleMap.Select6.performed -= ctx => Events.Inputs.FireOnNumPressed(6);
-            m_inputActions.BattleMap.Select7.performed -= ctx => Events.Inputs.FireOnNumPressed(7);
-            m_inputActions.BattleMap.Select8.performed -= ctx => Events.Inputs.FireOnNumPressed(8);
-            m_inputActions.BattleMap.Select9.performed -= ctx => Events.Inputs.FireOnNumPressed(9);
-            m_inputActions.BattleMap.Select10.performed -= ctx => Events.Inputs.FireOnNumPressed(10);
         }
     }
 }

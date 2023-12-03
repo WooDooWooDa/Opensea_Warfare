@@ -22,7 +22,6 @@ public class Main : MonoBehaviour
     private SaveManager m_saveManager = null;
 
     private List<Manager> m_managers = new List<Manager>();
-    public List<Manager> Managers { get { return m_managers; } }
 
     private void Awake()
     {
@@ -53,6 +52,11 @@ public class Main : MonoBehaviour
         m_initialized = true;
         OnInitialized?.Invoke();
     }
+
+    public void RegisterManager(Manager m)
+    {
+        m_managers.Add(m);
+    } 
 
     public T GetManager<T>()
     {
