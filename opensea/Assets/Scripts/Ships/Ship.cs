@@ -45,6 +45,11 @@ namespace Assets.Scripts.Ships
             }
         }
 
+        public Module GetModuleOfType(ModuleType type)
+        {
+            return m_modules.Find(module => module.Type == type);
+        }
+
         public void RegisterModule(Module module)
         {
             if (!m_modules.Contains(module))

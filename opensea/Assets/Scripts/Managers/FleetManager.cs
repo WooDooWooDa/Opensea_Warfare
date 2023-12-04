@@ -48,10 +48,11 @@ namespace Assets.Scripts.Managers
             if (m_selectedShip != null) m_selectedShip.OnDeselect();
             m_selectedShip = null; 
             
+            OnShipSelectedChanged?.Invoke(ship);
+            
             if (ship != null) 
             {
                 m_selectedShip = ship;
-                OnShipSelectedChanged?.Invoke(ship);
                 Events.Actions.FireOnSelected(m_selectedShip.GetComponent<Selectable>());
                 debugger.Log("Selected ship is now : " + ship);
             }

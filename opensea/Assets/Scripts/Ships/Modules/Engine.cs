@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Helpers;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Ships.Modules
 {
@@ -7,55 +6,66 @@ namespace Assets.Scripts.Ships.Modules
     {
         [SerializeField] private float m_maxSpeed;
 
+        public float CurrentSpeedPercentage => m_currentSpeed / m_maxSpeed;
+        public float CurrentSpeed => m_currentSpeed * 100;
+        public int CurrentSpeedIndex { get; private set; }
+
         private const int NbSpeedStep = 4;
-        private const int LerpTime = 6;
+        private const int AccelerationTime = 4;
+        private const int DecelerationTime = 6;
         
         private Transform m_shipTransform;
         private float m_currentSpeed;
         private float m_currentTargetSpeed;
         private float m_currentMaxSpeed;
-        
+
         private void Awake()
         {
+            CurrentSpeedIndex = 4;
             m_shipTransform = transform;
             m_currentMaxSpeed = m_maxSpeed;
         }
 
         protected override void OnEnableModule()
         {
-            Events.Inputs.OnUpDownChanged += ChangeSpeed;
+            
         }
 
         protected override void OnDisableModule()
         {
-            Events.Inputs.OnUpDownChanged -= ChangeSpeed;
-        }
-
-        public void SetTargetSpeedTo()
-        {
             
         }
+
+        public void SetTargetSpeedTo(float speedPart, int speedIndex)
+        {
+            CurrentSpeedIndex = speedIndex;
+            m_currentTargetSpeed = m_maxSpeed * speedPart;
+            m_currentTargetSpeed = ClampTargetSpeed();
+        }
         
-        private void ChangeSpeed(float delta)
+        private void ChangeTargetSpeed(float delta)
         {
             var step = (m_maxSpeed / NbSpeedStep) * delta;
             m_currentTargetSpeed += step;
-            m_currentTargetSpeed = Mathf.Clamp(m_currentTargetSpeed, 0, m_currentMaxSpeed);
+            m_currentTargetSpeed = ClampTargetSpeed();
         }
 
         protected override void InternalUpdateModule(float deltaTime)
         {
-            var lerpValue = (m_currentTargetSpeed >= m_currentSpeed) ? LerpTime / 2 : LerpTime;
+            var lerpValue = (m_currentTargetSpeed >= m_currentSpeed) ? AccelerationTime : DecelerationTime;
+            m_currentSpeed = Mathf.Lerp(m_currentSpeed, ClampTargetSpeed(), deltaTime / lerpValue);
             
-            m_currentSpeed = Mathf.Lerp(m_currentSpeed, Mathf.Clamp(m_currentTargetSpeed, 0, m_currentMaxSpeed), deltaTime / lerpValue);
-            if (m_currentSpeed > 0) {
-                m_shipTransform.position += (deltaTime * m_currentSpeed * transform.up);
-            }
+            m_shipTransform.position += (deltaTime * m_currentSpeed * transform.up);
         }
 
         protected override void ApplyState()
         {
             
+        }
+
+        private float ClampTargetSpeed()
+        {
+            return Mathf.Clamp(m_currentTargetSpeed, -m_maxSpeed / NbSpeedStep, m_currentMaxSpeed);
         }
     }
 }

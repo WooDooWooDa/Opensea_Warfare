@@ -1,14 +1,13 @@
-using System;
 using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Ships;
 using UI;
-using UnityEngine;
 
 namespace Assets.Scripts.Managers
 {
     public class UIManager : Manager
     {
-        private List<ShipPanel> m_shipPanels;
+        private List<ShipPanel> m_shipPanels = new();
         
         private FleetManager m_fleetManager;
         private Ship m_currentSelectedShip;
@@ -19,14 +18,6 @@ namespace Assets.Scripts.Managers
 
             m_fleetManager = Main.Instance.GetManager<FleetManager>();
             m_fleetManager.OnShipSelectedChanged += ShipChanged;
-        }
-
-        private void Update()
-        {
-            foreach (var panel in m_shipPanels)
-            {
-                panel.UpdatePanel(m_currentSelectedShip);
-            }
         }
         
         private void OnDisable()
@@ -42,8 +33,27 @@ namespace Assets.Scripts.Managers
 
         private void ShipChanged(Ship newShip)
         {
-            if (newShip != null && m_currentSelectedShip != newShip) 
+            //todo maybe make animation to ui when ship change (mainly for fleet panel)
+            
+            if (newShip != null && m_currentSelectedShip != newShip)
+            {
+                //open closed panel
                 m_currentSelectedShip = newShip;
+                foreach (var panel in m_shipPanels)
+                {
+                    var moduleNeeded = panel.ModuleTypeFor;
+                    panel.UpdatePanelWithModule(m_currentSelectedShip.GetModuleOfType(moduleNeeded));
+                    //animation
+                }
+            }
+            else
+            {
+                foreach (var shipPanel in m_shipPanels.Where(shipPanel => shipPanel.NeedModule))
+                {
+                    //shipPanel.enabled = false;
+                    //close
+                }
+            }
         }
 
     }

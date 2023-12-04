@@ -5,45 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f830f0c4-ba14-467a-8842-14458945bc77" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Env.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Env/Ocean.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Env/Ocean.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Inputs/OnArrowInputSystem.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/UIManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/UIManager.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Armaments.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Armaments.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Engine.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Module.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/ModuleState.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/ModuleType.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/SteeringGear.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/EngineShipPanel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/EngineShipPanel.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/FleetShipPanel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/FleetShipPanel.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/ShipPanel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/ShipPanel.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Ships/Battleship.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Ships/Battleship.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Ships/Destroyer.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Ships/Destroyer.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/GameInputs.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/GameInputs.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/GameInputs.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/GameInputs.inputactions" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.opensea/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.opensea/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Font/Retro Gaming SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Font/Retro Gaming SDF.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Helpers/Events.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Helpers/Events.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Inputs/ISelectable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Inputs/ISelectable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Inputs/OnNumpadInputSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Inputs/OnNumpadInputSystem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Inputs/Selectable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Inputs/Selectable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Main.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Main.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/CameraManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/CameraManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/FleetManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/FleetManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/SO.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/UIManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Engine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Engine.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Module.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Module.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Ship.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Ship.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Sea Warfare Set/Battleship/WeaponBattleshipStandardGun.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Sea Warfare Set/Battleship/WeaponBattleshipStandardGun.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Sea Warfare Set/Destroyer/ShipDestroyerHull.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Sea Warfare Set/Destroyer/ShipDestroyerHull.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/SmallTileSet/Ocean.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/SmallTileSet/Ocean.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/NavMeshAreas.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/NavMeshAreas.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/EngineShipPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/EngineShipPanel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/ShipPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/ShipPanel.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +25,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Inputs/SOs/ModuleAction.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9aad1b3a47484d63ba2b3985692d80e946a800/ed/b365d5f8/List`1.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -112,10 +83,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="25876">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="25876" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -135,7 +106,8 @@
       <workItem from="1701467548230" duration="388000" />
       <workItem from="1701467972399" duration="94000" />
       <workItem from="1701468083056" duration="15224000" />
-      <workItem from="1701541308990" duration="5983000" />
+      <workItem from="1701541308990" duration="7473000" />
+      <workItem from="1701636275427" duration="16605000" />
     </task>
     <servers />
   </component>

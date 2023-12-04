@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using Assets.Scripts.Inputs;
 using UnityEngine;
 
 namespace Assets.Scripts.Ships.Modules
 {
     public abstract class Module : MonoBehaviour
     {
+        public ModuleType Type => m_type;
         [SerializeField] private ModuleType m_type;
         [SerializeField] private float m_moduleHp;
         [SerializeField] private bool m_canBeDamaged = false;
