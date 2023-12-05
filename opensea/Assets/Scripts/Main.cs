@@ -1,6 +1,7 @@
 using Assets.Scripts.Managers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Main : MonoBehaviour
@@ -60,11 +61,9 @@ public class Main : MonoBehaviour
 
     public T GetManager<T>()
     {
-        foreach (var manager in m_managers) {
-            if (manager.GetType() == typeof(T)) {
-                if (manager is T)
-                    return (T)Convert.ChangeType(manager, typeof(T));
-            }
+        foreach (var manager in m_managers.Where(manager => manager.GetType() == typeof(T)).OfType<T>())
+        {
+            return (T)Convert.ChangeType(manager, typeof(T));
         }
         return default;
     }

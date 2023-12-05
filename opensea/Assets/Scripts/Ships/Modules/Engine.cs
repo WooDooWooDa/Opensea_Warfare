@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Ships.Common;
+using UnityEngine;
 
 namespace Assets.Scripts.Ships.Modules
 {
@@ -26,16 +27,6 @@ namespace Assets.Scripts.Ships.Modules
             m_currentMaxSpeed = m_maxSpeed;
         }
 
-        protected override void OnEnableModule()
-        {
-            
-        }
-
-        protected override void OnDisableModule()
-        {
-            
-        }
-
         public void SetTargetSpeedTo(float speedPart, int speedIndex)
         {
             CurrentSpeedIndex = speedIndex;
@@ -50,17 +41,15 @@ namespace Assets.Scripts.Ships.Modules
             m_currentTargetSpeed = ClampTargetSpeed();
         }
 
-        protected override void InternalUpdateModule(float deltaTime)
+        protected override void InternalPreUpdateModule(float deltaTime)
         {
             var lerpValue = (m_currentTargetSpeed >= m_currentSpeed) ? AccelerationTime : DecelerationTime;
             m_currentSpeed = Mathf.Lerp(m_currentSpeed, ClampTargetSpeed(), deltaTime / lerpValue);
-            
-            m_shipTransform.position += (deltaTime * m_currentSpeed * transform.up);
         }
 
-        protected override void ApplyState()
+        protected override void InternalUpdateModule(float deltaTime)
         {
-            
+            m_shipTransform.position += (deltaTime * m_currentSpeed * transform.up);
         }
 
         private float ClampTargetSpeed()

@@ -1,72 +1,94 @@
+using System;
+using Assets.Scripts.Ships.Common;
+using Assets.Scripts.Weapons;
 using UnityEngine;
 
 namespace Assets.Scripts.Ships.Modules
 {
-    public abstract class Module : MonoBehaviour
+    public abstract class Module : MonoBehaviour, IDamageable
     {
-        public ModuleType Type => m_type;
-        [SerializeField] private ModuleType m_type;
-        [SerializeField] private float m_moduleHp;
-        [SerializeField] private bool m_canBeDamaged = false;
-        [SerializeField] private bool m_canBeDestroyed = false;
+        [SerializeField] private ModuleInformation m_info;
+        public ModuleType Type => m_info.Type;
+        public float CurrentHp { get; set; }
+        public DamageState CurrentState { get; set; }
+        public bool CanBeRepaired => CurrentState is DamageState.Damaged or DamageState.Disabled;
+        public bool IsWorking => CurrentState is not DamageState.Disabled and DamageState.Destroyed;
         
-        public ModuleState State {
-            get
-            {
-                if (!m_canBeDamaged) return ModuleState.Working;
-                
-                if (m_moduleHp > m_currentModuleHp) {
-                    return ModuleState.Damaged;
-                }
+        public Action<IDamageable, DamageState> OnStateChanged { get; set; }
+        public Action<IDamageable, float> OnDamageTaken { get; set; }
 
-                return m_currentModuleHp switch
-                {
-                    <= 0 when !m_canBeDestroyed => ModuleState.HS,
-                    <= 0 => ModuleState.Destroyed,
-                    _ => ModuleState.Working
-                };
-            }
-        }
+        protected Ship m_ship;
         
-        public bool CanBeRepaired { get => State is ModuleState.Damaged or ModuleState.HS; }
-        
-        private Ship m_ship;
-        private float m_currentModuleHp;
-
-        private void Start()
+        public virtual void Initialize(Ship attachedShip)
         {
-            m_ship = GetComponentInParent<Ship>();
-            m_ship.RegisterModule(this);
-            m_currentModuleHp = m_moduleHp;
+            m_ship = attachedShip;
         }
-
-        public void Activate(bool value)
-        {
-            if (value)
-            {
-                OnEnableModule();
-            }
-            else
-            {
-                OnDisableModule();
-            }
-        }
-
-        protected abstract void OnEnableModule();
-        protected abstract void OnDisableModule();
 
         public void UpdateModule(float deltaTime)
         {
-            if (State is ModuleState.Destroyed or ModuleState.HS) return;
-            ApplyState();
+            InternalPreUpdateModule(deltaTime);
+            if (IsWorking) return;
+            
             InternalUpdateModule(deltaTime);
         }
+        
+        public void OnImpact(Impact impact)
+        {
+            TakeDamage(impact);
+            CheckState();
+            ApplyState();
+        }
 
-        protected abstract void InternalUpdateModule(float deltaTime);
-
-        protected virtual void ApplyState()
+        public void Repair(float amount, bool full = false)
         {
             
+        }
+
+        protected abstract void InternalPreUpdateModule(float deltaTime);
+        protected abstract void InternalUpdateModule(float deltaTime);
+
+        protected virtual float InternalCalculateDamage(float dmg)
+        {
+            return dmg;
+        }
+
+        protected virtual void ApplyState() { }
+        
+        protected virtual void ApplyStatus()
+        {
+            //todo check for fire here or elsewhere in hull module
+        }
+
+        private void TakeDamage(Impact impact)
+        {
+            var damageTaken = InternalCalculateDamage(impact.BaseDamage);
+            CurrentHp -= damageTaken;
+            OnDamageTaken?.Invoke(this, damageTaken);
+            if (CurrentHp <= 0) CurrentHp = 0;
+        }
+        
+        private void CheckState()
+        {
+            var lastState = CurrentState;
+            
+            DamageState newState;
+            if (CurrentHp < m_info.MaxHp) {
+                newState =  DamageState.Damaged;
+            }
+            else
+            {
+                newState = CurrentHp switch
+                {
+                    <= 0 when this is not IDestroyable => DamageState.Disabled,
+                    <= 0 => DamageState.Destroyed,
+                    _ => DamageState.Undamaged
+                };
+            }
+            
+            if (newState != lastState)
+                OnStateChanged?.Invoke(this, newState);
+
+            CurrentState = newState;
         }
     }
 }

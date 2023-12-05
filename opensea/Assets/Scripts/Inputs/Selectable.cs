@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 namespace Assets.Scripts.Inputs
 {
-    [RequireComponent(typeof(Collider2D))]
+    [RequireComponent(typeof(Collider2D), typeof(ISelectable))]
     public class Selectable : MonoBehaviour, IPointerDownHandler
     {
         private ISelectable m_relatedSelectable;

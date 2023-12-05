@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Assets.Scripts.Weapons;
 using UnityEngine;
@@ -8,12 +9,7 @@ namespace Assets.Scripts.Ships.Modules
     {
         [SerializeField] private List<Weapon> m_armamentSlots = new();
 
-        protected override void OnEnableModule()
-        {
-            
-        }
-
-        protected override void OnDisableModule()
+        protected override void InternalPreUpdateModule(float deltaTime)
         {
             
         }

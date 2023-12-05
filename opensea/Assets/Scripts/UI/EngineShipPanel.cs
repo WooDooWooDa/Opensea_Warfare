@@ -24,10 +24,8 @@ namespace UI
         private float[] m_speedPart;
         private int m_currentSpeedIndex;
         
-        protected override void Start()
+        protected  void Start()
         {
-            base.Start();
-            
             var speedPart = 1f;
             m_speedPart = new float[m_speedButtons.Count];
             var i = 0;
@@ -56,13 +54,13 @@ namespace UI
         public override void UpdatePanelWithModule(Module module)
         {
             base.UpdatePanelWithModule(module);
-
-            if (module is null || m_engineModule == module) return;
             
             m_engineModule = (Engine)module;
             
-            UnSelectAllSpeedButton();
+            if (module is null) return;
+            
             m_currentSpeedIndex = m_engineModule.CurrentSpeedIndex;
+            UnSelectAllSpeedButton();
             SelectSpeedButton(m_speedButtons[m_currentSpeedIndex]);
         }
 
@@ -80,19 +78,20 @@ namespace UI
 
         private void ChangeSpeed(float delta)
         {
+            if (m_engineModule is null) return;
+            
             m_currentSpeedIndex = Mathf.Clamp(m_currentSpeedIndex -= (int)delta, 0, m_speedButtons.Count - 1);
             SelectSpeed(m_speedButtons[m_currentSpeedIndex], m_speedPart[m_currentSpeedIndex]);
         }
 
         private void SelectSpeed(Button btn, float speedPart)
         {
-            if (m_engineModule is not null)
-            {
-                m_currentSpeedIndex = m_speedButtons.IndexOf(btn);
-                m_engineModule.SetTargetSpeedTo(speedPart, m_currentSpeedIndex);
-                UnSelectAllSpeedButton();
-                SelectSpeedButton(btn);
-            }
+            if (m_engineModule is null) return;
+            
+            m_engineModule.SetTargetSpeedTo(speedPart, m_currentSpeedIndex);
+            m_currentSpeedIndex = m_speedButtons.IndexOf(btn);
+            UnSelectAllSpeedButton();
+            SelectSpeedButton(btn);
         }
 
         private void SelectSpeedButton(Button btn)

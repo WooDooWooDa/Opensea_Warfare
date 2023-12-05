@@ -2,12 +2,13 @@ using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Ships;
 using UI;
+using UnityEngine;
 
 namespace Assets.Scripts.Managers
 {
     public class UIManager : Manager
     {
-        private List<ShipPanel> m_shipPanels = new();
+        [SerializeField] private List<ShipPanel> m_shipPanels = new();
         
         private FleetManager m_fleetManager;
         private Ship m_currentSelectedShip;
@@ -35,14 +36,14 @@ namespace Assets.Scripts.Managers
         {
             //todo maybe make animation to ui when ship change (mainly for fleet panel)
             
-            if (newShip != null && m_currentSelectedShip != newShip)
+            m_currentSelectedShip = newShip;
+            if (newShip != null)
             {
                 //open closed panel
-                m_currentSelectedShip = newShip;
-                foreach (var panel in m_shipPanels)
+                foreach (var shipPanel in m_shipPanels)
                 {
-                    var moduleNeeded = panel.ModuleTypeFor;
-                    panel.UpdatePanelWithModule(m_currentSelectedShip.GetModuleOfType(moduleNeeded));
+                    var moduleNeeded = shipPanel.ModuleTypeFor;
+                    shipPanel.UpdatePanelWithModule(m_currentSelectedShip.GetModuleOfType(moduleNeeded));
                     //animation
                 }
             }
@@ -50,6 +51,7 @@ namespace Assets.Scripts.Managers
             {
                 foreach (var shipPanel in m_shipPanels.Where(shipPanel => shipPanel.NeedModule))
                 {
+                    shipPanel.UpdatePanelWithModule(null);
                     //shipPanel.enabled = false;
                     //close
                 }

@@ -192,6 +192,7 @@ GameObject:
   - component: {fileID: 4045859191189706699}
   - component: {fileID: 47113632}
   - component: {fileID: 7176762261339537895}
+  - component: {fileID: 1381740648096658275}
   m_Layer: 6
   m_Name: Destroyer
   m_TagString: Untagged
@@ -233,7 +234,6 @@ MonoBehaviour:
   m_informations: {fileID: 11400000, guid: c259c25570f250b409430d7ed51ccff7, type: 2}
   m_stats: {fileID: 11400000, guid: 13b9ec16d1e8ae54f9ce6dbbc6c3344d, type: 2}
   m_modules: []
-  m_armementSlots: []
 --- !u!61 &4045859191189706703
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -284,12 +284,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f16cbafacea476b42ab0300764fb7fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_type: 1
-  m_moduleHp: 100
-  m_canBeDamaged: 1
-  m_canBeDestroyed: 0
-  m_maxSpeed: 0.2
-  m_currentSpeed: 0
+  m_info: {fileID: 11400000, guid: 317c58d955216ac4b9f51bd38d1542f0, type: 2}
+  m_maxSpeed: 0.4
 --- !u!114 &7176762261339537895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,12 +298,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5ce69630292cd04297b3aa54e539653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_type: 2
-  m_moduleHp: 0
-  m_canBeDamaged: 0
-  m_canBeDestroyed: 0
-  m_turnSpeed: 10
-  m_targetAngle: 0
+  m_info: {fileID: 11400000, guid: 5ba52be592e6fd94c8708ffa45ae6226, type: 2}
+  m_turnSpeed: 4
+--- !u!114 &1381740648096658275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4045859191189706688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8290c526928a4c01ba7f2efd1c144c1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_info: {fileID: 11400000, guid: 7bca67c798e761f4b85ca2ca27263022, type: 2}
 --- !u!1 &4867516138960776701
 GameObject:
   m_ObjectHideFlags: 0

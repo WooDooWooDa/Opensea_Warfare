@@ -8,6 +8,7 @@ namespace Assets.Scripts.Ships.Modules
         Empty,
         Engine,
         SteeringGear,
+        Hull,
         Armament,
         Count
     }

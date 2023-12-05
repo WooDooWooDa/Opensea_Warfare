@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Helpers;
+﻿using System;
+using Assets.Scripts.Helpers;
 using UnityEngine;
 
 namespace Assets.Scripts.Ships.Modules
@@ -8,16 +9,11 @@ namespace Assets.Scripts.Ships.Modules
         [SerializeField] private float m_turnSpeed = 4;
         
         private float m_targetAngle;
-        private const int TurnSpeedStep = 2;
+        private const int TurnSpeedStep = 10;
 
-        protected override void OnEnableModule()
+        private void Start()
         {
             Events.Inputs.OnSideChanged += ChangeAngle;
-        }
-
-        protected override void OnDisableModule()
-        {
-            Events.Inputs.OnSideChanged -= ChangeAngle;
         }
         
         private void ChangeAngle(float delta)
@@ -34,6 +30,11 @@ namespace Assets.Scripts.Ships.Modules
         {
             transform.rotation.ToAngleAxis(out var shipAngle, out var axis);
             m_targetAngle = shipAngle;
+        }
+
+        protected override void InternalPreUpdateModule(float deltaTime)
+        {
+            
         }
 
         protected override void InternalUpdateModule(float deltaTime)
