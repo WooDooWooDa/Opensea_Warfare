@@ -12,7 +12,7 @@ TagManager:
   - Water
   - UI
   - Ship
-  - 
+  - MiniMap
   - 
   - 
   - 
@@ -38,6 +38,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Minimap
+    uniqueID: 443717653
+    locked: 0
   - name: Ocean
     uniqueID: 1509487619
     locked: 0

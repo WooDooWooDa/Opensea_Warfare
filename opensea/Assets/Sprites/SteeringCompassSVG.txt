@@ -1,0 +1,40 @@
+<svg width="320px" height="320px" viewBox="0 0 160 160">
+  <defs>
+    <g id="lines" style="stroke: white;">
+      <line x1="65" x2="75"></line>
+      <line x1="-65" x2="-75"></line>
+      <line y1="65" y2="75"></line>
+      <line y1="-65" y2="-75"></line>
+    </g>
+  <g id="biglines" style="stroke: white;stroke-width: 2.2;">
+      <line x1="60" x2="75"></line>
+      <line x1="-60" x2="-75"></line>
+      <line y1="60" y2="75"></line>
+      <line y1="-60" y2="-75"></line>
+    </g><g id="midlines" style="stroke: white;stroke-width: 1.7;">
+      <line x1="62" x2="75"></line>
+      <line x1="-62" x2="-75"></line>
+      <line y1="62" y2="75"></line>
+      <line y1="-62" y2="-75"></line>
+    </g></defs>
+  <g transform="translate(80 80)">
+    <use xlink:href="#biglines" transform="rotate( 0)"></use>
+    <use xlink:href="#lines" transform="rotate(4.5)"></use>
+    <use xlink:href="#lines" transform="rotate(9)"></use>
+    <use xlink:href="#lines" transform="rotate(13.5)"></use>
+    <use xlink:href="#lines" transform="rotate(18)"></use>
+    <use xlink:href="#midlines" transform="rotate(22.5)"></use>
+    <use xlink:href="#lines" transform="rotate(27)"></use>
+    <use xlink:href="#lines" transform="rotate(31.5)"></use>
+    <use xlink:href="#lines" transform="rotate(36)"></use>
+    <use xlink:href="#lines" transform="rotate(40.5)"></use>
+    <use xlink:href="#biglines" transform="rotate(45)"></use>
+    <use xlink:href="#lines" transform="rotate(49.5)"></use>
+    <use xlink:href="#lines" transform="rotate(54)"></use>
+    <use xlink:href="#lines" transform="rotate(58.5)"></use>
+    <use xlink:href="#lines" transform="rotate(63)"></use>
+    <use xlink:href="#midlines" transform="rotate(67.5)"></use>
+    <use xlink:href="#lines" transform="rotate(72)"></use>
+    <use xlink:href="#lines" transform="rotate(76.5)"></use>
+  <use xlink:href="#lines" transform="rotate(81)"></use><use xlink:href="#lines" transform="rotate(85.5)"></use></g>
+</svg>

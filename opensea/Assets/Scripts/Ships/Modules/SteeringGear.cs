@@ -1,22 +1,29 @@
-﻿using System;
-using Assets.Scripts.Helpers;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Ships.Modules
 {
     public class SteeringGear : Module
     {
         [SerializeField] private float m_turnSpeed = 4;
+
+        public float TargetAngle => m_targetAngle;
         
         private float m_targetAngle;
         private const int TurnSpeedStep = 10;
 
-        private void Start()
+        public void SetTargetAngle(float angle)
         {
-            Events.Inputs.OnSideChanged += ChangeAngle;
+            m_targetAngle = angle;
+            
+        }
+
+        public void ResetCourse()
+        {
+            transform.rotation.ToAngleAxis(out var shipAngle, out var axis);
+            m_targetAngle = shipAngle;
         }
         
-        private void ChangeAngle(float delta)
+        public void ChangeAngle(float delta)
         {
             var nextTargetAngle = m_targetAngle + (-delta * TurnSpeedStep);
             if (nextTargetAngle <= 0)
@@ -24,12 +31,6 @@ namespace Assets.Scripts.Ships.Modules
                 nextTargetAngle = 360 + (-delta * TurnSpeedStep);
             }
             m_targetAngle = nextTargetAngle;
-        }
-
-        public void ResetCourse()
-        {
-            transform.rotation.ToAngleAxis(out var shipAngle, out var axis);
-            m_targetAngle = shipAngle;
         }
 
         protected override void InternalPreUpdateModule(float deltaTime)

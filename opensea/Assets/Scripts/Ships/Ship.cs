@@ -1,20 +1,24 @@
-﻿using Assets.Scripts.Inputs;
+﻿using System;
+using Assets.Scripts.Inputs;
 using Assets.Scripts.Managers;
 using Assets.Scripts.Ships.Modules;
 using Assets.Scripts.Ships.SOs;
 using System.Collections.Generic;
 using Assets.Scripts.Ships.Common;
+using Assets.Scripts.Weapons;
 using UnityEngine;
 
 namespace Assets.Scripts.Ships
 {
     [RequireComponent(typeof(Engine), typeof(SteeringGear))]
-    public abstract class Ship: MonoBehaviour, ISelectable
+    public abstract class Ship: MonoBehaviour, ISelectable, IHittable
     {
         [SerializeField] private ShipInformations m_informations;
         public ShipStats Stats => m_stats;
         [SerializeField] private ShipStats m_stats;
         [SerializeField] private List<Module> m_modules = new();
+
+        public Action<IHittable, Impact> OnHit { get; set; }
 
         private FleetManager m_fleetManager;
 
@@ -40,6 +44,13 @@ namespace Assets.Scripts.Ships
         public void OnSelect()
         {
             m_fleetManager.FocusOn(this);
+        }
+        
+        public void Hit(Impact impact, Action callback)
+        {
+            //Calculate impact area
+            //Call onImpact on the right module and the hull
+            OnHit?.Invoke(this, impact);
         }
         
         public Module GetModuleOfType(ModuleType type)

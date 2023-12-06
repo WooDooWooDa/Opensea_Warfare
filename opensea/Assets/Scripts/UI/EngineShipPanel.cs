@@ -48,7 +48,7 @@ namespace UI
 
         private void OnDisable()
         {
-            Events.Inputs.OnUpDownChanged += ChangeSpeed;
+            Events.Inputs.OnUpDownChanged -= ChangeSpeed;
         }
 
         public override void UpdatePanelWithModule(Module module)
