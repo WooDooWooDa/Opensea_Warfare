@@ -9,6 +9,8 @@ namespace Assets.Scripts.Ships.Modules
     {
         [SerializeField] private List<Weapon> m_armamentSlots = new();
 
+        
+        
         protected override void InternalPreUpdateModule(float deltaTime)
         {
             

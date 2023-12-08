@@ -9,6 +9,7 @@ namespace Assets.Scripts.Ships.Modules
         Engine,
         SteeringGear,
         Hull,
+        FireControl,
         Armament,
         Count
     }

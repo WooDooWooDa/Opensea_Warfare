@@ -6,10 +6,11 @@ namespace Assets.Scripts.Ships.Modules
     {
         [SerializeField] private float m_turnSpeed = 4;
 
+        public float CurrentAngle => transform.rotation.eulerAngles.z;
         public float TargetAngle => m_targetAngle;
         
         private float m_targetAngle;
-        private const int TurnSpeedStep = 10;
+        private const float TurnSpeedStep = 11.25f;
 
         public void SetTargetAngle(float angle)
         {

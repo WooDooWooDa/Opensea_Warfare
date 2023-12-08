@@ -5,29 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f830f0c4-ba14-467a-8842-14458945bc77" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Common/IHittable.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Common/IHittable.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Ships/Modules/FireControl.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Ships/Modules/FireControl.asset.meta" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/FireControl.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/FireControl.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sprites/Sea Warfare Set/Destroyer/ShipDestroyerSilhouette.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sprites/Sea Warfare Set/Destroyer/ShipDestroyerSilhouette.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sprites/SteeringCompassSVG.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sprites/SteeringCompassSVG.txt.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sprites/circle_slider.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sprites/circle_slider.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sprites/radial_circle.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sprites/radial_circle.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sprites/untitled (3).png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sprites/untitled (3).png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sprites/untitled (4).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sprites/untitled (4).png.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.opensea/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.opensea/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Font/Retro Gaming SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Font/Retro Gaming SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Font/upheavtt SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Font/upheavtt SDF.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Armaments.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Armaments.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/ModuleType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/ModuleType.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/SteeringGear.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/SteeringGear.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Ship.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Ship.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/EngineShipPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/EngineShipPanel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/SteeringShipPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/SteeringShipPanel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Weapons/Impact.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/Impact.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Weapons/Projectile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/Projectile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,10 +102,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="21420">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="21420" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -138,7 +128,9 @@
       <workItem from="1701541308990" duration="7473000" />
       <workItem from="1701636275427" duration="16818000" />
       <workItem from="1701732857578" duration="12012000" />
-      <workItem from="1701818680804" duration="5697000" />
+      <workItem from="1701818680804" duration="5790000" />
+      <workItem from="1701911704383" duration="6265000" />
+      <workItem from="1701992534552" duration="639000" />
     </task>
     <servers />
   </component>
