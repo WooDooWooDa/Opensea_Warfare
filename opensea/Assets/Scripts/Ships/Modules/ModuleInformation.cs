@@ -7,5 +7,6 @@ namespace Assets.Scripts.Ships.Modules
     {
         public ModuleType Type;
         public float MaxHp;
+        public bool CanBeDamage = true;
     }
 }

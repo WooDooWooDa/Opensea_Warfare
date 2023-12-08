@@ -5,8 +5,6 @@ namespace Assets.Scripts.Ships.Modules
 {
     public class Engine : Module
     {
-        [SerializeField] private float m_maxSpeed;
-
         public float CurrentSpeedPercentage => m_currentSpeed / m_maxSpeed;
         public float CurrentSpeed => m_currentSpeed * 100;
         public int CurrentSpeedIndex { get; private set; }
@@ -16,6 +14,7 @@ namespace Assets.Scripts.Ships.Modules
         private const int DecelerationTime = 6;
         
         private Transform m_shipTransform;
+        private float m_maxSpeed;
         private float m_currentSpeed;
         private float m_currentTargetSpeed;
         private float m_currentMaxSpeed;
@@ -25,6 +24,12 @@ namespace Assets.Scripts.Ships.Modules
             CurrentSpeedIndex = 4;
             m_shipTransform = transform;
             m_currentMaxSpeed = m_maxSpeed;
+        }
+
+        public override void Initialize(Ship attachedShip)
+        {
+            base.Initialize(attachedShip);
+            m_maxSpeed = attachedShip.Stats.SPD / 10;
         }
 
         public void SetTargetSpeedTo(float speedPart, int speedIndex)

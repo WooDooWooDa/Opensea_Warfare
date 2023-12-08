@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Weapons;
 using UnityEngine;
 
@@ -9,7 +9,9 @@ namespace Assets.Scripts.Ships.Modules
     {
         [SerializeField] private List<Weapon> m_armamentSlots = new();
 
-        
+        public List<Weapon> Weapons => m_armamentSlots;
+
+        public List<Weapon> GetWeaponsOfType(WeaponType type) => m_armamentSlots.Where(w => w.Type == type).ToList();
         
         protected override void InternalPreUpdateModule(float deltaTime)
         {

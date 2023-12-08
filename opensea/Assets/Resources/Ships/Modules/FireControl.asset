@@ -9,13 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a40de45e6c9110a4fbbea5c3c4cbb921, type: 3}
-  m_Name: BattleShipStats
+  m_Script: {fileID: 11500000, guid: c7dc8e64fabe487bb61c6c994506b311, type: 3}
+  m_Name: FireControl
   m_EditorClassIdentifier: 
-  HP: 2500
-  FP: 0
-  Hull: 2
-  SPD: 2
-  RNG: 12
-  ACC: 6
-  weaponSlots: 00000000000000000000000000000000
+  Type: 4
+  MaxHp: 0
+  CanBeDamage: 1
