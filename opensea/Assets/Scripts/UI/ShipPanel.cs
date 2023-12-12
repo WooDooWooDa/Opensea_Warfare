@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Ships.Modules;
 using UnityEngine;
 
@@ -7,12 +9,29 @@ namespace UI
     {
         public bool NeedModule => m_needModule;
         [SerializeField] private bool m_needModule;
-        public ModuleType ModuleTypeFor => m_moduleTypeFor;
-        [SerializeField] private ModuleType m_moduleTypeFor;
+        public ModuleType[] ModulesTypeFor => m_modulesTypeFor;
+        [SerializeField] private ModuleType[] m_modulesTypeFor;
+
+        private bool m_isOpen;
         
-        public virtual void UpdatePanelWithModule(Module module)
+        public virtual void UpdatePanelWithModules(List<Module> modules)
         {
+            if (modules == null || !modules.Any()) ClosePanel();
+            else OpenPanel();
+        }
+
+        protected virtual void OpenPanel()
+        {
+            if (m_isOpen) return;
             
+            Debug.Log("Opening Panel" + this);
+        }
+        
+        protected virtual void ClosePanel()
+        {
+            if (!m_isOpen) return;
+
+            Debug.Log("Closing Panel " + this);
         }
     }
 }

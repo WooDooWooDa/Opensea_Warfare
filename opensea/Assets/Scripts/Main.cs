@@ -2,10 +2,13 @@ using Assets.Scripts.Managers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Weapons.SOs;
 using UnityEngine;
 
 public class Main : MonoBehaviour
 {
+    [SerializeField] public WeaponsPrefabConfig WeaponsPrefabConfig;
+    
     private Main()
     {
         m_data = new SaveData();

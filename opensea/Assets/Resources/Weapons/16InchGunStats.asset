@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 16"/50-caliber gun
   Type: 0
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 8f45b7617a41c8d4f901d33e19a92b31, type: 3}
   ProjectileSprite: {fileID: 0}
   ProjectileSize: 0
   ProjectileSpeed: 0
   ProjectileCharacteristics: 
   SalvoCount: 0
-  SalvoSpacing: 0
-  SalvoType: 0
+  SalvoTimeSpacing: 0
+  turnSpeed: 1

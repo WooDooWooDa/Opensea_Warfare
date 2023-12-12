@@ -1,13 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
+using Assets.Scripts.Helpers;
 using Assets.Scripts.Weapons;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
-using Vector2 = UnityEngine.Vector2;
+using UnityEngine.UIElements;
 using Vector3 = UnityEngine.Vector3;
 
 namespace Assets.Scripts.Ships.Modules
@@ -17,53 +15,94 @@ namespace Assets.Scripts.Ships.Modules
     {
         [SerializeField] private Transform m_targetReticule;
         [SerializeField] private Transform m_projectedReticule;
-        [SerializeField] private CircleCollider2D m_rangeCollider;
         [SerializeField] private LayerMask m_obstacleLayer;
-        [SerializeField] private LayerMask m_rangeLayer;
+        
         private Armaments m_armamentsModule;
 
         private Vector3 m_startingReticuleScale;
-        private float m_reticuleScaleMult;
+        private float m_dispersion;
         private float m_range;
         [SerializeField] private bool m_isAiming;
-        private bool m_isLinked;
-        private List<Weapon> m_currentControlledWeapons = new();
-        
+        private Dictionary<WeaponType, bool> m_weaponTypeLinks = new();
+        private WeaponType? m_currentControlledWeaponType;
+
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (!m_currentControlledWeapons.Any()) return;
+            if (m_currentControlledWeaponType == null || !m_isAiming) return;
             
-            if (m_isAiming)
-            {
-                //m_isAiming = !m_isAiming;
-                Fire();
-            }
-            //temp to try
-            m_isAiming = !m_isAiming;
+            //verify if all link weapon are ready to fire
+
+            m_armamentsModule.TryFireSelectedWeapons(m_dispersion);
         }
         
         public override void Initialize(Ship attachedShip)
         {
             base.Initialize(attachedShip);
+            
             m_range = attachedShip.Stats.RNG;
-            m_rangeCollider.radius = m_range * 2;
-        }
-        
-        private void Start()
-        {
+            
+            foreach(WeaponType type in Enum.GetValues(typeof(WeaponType))) {
+                m_weaponTypeLinks.Add(type, false);
+            }
+            
             m_armamentsModule = GetComponentInChildren<Armaments>();
             m_startingReticuleScale = m_projectedReticule.localScale;
+        }
+        
+        //called from ui
+        public void ToggleAiming()
+        {
+            m_isAiming = !m_isAiming;
+            
+            m_projectedReticule.gameObject.SetActive(m_isAiming);
+            m_targetReticule.gameObject.SetActive(m_isAiming);
+        }
+        
+        public void SelectWeaponType(WeaponType type)
+        {
+            m_currentControlledWeaponType = type;
+            m_armamentsModule.SelectWeapon(type);
+        }
+
+        public void SelectWeapon(Weapon weapon)
+        {
+            m_currentControlledWeaponType = weapon.Type;
+            m_armamentsModule.SelectWeapon(weapon);
+        }
+        
+        public void ToggleLinkWeaponType(WeaponType typeToLink)
+        {
+            var isLinked = m_weaponTypeLinks[typeToLink];
+            if (!isLinked)
+            {
+                SelectWeaponType(typeToLink);
+            }
+            else
+            {
+                //select the first of the list of selected type otherwise none
+            }
+            m_weaponTypeLinks[typeToLink] = !isLinked;
         }
 
         protected override void InternalPreUpdateModule(float deltaTime)
         {
-            m_projectedReticule.gameObject.SetActive(m_isAiming);
+            
         }
 
         protected override void InternalUpdateModule(float deltaTime)
         {
             if (!m_isAiming) return;
 
+            MoveReticule();
+            
+            if (m_currentControlledWeaponType == null) return;
+            
+            // set target for each selected weapon
+            m_armamentsModule.SetTargetTo(m_targetReticule.position);
+        }
+        
+        private void MoveReticule()
+        {
             var pointerPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             m_projectedReticule.position = new Vector3(pointerPos.x, pointerPos.y, 0);
             var pointerDistance = Vector3.Distance(transform.position, m_projectedReticule.position);
@@ -83,24 +122,8 @@ namespace Assets.Scripts.Ships.Modules
             }
 
             var reticuleDistance = Vector3.Distance(transform.position, m_projectedReticule.position);
-            m_reticuleScaleMult = Mathf.Clamp(reticuleDistance / m_range, 1, 2);
-            m_projectedReticule.localScale = m_startingReticuleScale * m_reticuleScaleMult;
-            
-            //foreach (var weapon in m_currentControlledWeapons)
-            //{
-            //    weapon.SetTargetCoord(m_targetReticule.position);
-            //}
-        }
-
-        //make public to be called from ui
-        private void LinkGuns(WeaponType typeToLink)
-        {
-            m_currentControlledWeapons = m_armamentsModule.GetWeaponsOfType(typeToLink);
-        }
-
-        private void Fire()
-        {
-            //fire with of m_reticuleScaleMult (radius of dispersion circle = scale * acc
+            m_dispersion = Mathf.Clamp(reticuleDistance / m_range, 1, 2);
+            m_projectedReticule.localScale = m_startingReticuleScale * m_dispersion;
         }
     }
 }

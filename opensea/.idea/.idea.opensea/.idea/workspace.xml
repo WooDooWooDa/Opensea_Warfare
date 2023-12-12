@@ -5,30 +5,74 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f830f0c4-ba14-467a-8842-14458945bc77" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/FireControl.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sprites/Sea Warfare Set/crosshair032.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sprites/Sea Warfare Set/crosshair032.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sprites/Sea Warfare Set/crosshair041.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sprites/Sea Warfare Set/crosshair041.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sprites/Sea Warfare Set/crosshair061.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sprites/Sea Warfare Set/crosshair061.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sprites/Sea Warfare Set/crosshair089.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sprites/Sea Warfare Set/crosshair089.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sprites/Sea Warfare Set/crosshair094.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sprites/Sea Warfare Set/crosshair094.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sprites/Sea Warfare Set/crosshair119.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sprites/Sea Warfare Set/crosshair119.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefab/UI.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefab/UI/BattleUI.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefab/UI/BattleUI/WeaponSlotWidget.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefab/UI/BattleUI/WeaponSlotWidget.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefab/Weapons.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefab/Weapons/MainGun.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefab/Weapons/MainGun.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefab/Weapons/TorpedoTubes.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefab/Weapons/TorpedoTubes.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Parameters/weaponsConfig.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Parameters/weaponsConfig.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Ships/Modules/Armement.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Ships/Modules/Armement.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Weapons/4TubesTorpedoLauncher.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Weapons/4TubesTorpedoLauncher.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Inputs/OnSpaceInputSystem.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Inputs/OnSpaceInputSystem.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Types.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/ArmamentShipPanel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/ArmamentShipPanel.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/WeaponSlotWidget.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/WeaponSlotWidget.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/SOs/WeaponsPrefabConfig.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/SOs/WeaponsPrefabConfig.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/Types.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/Types/MainGun.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/Types/MainGun.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/Types/TorpedoTubes.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/Types/TorpedoTubes.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sprites/main.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sprites/main.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sprites/torp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Sprites/torp.png.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.opensea/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.opensea/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefab/Ships/Destroyer.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Ships/Destroyer.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Ships/Stats/BattleShipStats.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Ships/Stats/BattleShipStats.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/GameInputs.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/GameInputs.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/GameInputs.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/GameInputs.inputactions" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Ships/Modules/Engine.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Ships/Modules/Engine.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Ships/Modules/FireControl.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Ships/Modules/FireControl.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Ships/Modules/Hull.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Ships/Modules/Hull.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Ships/Modules/SteeringGear.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Ships/Modules/SteeringGear.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Ships/Stats/DestroyerStats.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Ships/Stats/DestroyerStats.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Weapons/16InchGunStats.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Weapons/16InchGunStats.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Weapons/5InchGunStats.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Weapons/5InchGunStats.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Helpers/Events.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Helpers/Events.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Main.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Main.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/UIManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Destroyer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Types/Destroyer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Destroyer.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Types/Destroyer.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Armaments.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Armaments.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Engine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Engine.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/FireControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/FireControl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Module.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Module.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/ModuleInformation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/ModuleInformation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/SOs/ShipStats.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/SOs/ShipStats.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/ModuleInformation.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/ModuleInformation.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Ship.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Ship.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/ShipType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Types/ShipType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/ShipType.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Types/ShipType.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/EngineShipPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/EngineShipPanel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/ShipPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/ShipPanel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/SteeringShipPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/SteeringShipPanel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Weapons/SOs/WeaponStats.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/SOs/WeaponStats.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Weapons/SalvoType.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Weapons/SalvoType.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Weapons/Weapon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/Weapon.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Weapons/WeaponType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/Types/WeaponType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Weapons/WeaponType.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/Types/WeaponType.cs.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,17 +83,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock://A:/UNITY_GAME/Opensea_Warfare/opensea/Assets/Prefab/Ships/Battleship.prefab" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://A:/UNITY_GAME/Opensea_Warfare/opensea/Assets/Prefab/Ships/Destroyer.prefab" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://A:/UNITY_GAME/Opensea_Warfare/opensea/Assets/Scripts/Inputs/Selectable.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://A:/UNITY_GAME/Opensea_Warfare/opensea/Assets/Scripts/Main.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://A:/UNITY_GAME/Opensea_Warfare/opensea/Assets/Scripts/Ships/Modules/Armaments.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://A:/UNITY_GAME/Opensea_Warfare/opensea/Assets/Scripts/Ships/Modules/Engine.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://A:/UNITY_GAME/Opensea_Warfare/opensea/Assets/Scripts/Ships/Modules/Module.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://A:/UNITY_GAME/Opensea_Warfare/opensea/Assets/Scripts/Ships/Modules/ModuleType.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://A:/UNITY_GAME/Opensea_Warfare/opensea/Assets/Scripts/Ships/Ship.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://A:/UNITY_GAME/Opensea_Warfare/opensea/Assets/Scripts/UI/EngineShipPanel.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://A:/UNITY_GAME/Opensea_Warfare/opensea/Assets/Scripts/Weapons/Projectile.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Ships/Types/Destroyer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/ArmamentShipPanel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9aad1b3a47484d63ba2b3985692d80e946a800/ed/b365d5f8/List`1.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -141,7 +176,9 @@
       <workItem from="1701732857578" duration="12012000" />
       <workItem from="1701818680804" duration="5790000" />
       <workItem from="1701911704383" duration="6265000" />
-      <workItem from="1701992534552" duration="10670000" />
+      <workItem from="1701992534552" duration="11241000" />
+      <workItem from="1702243172203" duration="11688000" />
+      <workItem from="1702339572471" duration="9650000" />
     </task>
     <servers />
   </component>
@@ -151,6 +188,17 @@
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />

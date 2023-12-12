@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7dc8e64fabe487bb61c6c994506b311, type: 3}
+  m_Script: {fileID: 11500000, guid: 1014669a0460e98479856bc5879572cd, type: 3}
   m_Name: FireControl
   m_EditorClassIdentifier: 
   Type: 4

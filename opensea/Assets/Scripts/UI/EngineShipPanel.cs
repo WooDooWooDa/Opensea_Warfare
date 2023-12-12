@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Helpers;
 using Assets.Scripts.Ships.Modules;
 using TMPro;
@@ -51,13 +52,13 @@ namespace UI
             Events.Inputs.OnUpDownChanged -= ChangeSpeed;
         }
 
-        public override void UpdatePanelWithModule(Module module)
+        public override void UpdatePanelWithModules(List<Module> modules)
         {
-            base.UpdatePanelWithModule(module);
+            base.UpdatePanelWithModules(modules);
             
-            m_engineModule = (Engine)module;
+            m_engineModule = (Engine)modules.Find(m => m.Type == ModuleType.Engine);
             
-            if (module is null) return;
+            if (m_engineModule == null) return;
             
             m_currentSpeedIndex = m_engineModule.CurrentSpeedIndex;
             UnSelectAllSpeedButton();

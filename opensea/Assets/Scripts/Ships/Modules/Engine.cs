@@ -23,13 +23,12 @@ namespace Assets.Scripts.Ships.Modules
         {
             CurrentSpeedIndex = 4;
             m_shipTransform = transform;
-            m_currentMaxSpeed = m_maxSpeed;
         }
 
         public override void Initialize(Ship attachedShip)
         {
             base.Initialize(attachedShip);
-            m_maxSpeed = attachedShip.Stats.SPD / 10;
+            m_currentMaxSpeed = m_maxSpeed = attachedShip.Stats.SPD / 10;
         }
 
         public void SetTargetSpeedTo(float speedPart, int speedIndex)
@@ -59,7 +58,7 @@ namespace Assets.Scripts.Ships.Modules
 
         private float ClampTargetSpeed()
         {
-            return Mathf.Clamp(m_currentTargetSpeed, -m_maxSpeed / NbSpeedStep, m_currentMaxSpeed);
+            return Mathf.Clamp(m_currentTargetSpeed, -(m_maxSpeed / NbSpeedStep), m_currentMaxSpeed);
         }
     }
 }

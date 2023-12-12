@@ -42,8 +42,8 @@ namespace Assets.Scripts.Managers
                 //open closed panel
                 foreach (var shipPanel in m_shipPanels)
                 {
-                    var moduleNeeded = shipPanel.ModuleTypeFor;
-                    shipPanel.UpdatePanelWithModule(m_currentSelectedShip.GetModuleOfType(moduleNeeded));
+                    var modulesNeeded = shipPanel.ModulesTypeFor;
+                    shipPanel.UpdatePanelWithModules(m_currentSelectedShip.GetModuleOfType(modulesNeeded).ToList());
                     //animation
                 }
             }
@@ -51,7 +51,7 @@ namespace Assets.Scripts.Managers
             {
                 foreach (var shipPanel in m_shipPanels.Where(shipPanel => shipPanel.NeedModule))
                 {
-                    shipPanel.UpdatePanelWithModule(null);
+                    shipPanel.UpdatePanelWithModules(null);
                     //shipPanel.enabled = false;
                     //close
                 }

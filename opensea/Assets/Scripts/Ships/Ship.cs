@@ -4,6 +4,7 @@ using Assets.Scripts.Managers;
 using Assets.Scripts.Ships.Modules;
 using Assets.Scripts.Ships.SOs;
 using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Ships.Common;
 using Assets.Scripts.Weapons;
 using UnityEngine;
@@ -53,9 +54,9 @@ namespace Assets.Scripts.Ships
             OnHit?.Invoke(this, impact);
         }
         
-        public Module GetModuleOfType(ModuleType type)
+        public IEnumerable<Module> GetModuleOfType(ModuleType[] type)
         {
-            return m_modules.Find(module => module.Type == type);
+            return m_modules.Where(module => type.Contains(module.Type));
         }
 
         private void RegisterModules()

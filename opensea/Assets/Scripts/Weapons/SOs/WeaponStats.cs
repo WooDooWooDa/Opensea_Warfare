@@ -20,7 +20,7 @@ namespace Assets.Scripts.Weapons.SOs
         public List<ProjectileCharacteristic> ProjectileCharacteristics;
         [Header("Salvo")]
         public int SalvoCount;
-        public float SalvoSpacing;
-        public SalvoType SalvoType;
+        public float SalvoTimeSpacing;
+        [Header("Param")] public float turnSpeed;
     }
 }

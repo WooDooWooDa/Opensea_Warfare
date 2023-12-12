@@ -16,6 +16,6 @@ MonoBehaviour:
   FP: 0
   Hull: 0
   SPD: 4
-  RNG: 6
-  ACC: 4
+  RNG: 12
+  ACC: 8
   weaponSlots: 0000000000000000010000000100000003000000

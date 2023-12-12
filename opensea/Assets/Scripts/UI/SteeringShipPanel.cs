@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Assets.Scripts.Helpers;
 using Assets.Scripts.Ships.Modules;
 using TMPro;
@@ -78,15 +79,11 @@ namespace UI
             SetTargetAngle(result);
         }
 
-        public override void UpdatePanelWithModule(Module module)
+        public override void UpdatePanelWithModules(List<Module> modules)
         {
-            base.UpdatePanelWithModule(module);
+            base.UpdatePanelWithModules(modules);
             
-            m_steeringGear = (SteeringGear)module;
-            
-            if (module is null) return;
-            
-            
+            m_steeringGear = (SteeringGear)modules.Find(m => m.Type == ModuleType.SteeringGear);
         }
         
         private void ChangeAngle(float delta)

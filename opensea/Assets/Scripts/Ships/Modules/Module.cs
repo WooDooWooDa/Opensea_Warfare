@@ -34,6 +34,8 @@ namespace Assets.Scripts.Ships.Modules
         
         public void OnImpact(Impact impact)
         {
+            if (!m_info.CanBeDamaged) return;
+            
             TakeDamage(impact);
             CheckState();
             ApplyState();
@@ -79,7 +81,7 @@ namespace Assets.Scripts.Ships.Modules
             {
                 newState = CurrentHp switch
                 {
-                    <= 0 when this is not IDestroyable => DamageState.Disabled,
+                    <= 0 when this is not IDestroyable or  => DamageState.Disabled,
                     <= 0 => DamageState.Destroyed,
                     _ => DamageState.Undamaged
                 };
