@@ -74,7 +74,7 @@ namespace Assets.Scripts.Ships.Modules
         
         private void SetTargetTo()
         {
-            //on click lock on this point anim, (fire when ready in module)
+            //todo-P3 on click lock on this point anim
             
             if (!m_isAiming) return;
 
@@ -118,7 +118,8 @@ namespace Assets.Scripts.Ships.Modules
         private void CheckForEnemyLock()
         {
             var shipHit = Physics2D.OverlapCircle(m_targetReticule.position, 0.1f, m_shipLayer);
-            if (shipHit is not null && shipHit.CompareTag("Enemy")) //todo change way to lock on enemy, not using tag, maybe add feedback ex : X cannot lock on ally ship, X enemy ship is too far
+            //todo-P1 change way to lock on enemy, not using tag, maybe add feedback ex : X cannot lock on ally ship, X enemy ship is too far
+            if (shipHit is not null && shipHit.CompareTag("Enemy")) 
             {
                 m_projectedReticuleImage.sprite = m_lockReticuleSprite;
                 m_tryLockOnShip ??= shipHit.gameObject.GetComponent<Ship>();

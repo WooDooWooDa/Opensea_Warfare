@@ -34,7 +34,7 @@ namespace Assets.Scripts.Managers
 
         private void ShipChanged(Ship newShip)
         {
-            //todo maybe make animation to ui when ship change (mainly for fleet panel)
+            //todo-P3 maybe make animation to ui when ship change (mainly for fleet panel)
             
             m_currentSelectedShip = newShip;
             if (newShip != null)

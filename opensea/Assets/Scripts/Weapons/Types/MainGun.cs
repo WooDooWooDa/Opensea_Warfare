@@ -48,7 +48,7 @@ namespace Assets.Scripts.Weapons
             if (m_lockOnShip is not null)
             {
                 m_targetCoord = m_lockOnShip.transform.position; 
-                                //todo GetDispersionPoint(..., m_stats.LockInAccuracy / 10) at an interval otherwise looks janky???
+                                //todo-P2 GetDispersionPoint(..., m_stats.LockInAccuracy / 10) at an interval otherwise looks janky???
             }
             
             if (m_hasTarget)
@@ -59,7 +59,7 @@ namespace Assets.Scripts.Weapons
 
         private void Aim(float delta)
         {
-            //todo change the aim to reflect what i wrote on paper (more of a rotation around turret)
+            //todo-P1 change the aim to reflect what i wrote on paper (more of a rotation around turret)
             m_weaponTargetReticule.position = Vector3.MoveTowards(m_weaponTargetReticule.position, 
                 m_targetCoord, delta * m_stats.turnSpeed / 10);
             RotateTurret(delta);

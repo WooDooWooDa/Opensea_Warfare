@@ -17,7 +17,7 @@ namespace Assets.Scripts.Ships.Modules
 
         protected override float InternalCalculateDamage(float amount)
         {
-            //todo calculate armor based on hull and percing charac
+            //todo-P1 calculate armor based on hull and percing charac
             return amount;
         }
 

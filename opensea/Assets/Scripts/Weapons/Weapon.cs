@@ -82,7 +82,7 @@ namespace Assets.Scripts.Weapons
         protected Projectile SpawnProjectile()
         {
             var projectile = Instantiate(Main.Instance.WeaponsPrefabConfig.ProjectilePrefab);
-            //todo change so that fire point depends on weapon type nb cannons
+            //todo-P2 change so that fire point depends on weapon type nb cannons
             projectile.transform.SetPositionAndRotation(m_firePoint[0].position, m_firePoint[0].rotation);
             return projectile;
         }

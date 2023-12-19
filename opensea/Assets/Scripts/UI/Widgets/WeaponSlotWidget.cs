@@ -22,7 +22,7 @@ namespace UI
         public void SetActive(WeaponType selectedWeaponType)
         {
             IsActive = WeaponType == selectedWeaponType;
-            //TODO fix this status not showing up for main
+            //BUG-P0 fix this status not showing up for main
             m_weaponStatusParent.gameObject.SetActive(IsActive); //add anim up/down
             //open and close the weapon action slot
             m_openSlot.gameObject.SetActive(IsActive);

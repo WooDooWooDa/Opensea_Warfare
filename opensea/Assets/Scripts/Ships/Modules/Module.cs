@@ -63,7 +63,7 @@ namespace Assets.Scripts.Ships.Modules
         
         protected virtual void ApplyStatus()
         {
-            //todo check for fire here or elsewhere in hull module
+            //todo-P2 check for fire here or elsewhere in hull module
         }
 
         private void TakeDamage(Impact impact)
