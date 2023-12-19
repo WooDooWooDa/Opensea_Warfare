@@ -15,4 +15,4 @@ MonoBehaviour:
   m_weaponsPrefab:
   - {fileID: 1017825472162267677, guid: c0842e460b1e4d0439a99ff19a8d8436, type: 3}
   - {fileID: 1190576876334363938, guid: b6697a1f39129254dbf38abefbde29cf, type: 3}
-  m_projectilesPrefab: []
+  ProjectilePrefab: {fileID: 6524232254044352814, guid: 079267a836b8f2f4aa1998631e53d55d, type: 3}

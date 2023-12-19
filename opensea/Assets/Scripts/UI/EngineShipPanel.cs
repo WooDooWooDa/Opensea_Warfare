@@ -56,6 +56,8 @@ namespace UI
         {
             base.UpdatePanelWithModules(modules);
             
+            if (modules == null || !modules.Any()) return;
+            
             m_engineModule = (Engine)modules.Find(m => m.Type == ModuleType.Engine);
             
             if (m_engineModule == null) return;

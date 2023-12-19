@@ -1,10 +1,16 @@
+using Assets.Scripts.Ships;
 using UnityEngine;
 
 namespace Assets.Scripts.Weapons
 {
     public class TorpedoTubes : Weapon
     {
-        public override void SetTargetCoord(Vector3? position)
+        public override void LockOn(Ship ship)
+        {
+            
+        }
+
+        public override void SetTargetCoord(Vector3 position)
         {
             
         }

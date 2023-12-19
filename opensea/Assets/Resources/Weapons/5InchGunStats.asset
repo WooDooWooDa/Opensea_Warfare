@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 5"/38-caliber gun
   Type: 0
+  WeaponSprite: {fileID: 21300000, guid: e215c4b2ddecd3548b14f0baac0e0ca4, type: 3}
   Icon: {fileID: 21300000, guid: 8f45b7617a41c8d4f901d33e19a92b31, type: 3}
-  ProjectileSprite: {fileID: 0}
-  ProjectileSize: 0
-  ProjectileSpeed: 0
-  ProjectileCharacteristics: 
+  BaseProjectile: {fileID: 0}
+  BaseFirepower: 0
+  Cooldown: 0
   SalvoCount: 0
   SalvoTimeSpacing: 0
-  turnSpeed: 2
+  turnSpeed: 8
+  LockInAccuracy: 5

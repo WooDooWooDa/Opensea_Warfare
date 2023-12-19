@@ -11,6 +11,6 @@ namespace Assets.Scripts.Weapons.SOs
             return m_weaponsPrefab.Find(prefab => prefab.Type == type);
         }
         [SerializeField] private List<Weapon> m_weaponsPrefab;
-        [SerializeField] private List<Projectile> m_projectilesPrefab;
+        [SerializeField] public Projectile ProjectilePrefab;
     }
 }

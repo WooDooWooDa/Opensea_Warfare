@@ -39,7 +39,7 @@ namespace Assets.Scripts.Ships
 
         public void OnDeselect()
         {
-            
+            m_modules.ForEach(m => m.Deselect());
         }
 
         public void OnSelect()
@@ -47,11 +47,11 @@ namespace Assets.Scripts.Ships
             m_fleetManager.FocusOn(this);
         }
         
-        public void Hit(Impact impact, Action callback)
+        public void Hit(Impact impact)
         {
             //Calculate impact area
             //Call onImpact on the right module and the hull
-            OnHit?.Invoke(this, impact);
+            OnHit?.Invoke(this, impact); // => camera if ship selected, shake
         }
         
         public IEnumerable<Module> GetModuleOfType(ModuleType[] type)

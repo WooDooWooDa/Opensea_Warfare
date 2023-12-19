@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Helpers;
 using Assets.Scripts.Ships.Modules;
 using TMPro;
@@ -82,6 +83,8 @@ namespace UI
         public override void UpdatePanelWithModules(List<Module> modules)
         {
             base.UpdatePanelWithModules(modules);
+            
+            if (modules == null || !modules.Any()) return;
             
             m_steeringGear = (SteeringGear)modules.Find(m => m.Type == ModuleType.SteeringGear);
         }

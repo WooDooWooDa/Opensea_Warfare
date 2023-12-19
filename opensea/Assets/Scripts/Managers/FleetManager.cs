@@ -40,11 +40,12 @@ namespace Assets.Scripts.Managers
             }
             
             var focusedShip = m_ships[ship - 1];
-            focusedShip.OnSelect();
+            focusedShip.OnSelect(); //calls focusOn
         }
 
         private void Focus(Ship ship)
         {
+            debugger.Log("Unselecting ship : " + m_selectedShip);
             if (m_selectedShip != null) m_selectedShip.OnDeselect();
             m_selectedShip = null; 
             

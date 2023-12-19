@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28f435fbd311fd042afb44451ff2e081, type: 3}
-  m_Name: 16InchGunStats
+  m_Name: 2x5InchGunStats
   m_EditorClassIdentifier: 
-  Name: 16"/50-caliber gun
+  Name: 2x5"/38-caliber guns
   Type: 0
-  WeaponSprite: {fileID: 0}
+  WeaponSprite: {fileID: 21300000, guid: 123b8a98e26a4cd47a6d8571bbb7f348, type: 3}
   Icon: {fileID: 21300000, guid: 8f45b7617a41c8d4f901d33e19a92b31, type: 3}
   ProjectileSprite: {fileID: 0}
   ProjectileSize: 0
@@ -22,4 +22,4 @@ MonoBehaviour:
   ProjectileCharacteristics: 
   SalvoCount: 0
   SalvoTimeSpacing: 0
-  turnSpeed: 5
+  turnSpeed: 6

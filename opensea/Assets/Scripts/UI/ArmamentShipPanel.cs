@@ -6,33 +6,23 @@ using Assets.Scripts.Ships.Modules;
 using Assets.Scripts.Weapons;
 using UnityEngine;
 using UnityEngine.Serialization;
-using UnityEngine.UI;
 
 namespace UI
 {
-    [Serializable]
-    internal struct WeaponTypeWidgetsPanelGroup
-    {
-        public WeaponType[] WeaponTypes;
-        public Transform TypeGroup;
-        public Button LinkButton;
-        public GameObject Separator;
-    }
-    
     public class ArmamentShipPanel : ShipPanel
     {
-        [SerializeField] private List<WeaponTypeWidgetsPanelGroup> m_panelGroups = new();
-        [SerializeField] private WeaponSlotWidget m_weaponSlotPrefab;
-
+        [SerializeField] private List<WeaponSlotWidget> m_weaponSlotWidgets = new();
+        [SerializeField] private WeaponStatusWidget m_weaponStatusWidgetPrefab;
+        
         private Armaments m_armamentsModule;
         private FireControl m_fireControlModule;
 
         private void Start()
         {
-            foreach (var panelGroup in m_panelGroups)
+            foreach (var slotWidget in m_weaponSlotWidgets)
             {
-                if (panelGroup.LinkButton != null)
-                    panelGroup.LinkButton.onClick.AddListener(() => LinkWeaponType(panelGroup.WeaponTypes[0]));
+                slotWidget.SelectionButton.onClick.AddListener(
+                    () => SelectSlot(slotWidget.WeaponType));
             }
             
             Events.Inputs.OnSpaceBarPressed += ToggleAiming;
@@ -42,55 +32,63 @@ namespace UI
         {
             base.UpdatePanelWithModules(modules);
 
+            if (modules == null || !modules.Any()) return;
+            
             m_armamentsModule = (Armaments)modules.Find(m => m.Type == ModuleType.Armament);
             m_fireControlModule = (FireControl)modules.Find(m => m.Type == ModuleType.FireControl);
 
             if (m_armamentsModule == null) return;
-            //delete or deactivate all widgets
             
-            foreach (var weapon in m_armamentsModule.AllWeapons)
+            var moduleWeaponTypes = m_armamentsModule.AllWeapons.Select(m => m.Type).Distinct();
+            m_weaponSlotWidgets.ForEach(slot =>
             {
-                AddWeaponToGroup(weapon);
-            }
-
+                slot.gameObject.SetActive(moduleWeaponTypes.Contains(slot.WeaponType));
+                CreateStatusWidget(
+                    m_armamentsModule.AllWeapons.Where(w => w.Type == slot.WeaponType).ToList(), 
+                    slot.m_weaponStatusParent);
+            });
+            
+            //select the first one automatically
+            SelectSlot(m_weaponSlotWidgets[0].WeaponType);
+            
             UpdateSeparator();
         }
 
-        private void AddWeaponToGroup(Weapon weapon)
+        private void CreateStatusWidget(List<Weapon> weapons, Transform parent)
         {
-            var panelGroup = m_panelGroups.Last(pg => pg.WeaponTypes.Contains(weapon.Type));
-            var newWeaponSlot = Instantiate(m_weaponSlotPrefab, panelGroup.TypeGroup);
-            newWeaponSlot.WeaponStats = weapon.Stats;
-            newWeaponSlot.SelectionButton.onClick.AddListener(() => SelectWeapon(weapon));
+            weapons.ForEach(w =>
+            {
+                var newWidget = Instantiate(m_weaponStatusWidgetPrefab, parent);
+                newWidget.SetWeaponRef(w);
+            });
         }
 
         private void UpdateSeparator()
         {
-            for (var i = 0; i < m_panelGroups.Count; i++)
+            for (var i = 0; i < m_weaponSlotWidgets.Count; i++)
             {
-                if (m_panelGroups[i].Separator != null)
+                if (m_weaponSlotWidgets[i].Separator != null)
                 {
-                    m_panelGroups[i].Separator.SetActive(m_panelGroups[i].TypeGroup.childCount > 0 
-                                                         && m_panelGroups[i-1].TypeGroup.childCount > 0);
+                    m_weaponSlotWidgets[i].Separator.SetActive(m_weaponSlotWidgets[i].IsActive
+                                                         && m_weaponSlotWidgets[i-1].IsActive);
                 }
             }
+        }
+
+        private void SelectSlot(WeaponType selectedWeaponType)
+        {
+            m_armamentsModule.SelectWeapon(selectedWeaponType);
+            
+            m_weaponSlotWidgets.ForEach(slot =>
+            {
+                slot.SetActive(selectedWeaponType);
+            });
         }
         
         private void ToggleAiming()
         {
             if (m_fireControlModule)
                 m_fireControlModule.ToggleAiming();
-        }
-
-        private void SelectWeapon(Weapon weapon)
-        {
-            m_fireControlModule.SelectWeapon(weapon);
-        }
-        
-        private void LinkWeaponType(WeaponType type)
-        {
-            if (m_fireControlModule != null) 
-                m_fireControlModule.ToggleLinkWeaponType(type);
         }
     }
 }

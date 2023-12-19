@@ -23,5 +23,11 @@ namespace Assets.Scripts.Helpers
             public static event Action<Selectable> OnSelected;
             public static void FireOnSelected(Selectable selectable) => OnSelected?.Invoke(selectable);
         }
+
+        public static class Ship
+        {
+            public static event Action<Ships.Ship, bool> IsAiming;
+            public static void FireIsAiming(Ships.Ship ship, bool value) => IsAiming?.Invoke(ship, value);
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace Assets.Scripts.Weapons
         Main,
         Torpedo,
         Plane,
-        Depthcharge,
+        DepthCharge,
         Count
     }
 }

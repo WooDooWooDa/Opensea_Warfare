@@ -20,6 +20,14 @@ namespace Assets.Scripts.Ships.Modules
             AddWeapons(attachedShip.Stats.weaponSlots);
         }
 
+        public void SetTargetTo(Ship targetedShip)
+        {
+            foreach (var weapon in m_selectedWeapons)
+            {
+                weapon.LockOn(targetedShip);
+            }
+        }
+        
         public void SetTargetTo(Vector3 coords)
         {
             foreach (var weapon in m_selectedWeapons)
@@ -33,11 +41,6 @@ namespace Assets.Scripts.Ships.Modules
             //unselect all selected
             m_selectedWeapons = m_armamentSlots.Where(w => w.Type == type).ToList();
             //call select on newly selected
-        }
-        
-        public void SelectWeapon(Weapon weapon)
-        {
-            m_selectedWeapons = new List<Weapon> { weapon };
         }
 
         public void TryFireSelectedWeapons(float dispersion)

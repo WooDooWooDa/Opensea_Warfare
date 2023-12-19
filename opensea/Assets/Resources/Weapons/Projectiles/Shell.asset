@@ -9,17 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28f435fbd311fd042afb44451ff2e081, type: 3}
-  m_Name: 16InchGunStats
+  m_Script: {fileID: 11500000, guid: 230740e1038b430c8af2d0c15dddf153, type: 3}
+  m_Name: Shell
   m_EditorClassIdentifier: 
-  Name: 16"/50-caliber gun
-  Type: 0
-  WeaponSprite: {fileID: 0}
-  Icon: {fileID: 21300000, guid: 8f45b7617a41c8d4f901d33e19a92b31, type: 3}
+  Name: 
   ProjectileSprite: {fileID: 0}
   ProjectileSize: 0
   ProjectileSpeed: 0
   ProjectileCharacteristics: 
-  SalvoCount: 0
-  SalvoTimeSpacing: 0
-  turnSpeed: 5

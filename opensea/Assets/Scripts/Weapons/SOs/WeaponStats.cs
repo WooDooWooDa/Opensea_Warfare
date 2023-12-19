@@ -10,17 +10,21 @@ namespace Assets.Scripts.Weapons.SOs
     [CreateAssetMenu(fileName = "NewWeaponStats", menuName = "SO/Weapon/Stats")]
     public class WeaponStats : ScriptableObject
     {
+        [Header("Information")]
         public string Name;
         public WeaponType Type;
+        public Sprite WeaponSprite;
         public Sprite Icon;
-        [Header("Projectile")]
-        public Sprite ProjectileSprite;
-        public float ProjectileSize;
-        public float ProjectileSpeed;
-        public List<ProjectileCharacteristic> ProjectileCharacteristics;
+        [Space]
         [Header("Salvo")]
+        public ProjectileStats BaseProjectile;
+        public float BaseFirepower;
+        public float Cooldown;
         public int SalvoCount;
         public float SalvoTimeSpacing;
-        [Header("Param")] public float turnSpeed;
+        [Header("Param")] 
+        public float turnSpeed;
+        public bool CanAutoFire;
+        public float LockInAccuracy;
     }
 }

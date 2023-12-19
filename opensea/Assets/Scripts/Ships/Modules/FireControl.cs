@@ -1,87 +1,62 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Assets.Scripts.Helpers;
-using Assets.Scripts.Weapons;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UIElements;
 using Vector3 = UnityEngine.Vector3;
 
 namespace Assets.Scripts.Ships.Modules
 {
     [RequireComponent(typeof(Armaments))]
-    public class FireControl : Module, IPointerClickHandler
+    public class FireControl : Module
     {
+        [SerializeField] private Sprite m_targetReticuleSprite;
+        [SerializeField] private Sprite m_lockReticuleSprite;
+        
         [SerializeField] private Transform m_targetReticule;
         [SerializeField] private Transform m_projectedReticule;
         [SerializeField] private LayerMask m_obstacleLayer;
+        [SerializeField] private LayerMask m_shipLayer;
         
+        private GameInputs m_inputActions;
         private Armaments m_armamentsModule;
 
+        private SpriteRenderer m_projectedReticuleImage;
         private Vector3 m_startingReticuleScale;
         private float m_dispersion;
         private float m_range;
-        [SerializeField] private bool m_isAiming;
-        private Dictionary<WeaponType, bool> m_weaponTypeLinks = new();
-        private WeaponType? m_currentControlledWeaponType;
-
-        public void OnPointerClick(PointerEventData eventData)
-        {
-            if (m_currentControlledWeaponType == null || !m_isAiming) return;
-            
-            //verify if all link weapon are ready to fire
-
-            m_armamentsModule.TryFireSelectedWeapons(m_dispersion);
-        }
+        private bool m_isAiming;
+        private Ship m_tryLockOnShip;
         
         public override void Initialize(Ship attachedShip)
         {
             base.Initialize(attachedShip);
+
+            m_inputActions = new GameInputs();
+            m_inputActions.BattleMap.LeftClick.performed += ctx => SetTargetTo();
+            m_inputActions.Enable();
             
             m_range = attachedShip.Stats.RNG;
             
-            foreach(WeaponType type in Enum.GetValues(typeof(WeaponType))) {
-                m_weaponTypeLinks.Add(type, false);
-            }
-            
             m_armamentsModule = GetComponentInChildren<Armaments>();
             m_startingReticuleScale = m_projectedReticule.localScale;
+            m_projectedReticuleImage = m_projectedReticule.GetComponentInChildren<SpriteRenderer>();
         }
-        
+
+        public override void Deselect()
+        {
+            m_isAiming = false;
+            Events.Ship.FireIsAiming(m_ship, false);
+            m_projectedReticule.gameObject.SetActive(false);
+            m_targetReticule.gameObject.SetActive(false);
+        }
+
         //called from ui
         public void ToggleAiming()
         {
             m_isAiming = !m_isAiming;
+            m_tryLockOnShip = null;
             
+            Events.Ship.FireIsAiming(m_ship, m_isAiming);
             m_projectedReticule.gameObject.SetActive(m_isAiming);
             m_targetReticule.gameObject.SetActive(m_isAiming);
-        }
-        
-        public void SelectWeaponType(WeaponType type)
-        {
-            m_currentControlledWeaponType = type;
-            m_armamentsModule.SelectWeapon(type);
-        }
-
-        public void SelectWeapon(Weapon weapon)
-        {
-            m_currentControlledWeaponType = weapon.Type;
-            m_armamentsModule.SelectWeapon(weapon);
-        }
-        
-        public void ToggleLinkWeaponType(WeaponType typeToLink)
-        {
-            var isLinked = m_weaponTypeLinks[typeToLink];
-            if (!isLinked)
-            {
-                SelectWeaponType(typeToLink);
-            }
-            else
-            {
-                //select the first of the list of selected type otherwise none
-            }
-            m_weaponTypeLinks[typeToLink] = !isLinked;
         }
 
         protected override void InternalPreUpdateModule(float deltaTime)
@@ -94,11 +69,25 @@ namespace Assets.Scripts.Ships.Modules
             if (!m_isAiming) return;
 
             MoveReticule();
+            CheckForEnemyLock();
+        }
+        
+        private void SetTargetTo()
+        {
+            //on click lock on this point anim, (fire when ready in module)
             
-            if (m_currentControlledWeaponType == null) return;
+            if (!m_isAiming) return;
+
+            if (m_tryLockOnShip)
+            {
+                m_armamentsModule.SetTargetTo(m_tryLockOnShip);
+            }
+            else
+            {
+                m_armamentsModule.SetTargetTo(m_targetReticule.position);
+            }
             
-            // set target for each selected weapon
-            m_armamentsModule.SetTargetTo(m_targetReticule.position);
+            ToggleAiming();
         }
         
         private void MoveReticule()
@@ -124,6 +113,21 @@ namespace Assets.Scripts.Ships.Modules
             var reticuleDistance = Vector3.Distance(transform.position, m_projectedReticule.position);
             m_dispersion = Mathf.Clamp(reticuleDistance / m_range, 1, 2);
             m_projectedReticule.localScale = m_startingReticuleScale * m_dispersion;
+        }
+
+        private void CheckForEnemyLock()
+        {
+            var shipHit = Physics2D.OverlapCircle(m_targetReticule.position, 0.1f, m_shipLayer);
+            if (shipHit is not null && shipHit.CompareTag("Enemy")) //todo change way to lock on enemy, not using tag, maybe add feedback ex : X cannot lock on ally ship, X enemy ship is too far
+            {
+                m_projectedReticuleImage.sprite = m_lockReticuleSprite;
+                m_tryLockOnShip ??= shipHit.gameObject.GetComponent<Ship>();
+            }
+            else
+            {
+                m_projectedReticuleImage.sprite = m_targetReticuleSprite;
+                m_tryLockOnShip = null;
+            }
         }
     }
 }
