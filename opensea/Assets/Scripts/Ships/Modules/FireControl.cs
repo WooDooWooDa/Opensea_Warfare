@@ -43,9 +43,9 @@ namespace Assets.Scripts.Ships.Modules
         public override void Deselect()
         {
             m_isAiming = false;
-            Events.Ship.FireIsAiming(m_ship, false);
             m_projectedReticule.gameObject.SetActive(false);
             m_targetReticule.gameObject.SetActive(false);
+            Events.Ship.FireIsAiming(m_ship, false);
         }
 
         //called from ui
@@ -54,9 +54,9 @@ namespace Assets.Scripts.Ships.Modules
             m_isAiming = !m_isAiming;
             m_tryLockOnShip = null;
             
-            Events.Ship.FireIsAiming(m_ship, m_isAiming);
             m_projectedReticule.gameObject.SetActive(m_isAiming);
             m_targetReticule.gameObject.SetActive(m_isAiming);
+            Events.Ship.FireIsAiming(m_ship, m_isAiming);
         }
 
         protected override void InternalPreUpdateModule(float deltaTime)

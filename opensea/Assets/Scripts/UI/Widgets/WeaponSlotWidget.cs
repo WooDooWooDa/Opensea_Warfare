@@ -1,7 +1,5 @@
 using Assets.Scripts.Weapons;
-using Assets.Scripts.Weapons.SOs;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace UI
