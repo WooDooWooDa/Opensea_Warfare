@@ -5,7 +5,7 @@ using Vector3 = UnityEngine.Vector3;
 namespace Assets.Scripts.Ships.Modules
 {
     [RequireComponent(typeof(Armaments))]
-    public class FireControl : Module
+    public class FireControl : ActionModule
     {
         [SerializeField] private Sprite m_targetReticuleSprite;
         [SerializeField] private Sprite m_lockReticuleSprite;
@@ -15,7 +15,6 @@ namespace Assets.Scripts.Ships.Modules
         [SerializeField] private LayerMask m_obstacleLayer;
         [SerializeField] private LayerMask m_shipLayer;
         
-        private GameInputs m_inputActions;
         private Armaments m_armamentsModule;
 
         private SpriteRenderer m_projectedReticuleImage;
@@ -28,10 +27,8 @@ namespace Assets.Scripts.Ships.Modules
         public override void Initialize(Ship attachedShip)
         {
             base.Initialize(attachedShip);
-
-            m_inputActions = new GameInputs();
+            
             m_inputActions.BattleMap.LeftClick.performed += ctx => SetTargetTo();
-            m_inputActions.Enable();
             
             m_range = attachedShip.Stats.RNG;
             
@@ -40,7 +37,7 @@ namespace Assets.Scripts.Ships.Modules
             m_projectedReticuleImage = m_projectedReticule.GetComponentInChildren<SpriteRenderer>();
         }
 
-        public override void Deselect()
+        public override void ShipDeselect()
         {
             m_isAiming = false;
             m_projectedReticule.gameObject.SetActive(false);
@@ -92,7 +89,7 @@ namespace Assets.Scripts.Ships.Modules
         
         private void MoveReticule()
         {
-            var pointerPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            var pointerPos = Helper.PointerPosition;
             m_projectedReticule.position = new Vector3(pointerPos.x, pointerPos.y, 0);
             var pointerDistance = Vector3.Distance(transform.position, m_projectedReticule.position);
             

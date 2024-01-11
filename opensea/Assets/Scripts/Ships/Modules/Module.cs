@@ -31,11 +31,9 @@ namespace Assets.Scripts.Ships.Modules
             
             InternalUpdateModule(deltaTime);
         }
-
-        public virtual void Deselect()
-        {
-            
-        }
+        
+        public virtual void ShipSelect() {}
+        public virtual void ShipDeselect() {}
         
         public void OnImpact(Impact impact)
         {

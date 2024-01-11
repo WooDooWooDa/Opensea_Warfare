@@ -179,6 +179,15 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RightTap"",
+                    ""type"": ""Button"",
+                    ""id"": ""89d1388d-b657-4cb1-b2a7-9cca8c1e05b8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -654,6 +663,17 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
                     ""action"": ""SpaceBar"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dd896fd7-bec6-426f-a1b1-35c0c5726aad"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightTap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -685,6 +705,7 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
         m_BattleMap_RightClickDrag = m_BattleMap.FindAction("RightClickDrag", throwIfNotFound: true);
         m_BattleMap_Move = m_BattleMap.FindAction("Move", throwIfNotFound: true);
         m_BattleMap_SpaceBar = m_BattleMap.FindAction("SpaceBar", throwIfNotFound: true);
+        m_BattleMap_RightTap = m_BattleMap.FindAction("RightTap", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -761,6 +782,7 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_BattleMap_RightClickDrag;
     private readonly InputAction m_BattleMap_Move;
     private readonly InputAction m_BattleMap_SpaceBar;
+    private readonly InputAction m_BattleMap_RightTap;
     public struct BattleMapActions
     {
         private @GameInputs m_Wrapper;
@@ -782,6 +804,7 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
         public InputAction @RightClickDrag => m_Wrapper.m_BattleMap_RightClickDrag;
         public InputAction @Move => m_Wrapper.m_BattleMap_Move;
         public InputAction @SpaceBar => m_Wrapper.m_BattleMap_SpaceBar;
+        public InputAction @RightTap => m_Wrapper.m_BattleMap_RightTap;
         public InputActionMap Get() { return m_Wrapper.m_BattleMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -842,6 +865,9 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
                 @SpaceBar.started -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSpaceBar;
                 @SpaceBar.performed -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSpaceBar;
                 @SpaceBar.canceled -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSpaceBar;
+                @RightTap.started -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnRightTap;
+                @RightTap.performed -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnRightTap;
+                @RightTap.canceled -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnRightTap;
             }
             m_Wrapper.m_BattleMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -897,6 +923,9 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
                 @SpaceBar.started += instance.OnSpaceBar;
                 @SpaceBar.performed += instance.OnSpaceBar;
                 @SpaceBar.canceled += instance.OnSpaceBar;
+                @RightTap.started += instance.OnRightTap;
+                @RightTap.performed += instance.OnRightTap;
+                @RightTap.canceled += instance.OnRightTap;
             }
         }
     }
@@ -929,5 +958,6 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
         void OnRightClickDrag(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnSpaceBar(InputAction.CallbackContext context);
+        void OnRightTap(InputAction.CallbackContext context);
     }
 }

@@ -39,12 +39,13 @@ namespace Assets.Scripts.Ships
 
         public void OnDeselect()
         {
-            m_modules.ForEach(m => m.Deselect());
+            m_modules.ForEach(m => m.ShipDeselect());
         }
 
         public void OnSelect()
         {
             m_fleetManager.FocusOn(this);
+            m_modules.ForEach(m => m.ShipSelect());
         }
         
         public void Hit(Impact impact)
@@ -57,6 +58,11 @@ namespace Assets.Scripts.Ships
         public IEnumerable<Module> GetModuleOfType(ModuleType[] type)
         {
             return m_modules.Where(module => type.Contains(module.Type));
+        }
+        
+        public Module GetModuleOfType(ModuleType type)
+        {
+            return m_modules.FirstOrDefault(module => type == module.Type);
         }
 
         private void RegisterModules()

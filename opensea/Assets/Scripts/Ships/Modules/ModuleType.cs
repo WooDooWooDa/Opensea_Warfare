@@ -11,6 +11,7 @@ namespace Assets.Scripts.Ships.Modules
         Hull,
         FireControl,
         Armament,
+        AutoNavigation,
         Count
     }
 }
