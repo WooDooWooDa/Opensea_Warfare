@@ -22,18 +22,25 @@ namespace Assets.Scripts.Ships.Modules
         private void Awake()
         {
             CurrentSpeedIndex = 4;
-            m_shipTransform = transform;
         }
 
         public override void Initialize(Ship attachedShip)
         {
             base.Initialize(attachedShip);
+            m_shipTransform = attachedShip.transform;
             m_currentMaxSpeed = m_maxSpeed = attachedShip.Stats.SPD / 10;
         }
 
         public void SetTargetSpeedTo(float speedPart, int speedIndex)
         {
             CurrentSpeedIndex = speedIndex;
+            m_currentTargetSpeed = m_maxSpeed * speedPart;
+            m_currentTargetSpeed = ClampTargetSpeed();
+        }
+        
+        public void SetTargetSpeedTo(float speedPart)
+        {
+            //CurrentSpeedIndex = todo-P0 calculate currentspeedindex base on current speed vs max speed 
             m_currentTargetSpeed = m_maxSpeed * speedPart;
             m_currentTargetSpeed = ClampTargetSpeed();
         }

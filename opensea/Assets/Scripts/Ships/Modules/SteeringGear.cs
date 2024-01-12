@@ -6,16 +6,24 @@ namespace Assets.Scripts.Ships.Modules
     {
         [SerializeField] private float m_turnSpeed = 4;
 
-        public float CurrentAngle => transform.rotation.eulerAngles.z;
+        public float CurrentAngle => m_shipTransform.rotation.eulerAngles.z;
         public float TargetAngle => m_targetAngle;
+        public float AngleDiff => Mathf.Abs(CurrentAngle - TargetAngle);
         
         private float m_targetAngle;
         private const float TurnSpeedStep = 11.25f;
 
+        private Transform m_shipTransform;
+        
+        public override void Initialize(Ship attachedShip)
+        {
+            base.Initialize(attachedShip);
+            m_shipTransform = attachedShip.transform;
+        }
+
         public void SetTargetAngle(float angle)
         {
             m_targetAngle = angle;
-            
         }
 
         public void ResetCourse()
@@ -43,7 +51,7 @@ namespace Assets.Scripts.Ships.Modules
         {
             if (m_targetAngle >= 0) {
                 Quaternion angleAxis = Quaternion.AngleAxis(m_targetAngle, Vector3.forward);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, angleAxis, deltaTime * m_turnSpeed);
+                m_shipTransform.rotation = Quaternion.RotateTowards(m_shipTransform.rotation, angleAxis, deltaTime * m_turnSpeed);
             }
         }
     }

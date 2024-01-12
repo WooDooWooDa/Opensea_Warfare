@@ -11,7 +11,6 @@ using UnityEngine;
 
 namespace Assets.Scripts.Ships
 {
-    [RequireComponent(typeof(Engine), typeof(SteeringGear))]
     public abstract class Ship: MonoBehaviour, ISelectable, IHittable
     {
         [SerializeField] private ShipInformations m_informations;

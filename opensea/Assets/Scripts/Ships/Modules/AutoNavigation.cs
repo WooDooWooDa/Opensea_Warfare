@@ -16,10 +16,13 @@ namespace Assets.Scripts.Ships.Modules
             public Vector3 Destination;
             public int LineIndex;
         }
+        
+        public float NextWaypointDistance => Vector3.Distance(m_ship.transform.position, m_navigationWaypoints[0].Destination);
 
         [SerializeField] private LineRenderer m_lineRenderer;
         [SerializeField] private LayerMask m_oceanLayer;
-        
+
+        private const float WaypointDistanceThreshold = 0.2f;
         private const float RemoveThreshold = 0.25f;
 
         private SteeringGear m_steeringGear;
@@ -47,7 +50,57 @@ namespace Assets.Scripts.Ships.Modules
 
         protected override void InternalUpdateModule(float deltaTime)
         {
-            
+            if (m_navigationWaypoints.Any())
+            {
+                RotateTowardsWaypoint();
+                MoveTowardsWaypoint();
+
+                if (NextWaypointDistance < WaypointDistanceThreshold)
+                {
+                    RemoveWaypoint(m_navigationWaypoints[0]);
+                }
+            }
+        }
+
+        private void MoveTowardsWaypoint()
+        {
+            var distance = NextWaypointDistance;
+            if (distance > 0)
+            {
+                
+            }
+        }
+
+        private void RotateTowardsWaypoint()
+        {
+            var shipPosition = m_ship.transform.position;
+            var nextWaypointPosition = m_navigationWaypoints[0].Destination;
+            var direction = shipPosition - nextWaypointPosition;
+            var angle = -(Vector2.Angle(Vector2.right, -direction) - 90);
+            float result;
+            if (angle > 0)
+            {
+                if (direction.y < 0)
+                {
+                    result = 360 - angle;
+                }
+                else
+                {
+                    result = 180 + angle;
+                }
+            }
+            else
+            {
+                if (direction.y > 0)
+                {
+                    result = 180 + angle;
+                }
+                else
+                {
+                    result = -angle;
+                }
+            }
+            m_steeringGear.SetTargetAngle(result);
         }
 
         private void AddNewWaypoint()
@@ -64,9 +117,7 @@ namespace Assets.Scripts.Ships.Modules
                 if (toRemoved.LineIndex > 0)
                 {
                     //todo-P3 remove marker animation
-                    m_navigationWaypoints.Remove(toRemoved);
-                    m_lineRenderer.positionCount--;
-                    m_lineRenderer.SetPositions(m_navigationWaypoints.Select(w => w.Destination).ToArray());
+                    RemoveWaypoint(toRemoved);
                     return;
                 }
             }
@@ -81,6 +132,14 @@ namespace Assets.Scripts.Ships.Modules
             m_lineRenderer.positionCount++;
             m_lineRenderer.SetPosition(newWaypoint.LineIndex, newWaypoint.Destination);
         }
+
+        private void RemoveWaypoint(Waypoint toRemoved)
+        {
+            m_navigationWaypoints.Remove(toRemoved);
+            m_lineRenderer.positionCount = m_navigationWaypoints.Count;
+            m_lineRenderer.SetPositions(m_navigationWaypoints.Select(w => w.Destination).ToArray());
+        }
+        
         private void OnDrawGizmos()
         {
             m_navigationWaypoints.ForEach(w => 
