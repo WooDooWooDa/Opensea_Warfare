@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Ships.Common;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Ships.Modules
 {
@@ -40,15 +39,8 @@ namespace Assets.Scripts.Ships.Modules
         
         public void SetTargetSpeedTo(float speedPart)
         {
-            //CurrentSpeedIndex = todo-P0 calculate currentspeedindex base on current speed vs max speed 
+            //CurrentSpeedIndex = (int)(speedPart * NbSpeedStep); //0 is full, 4 is stop, 5 is 
             m_currentTargetSpeed = m_maxSpeed * speedPart;
-            m_currentTargetSpeed = ClampTargetSpeed();
-        }
-        
-        private void ChangeTargetSpeed(float delta)
-        {
-            var step = (m_maxSpeed / NbSpeedStep) * delta;
-            m_currentTargetSpeed += step;
             m_currentTargetSpeed = ClampTargetSpeed();
         }
 

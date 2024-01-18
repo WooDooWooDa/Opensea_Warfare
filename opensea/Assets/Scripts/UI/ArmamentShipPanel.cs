@@ -56,6 +56,7 @@ namespace UI
 
         private void CreateStatusWidget(List<Weapon> weapons, Transform parent)
         {
+            //todo-P1 clear child of parent ui element for new widget
             weapons.ForEach(w =>
             {
                 var newWidget = Instantiate(m_weaponStatusWidgetPrefab, parent);

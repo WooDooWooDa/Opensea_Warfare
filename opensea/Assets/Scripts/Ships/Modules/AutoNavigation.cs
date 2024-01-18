@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Helpers;
-using Unity.VisualScripting;
+using TMPro;
 using UnityEngine;
 
 namespace Assets.Scripts.Ships.Modules
@@ -11,24 +11,29 @@ namespace Assets.Scripts.Ships.Modules
     public class AutoNavigation : ActionModule
     {
         [Serializable]
-        private struct Waypoint
+        private class Waypoint
         {
             public Vector3 Destination;
             public int LineIndex;
+            public GameObject UIInstance;
         }
         
-        public float NextWaypointDistance => Vector3.Distance(m_ship.transform.position, m_navigationWaypoints[0].Destination);
+        private float NextWaypointDistance => Vector3.Distance(m_ship.transform.position, m_nextWaypoint.Destination);
 
+        [SerializeField] private GameObject m_waypointUI;
+        [SerializeField] private GameObject m_waypointUIPrefab;
         [SerializeField] private LineRenderer m_lineRenderer;
         [SerializeField] private LayerMask m_oceanLayer;
 
-        private const float WaypointDistanceThreshold = 0.2f;
+        private const float WaypointDistanceThreshold = 2f;
         private const float RemoveThreshold = 0.25f;
 
         private SteeringGear m_steeringGear;
         private Engine m_engine;
         
         private List<Waypoint> m_navigationWaypoints = new();
+        private Waypoint m_nextWaypoint;
+        private Vector3 m_startPointFromNextWaypoint;
         
         public override void Initialize(Ship attachedShip)
         {
@@ -38,8 +43,6 @@ namespace Assets.Scripts.Ships.Modules
 
             m_steeringGear = (SteeringGear)m_ship.GetModuleOfType(ModuleType.SteeringGear);
             m_engine = (Engine)m_ship.GetModuleOfType(ModuleType.Engine);
-
-            //m_lineRenderer.enabled = false;
         }
 
         protected override void InternalPreUpdateModule(float deltaTime)
@@ -50,32 +53,55 @@ namespace Assets.Scripts.Ships.Modules
 
         protected override void InternalUpdateModule(float deltaTime)
         {
-            if (m_navigationWaypoints.Any())
+            if (!m_navigationWaypoints.Any()) return;
+            
+            if (m_nextWaypoint == null)
+            {
+                SetNextWaypoint();
+            }
+            else
             {
                 RotateTowardsWaypoint();
                 MoveTowardsWaypoint();
-
-                if (NextWaypointDistance < WaypointDistanceThreshold)
+                
+                if (NextWaypointDistance <= WaypointDistanceThreshold)
                 {
-                    RemoveWaypoint(m_navigationWaypoints[0]);
+                    RemoveWaypoint(m_nextWaypoint);
                 }
             }
         }
 
+        private void SetNextWaypoint()
+        {
+            m_nextWaypoint = m_navigationWaypoints[0];
+            m_startPointFromNextWaypoint = m_ship.transform.position;
+        }
+
         private void MoveTowardsWaypoint()
         {
-            var distance = NextWaypointDistance;
-            if (distance > 0)
+            var distanceOfShip = NextWaypointDistance;
+            var distanceOfWaypointFromStartPoint = Vector3.Distance(m_nextWaypoint.Destination, m_startPointFromNextWaypoint);
+            float speedPart = 0;
+            if (m_steeringGear.AngleDiff < 90 && distanceOfShip > WaypointDistanceThreshold)
             {
-                
+                var traveled = distanceOfShip / distanceOfWaypointFromStartPoint; //percentage of travel done
+                speedPart = traveled switch //todo-P1 This really doesnt work on long distance
+                {
+                    (> 0.75f) => 1,
+                    (> 0.5f) => 0.75f,
+                    (> 0.25f) => 0.5f,
+                    (> 0) => 0.25f,
+                    _ => 0
+                };
+                if (m_steeringGear.AngleDiff >= 45 && speedPart > 0.5f)
+                    speedPart = 0.5f;
             }
+            m_engine.SetTargetSpeedTo(speedPart);
         }
 
         private void RotateTowardsWaypoint()
         {
-            var shipPosition = m_ship.transform.position;
-            var nextWaypointPosition = m_navigationWaypoints[0].Destination;
-            var direction = shipPosition - nextWaypointPosition;
+            var direction = m_ship.transform.position - m_nextWaypoint.Destination;
             var angle = -(Vector2.Angle(Vector2.right, -direction) - 90);
             float result;
             if (angle > 0)
@@ -114,7 +140,7 @@ namespace Assets.Scripts.Ships.Modules
             {
                 var toRemoved = m_navigationWaypoints.FirstOrDefault(w => Vector3.Distance(w.Destination, pointerPos) < RemoveThreshold);
 
-                if (toRemoved.LineIndex > 0)
+                if (toRemoved != null)
                 {
                     //todo-P3 remove marker animation
                     RemoveWaypoint(toRemoved);
@@ -123,11 +149,15 @@ namespace Assets.Scripts.Ships.Modules
             }
             
             //todo-P3 add new waypoint animation
+            var uiInstance = Instantiate(m_waypointUIPrefab, m_waypointUI.transform);
+            uiInstance.GetComponentInChildren<TextMeshProUGUI>().text = $"{m_navigationWaypoints.Count + 1}";
             var newWaypoint = new Waypoint()
             {
                 Destination = pointerPos,
-                LineIndex = m_navigationWaypoints.Count + 1
+                LineIndex = m_navigationWaypoints.Count + 1,
+                UIInstance = uiInstance
             };
+            uiInstance.transform.position = newWaypoint.Destination;
             m_navigationWaypoints.Add(newWaypoint);
             m_lineRenderer.positionCount++;
             m_lineRenderer.SetPosition(newWaypoint.LineIndex, newWaypoint.Destination);
@@ -135,9 +165,13 @@ namespace Assets.Scripts.Ships.Modules
 
         private void RemoveWaypoint(Waypoint toRemoved)
         {
+            Destroy(toRemoved.UIInstance);
             m_navigationWaypoints.Remove(toRemoved);
-            m_lineRenderer.positionCount = m_navigationWaypoints.Count;
-            m_lineRenderer.SetPositions(m_navigationWaypoints.Select(w => w.Destination).ToArray());
+            m_lineRenderer.positionCount = m_navigationWaypoints.Count + 1;
+            var shipPos = new List<Vector3> { m_ship.transform.position };
+            shipPos.AddRange(m_navigationWaypoints.Select(w => w.Destination).ToList());
+            m_lineRenderer.SetPositions(shipPos.ToArray());
+            m_nextWaypoint = null;
         }
         
         private void OnDrawGizmos()

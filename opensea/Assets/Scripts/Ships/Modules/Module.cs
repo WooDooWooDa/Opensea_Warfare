@@ -7,6 +7,7 @@ namespace Assets.Scripts.Ships.Modules
 {
     public abstract class Module : MonoBehaviour, IDamageable
     {
+        public bool IsActive = true;
         [SerializeField] private ModuleInformation m_info;
         public ModuleType Type => m_info.Type;
         public float CurrentHp { get; set; }
