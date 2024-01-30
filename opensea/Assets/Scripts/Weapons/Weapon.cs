@@ -14,6 +14,7 @@ namespace Assets.Scripts.Weapons
         public WeaponStats Stats => m_stats;
         [SerializeField] protected WeaponStats m_stats;
         [SerializeField] private SpriteRenderer m_turretSprite;
+        [SerializeField] protected float m_rangeOfRotation = 90f;
         public WeaponType Type => m_stats.Type;
         public bool IsWorking => CurrentState is not DamageState.Disabled and not DamageState.Destroyed;
         public bool ReadyToFire => m_currentCooldown <= 0;

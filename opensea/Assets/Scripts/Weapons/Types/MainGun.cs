@@ -54,23 +54,35 @@ namespace Assets.Scripts.Weapons
             if (m_hasTarget)
             {
                 Aim(deltaTime);
+                //todo-3 add an evelation and rotation line/circle to reticule
             }
         }
 
         private void Aim(float delta)
         {
-            //todo-P1 change the aim to reflect what i wrote on paper (more of a rotation around turret)
-            m_weaponTargetReticule.position = Vector3.MoveTowards(m_weaponTargetReticule.position, 
-                m_targetCoord, delta * m_stats.turnSpeed / 10);
+            ElevateTurret(delta);
             RotateTurret(delta);
+        }
+
+        private void ElevateTurret(float delta)
+        {
+            var turretPosition = m_turret.position;
+            var distanceToTarget = Vector3.Distance(turretPosition, m_targetCoord);
+            var distanceToReticule = Vector3.Distance(turretPosition, m_weaponTargetReticule.position);
+            if (distanceToTarget > m_attachedShip.Stats.RNG * 2)
+                distanceToTarget = m_attachedShip.Stats.RNG * 2;
+            var diff = distanceToTarget - distanceToReticule;
+            if (diff is > 0.05f or < -0.05f)
+                m_weaponTargetReticule.localPosition += Vector3.up * (delta * Mathf.Sign(diff) * m_stats.turnSpeed / 2);
         }
 
         private void RotateTurret(float delta)
         {
-            var vectorToTarget = m_weaponTargetReticule.position - transform.position;
+            var vectorToTarget = m_targetCoord - m_turret.position;
             var angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - 90;
             var q = Quaternion.AngleAxis(angle, Vector3.forward);
-            m_turret.rotation = Quaternion.Slerp(m_turret.rotation, q, delta * m_stats.turnSpeed / 5);
+            m_turret.rotation = Quaternion.Lerp(m_turret.rotation, q, delta * m_stats.turnSpeed / 10);
+            //todo-1 check for range of rotation
         }
         
         private static Vector3 GetDispersionPoint(Vector3 center, float radius) {

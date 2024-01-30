@@ -41,6 +41,8 @@ namespace Assets.Scripts.Ships.Modules
             if (!m_info.CanBeDamaged) return;
             
             TakeDamage(impact);
+            ApplyStatus();
+            
             CheckState();
             ApplyState();
         }
@@ -53,21 +55,18 @@ namespace Assets.Scripts.Ships.Modules
         protected abstract void InternalPreUpdateModule(float deltaTime);
         protected abstract void InternalUpdateModule(float deltaTime);
 
-        protected virtual float InternalCalculateDamage(float dmg)
+        protected virtual float InternalCalculateDamage(Impact impactData)
         {
-            return dmg;
+            return impactData.BaseDamage;
         }
 
         protected virtual void ApplyState() { }
         
-        protected virtual void ApplyStatus()
-        {
-            //todo-P2 check for fire here or elsewhere in hull module
-        }
+        protected virtual void ApplyStatus() { }
 
         private void TakeDamage(Impact impact)
         {
-            var damageTaken = InternalCalculateDamage(impact.BaseDamage);
+            var damageTaken = InternalCalculateDamage(impact);
             CurrentHp -= damageTaken;
             OnDamageTaken?.Invoke(this, damageTaken);
             if (CurrentHp <= 0) CurrentHp = 0;

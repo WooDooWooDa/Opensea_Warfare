@@ -1,9 +1,5 @@
 ﻿using Assets.Scripts.Weapons;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts.Ships.SOs
@@ -12,7 +8,7 @@ namespace Assets.Scripts.Ships.SOs
     public class ShipStats : ScriptableObject
     {
         public float HP;
-        public float FP;
+        public float FP; //maybe remove this stat
         public HullType Hull;
         [Tooltip("Divide this value by 10 to obtain ship max speed")]
         public float SPD;

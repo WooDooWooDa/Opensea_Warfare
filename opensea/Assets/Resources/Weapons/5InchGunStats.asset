@@ -21,5 +21,6 @@ MonoBehaviour:
   Cooldown: 0
   SalvoCount: 0
   SalvoTimeSpacing: 0
-  turnSpeed: 8
+  turnSpeed: 2
+  CanAutoFire: 0
   LockInAccuracy: 5

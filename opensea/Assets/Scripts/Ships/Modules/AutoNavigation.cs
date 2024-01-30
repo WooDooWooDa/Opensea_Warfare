@@ -15,7 +15,7 @@ namespace Assets.Scripts.Ships.Modules
         {
             public Vector3 Destination;
             public int LineIndex;
-            public GameObject UIInstance;
+            public GameObject UIWidget;
         }
         
         private float NextWaypointDistance => Vector3.Distance(m_ship.transform.position, m_nextWaypoint.Destination);
@@ -147,31 +147,37 @@ namespace Assets.Scripts.Ships.Modules
                     return;
                 }
             }
-            
+
+            CreateWaypoint(pointerPos);
+        }
+
+        private void CreateWaypoint(Vector3 pointerPos)
+        {
             //todo-P3 add new waypoint animation
-            var uiInstance = Instantiate(m_waypointUIPrefab, m_waypointUI.transform);
-            uiInstance.GetComponentInChildren<TextMeshProUGUI>().text = $"{m_navigationWaypoints.Count + 1}";
+            var widget = Instantiate(m_waypointUIPrefab, m_waypointUI.transform);
             var newWaypoint = new Waypoint()
             {
                 Destination = pointerPos,
                 LineIndex = m_navigationWaypoints.Count + 1,
-                UIInstance = uiInstance
+                UIWidget = widget
             };
-            uiInstance.transform.position = newWaypoint.Destination;
+            widget.transform.position = newWaypoint.Destination;
+            widget.GetComponentInChildren<TextMeshProUGUI>().text = $"{newWaypoint.LineIndex}";
             m_navigationWaypoints.Add(newWaypoint);
             m_lineRenderer.positionCount++;
             m_lineRenderer.SetPosition(newWaypoint.LineIndex, newWaypoint.Destination);
         }
-
+        
         private void RemoveWaypoint(Waypoint toRemoved)
         {
-            Destroy(toRemoved.UIInstance);
+            Destroy(toRemoved.UIWidget);
             m_navigationWaypoints.Remove(toRemoved);
             m_lineRenderer.positionCount = m_navigationWaypoints.Count + 1;
             var shipPos = new List<Vector3> { m_ship.transform.position };
             shipPos.AddRange(m_navigationWaypoints.Select(w => w.Destination).ToList());
             m_lineRenderer.SetPositions(shipPos.ToArray());
             m_nextWaypoint = null;
+            //todo-P2 reorder/reassign number to all next ui waypoint instance
         }
         
         private void OnDrawGizmos()

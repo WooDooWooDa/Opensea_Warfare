@@ -6,15 +6,22 @@
   <component name="ChangeListManager">
     <list default="true" id="f830f0c4-ba14-467a-8842-14458945bc77" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.opensea/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.opensea/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Font/Retro Gaming SDF.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Font/Retro Gaming SDF.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Ships/Destroyer.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Ships/Destroyer.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Weapons/MainGun.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Weapons/MainGun.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Weapons/5InchGunStats.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Weapons/5InchGunStats.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Armaments.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Armaments.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/AutoNavigation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/AutoNavigation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Engine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Engine.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/FireControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/FireControl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Hull.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Hull.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Module.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Module.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/ArmamentShipPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/ArmamentShipPanel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/untitled (3).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/untitled (3).png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/SOs/ShipStats.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/SOs/ShipStats.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Ship.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Ship.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Weapons/Impact.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/Impact.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Weapons/ProjectileCharacteristic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/ProjectileCharacteristic.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Weapons/Types/MainGun.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/Types/MainGun.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Weapons/Weapon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/Weapon.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,10 +93,10 @@
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="8688">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="8688" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -132,7 +139,8 @@
       <workItem from="1702946464194" duration="7198000" />
       <workItem from="1703024348304" duration="985000" />
       <workItem from="1705000953833" duration="16732000" />
-      <workItem from="1705610300535" duration="5864000" />
+      <workItem from="1705610300535" duration="7850000" />
+      <workItem from="1706638334677" duration="6821000" />
     </task>
     <servers />
   </component>

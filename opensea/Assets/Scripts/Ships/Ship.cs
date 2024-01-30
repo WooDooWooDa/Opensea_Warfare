@@ -50,7 +50,8 @@ namespace Assets.Scripts.Ships
         public void Hit(Impact impact)
         {
             //Calculate impact area
-            //Call onImpact on the right module and the hull
+            //todo-P0 Call onImpact on the right module and the hull
+            GetModuleOfType(ModuleType.Hull)?.OnImpact(impact);
             OnHit?.Invoke(this, impact); // => camera if ship selected, shake
         }
         

@@ -81,7 +81,7 @@ namespace Assets.Scripts.Ships.Modules
             }
             else
             {
-                m_armamentsModule.SetTargetTo(m_targetReticule.position);
+                m_armamentsModule.SetTargetTo(m_projectedReticule.position);
             }
             
             ToggleAiming();

@@ -9,8 +9,8 @@ namespace Assets.Scripts.Weapons
     public enum ProjectileCharacteristic
     {
         Homing,
-        Incendiary,
-        Percing,
+        HighExplosive,
+        ArmorPercing,
         AreaOfEffect,
         Boomrang,
         Count
