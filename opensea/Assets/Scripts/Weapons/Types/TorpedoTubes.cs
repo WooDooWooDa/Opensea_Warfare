@@ -10,12 +10,17 @@ namespace Assets.Scripts.Weapons
             
         }
 
-        public override void SetTargetCoord(Vector3 position)
+        public override void SetFireTargetCoord(Vector3 position)
         {
             
         }
 
-        protected override void InternalFire(float dispersion)
+        public override void Follow(Vector3 position)
+        {
+            
+        }
+
+        protected override void InternalFire(Projectile projectile, float dispersionFactor)
         {
            
         }
@@ -28,6 +33,11 @@ namespace Assets.Scripts.Weapons
         protected override void InternalUpdateWeapon(float deltaTime)
         {
             
+        }
+
+        protected override bool InternalReadyToFire()
+        {
+            return true;
         }
     }
 }

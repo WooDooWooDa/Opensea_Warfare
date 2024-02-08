@@ -14,23 +14,26 @@ namespace Assets.Scripts.Ships.Modules
         [SerializeField] private Transform m_projectedReticule;
         [SerializeField] private LayerMask m_obstacleLayer;
         [SerializeField] private LayerMask m_shipLayer;
-        
+
+        private Transform m_attachedShipPosition;
         private Armaments m_armamentsModule;
 
         private SpriteRenderer m_projectedReticuleImage;
         private Vector3 m_startingReticuleScale;
         private float m_dispersion;
         private float m_range;
+        private float m_maxRange;
         private bool m_isAiming;
         private Ship m_tryLockOnShip;
         
         public override void Initialize(Ship attachedShip)
         {
             base.Initialize(attachedShip);
-            
-            m_inputActions.BattleMap.LeftClick.performed += ctx => SetTargetTo();
+
+            m_attachedShipPosition = attachedShip.transform;
             
             m_range = attachedShip.Stats.RNG;
+            m_maxRange = m_range * 2;
             
             m_armamentsModule = GetComponentInChildren<Armaments>();
             m_startingReticuleScale = m_projectedReticule.localScale;
@@ -39,56 +42,77 @@ namespace Assets.Scripts.Ships.Modules
 
         public override void ShipDeselect()
         {
+            base.ShipSelect();
             m_isAiming = false;
             m_projectedReticule.gameObject.SetActive(false);
             m_targetReticule.gameObject.SetActive(false);
             Events.Ship.FireIsAiming(m_ship, false);
         }
 
-        //called from ui
-        public void ToggleAiming()
+        public override void ShipSelect()
         {
-            m_isAiming = !m_isAiming;
-            m_tryLockOnShip = null;
-            
-            m_projectedReticule.gameObject.SetActive(m_isAiming);
-            m_targetReticule.gameObject.SetActive(m_isAiming);
-            Events.Ship.FireIsAiming(m_ship, m_isAiming);
+            base.ShipSelect();
+            m_isAiming = true;
+            m_projectedReticule.gameObject.SetActive(true);
+            m_targetReticule.gameObject.SetActive(true);
+            Events.Ship.FireIsAiming(m_ship, true);
         }
 
-        protected override void InternalPreUpdateModule(float deltaTime)
+        protected override void RegisterActions()
         {
-            
+            Events.Inputs.OnSpaceBarPressed += ToggleAiming;
+            m_inputActions.BattleMap.LeftClick.performed += ctx => TryFireAt();
         }
+
+        protected override void InternalPreUpdateModule(float deltaTime) { }
 
         protected override void InternalUpdateModule(float deltaTime)
         {
             if (!m_isAiming) return;
 
             MoveReticule();
+            MoveArmaments();
             CheckForEnemyLock();
         }
         
-        private void SetTargetTo()
+        private void ToggleAiming()
         {
-            //todo-P3 on click lock on this point anim
+            if (!m_ship.IsSelected) return;
             
-            if (!m_isAiming) return;
+            if (m_tryLockOnShip is not null)
+            {
+                m_tryLockOnShip = null;
+                //notif lock on ship unlocked
+                return;
+            }
+            
+            m_isAiming = !m_isAiming;
+            
+            m_projectedReticule.gameObject.SetActive(m_isAiming);
+            m_targetReticule.gameObject.SetActive(m_isAiming);
+            Events.Ship.FireIsAiming(m_ship, m_isAiming);
+        }
+        
+        private void TryFireAt() //todo-P2 Should fire only the next available gun
+        {
+            if (!m_isAiming || !m_ship.IsSelected) return;
 
+            Debug.Log("Fire Control Fire Order");
             if (m_tryLockOnShip)
             {
-                m_armamentsModule.SetTargetTo(m_tryLockOnShip);
+                //todo-P3 Add the ship you trying to lock on enemy is too far (> range)
+                m_armamentsModule.LockOnTo(m_tryLockOnShip);
             }
             else
             {
-                m_armamentsModule.SetTargetTo(m_projectedReticule.position);
+                m_armamentsModule.SetFireTargetCoord(m_targetReticule.position, m_projectedReticule.position);
+                Debug.Log("At : " + m_targetReticule.position);
             }
-            
-            ToggleAiming();
         }
         
         private void MoveReticule()
         {
+            
             var pointerPos = Helper.PointerPosition;
             m_projectedReticule.position = new Vector3(pointerPos.x, pointerPos.y, 0);
             var pointerDistance = Vector3.Distance(transform.position, m_projectedReticule.position);
@@ -97,14 +121,14 @@ namespace Assets.Scripts.Ships.Modules
             m_targetReticule.localScale = m_startingReticuleScale * Mathf.Clamp(pointerDistance / m_range, 1, 2);
             
             var fromShip = Physics2D.Raycast(transform.position, pointerPos - transform.position, pointerDistance, m_obstacleLayer);
-            if (fromShip.collider != null)
+            if (fromShip.collider is not null)
             {
                 Debug.DrawRay(transform.position, pointerPos - transform.position, Color.blue);
                 m_projectedReticule.position = new Vector3(fromShip.point.x, fromShip.point.y, 0);
             }
-            else if (pointerDistance > m_range * 2)
+            else if (pointerDistance > m_maxRange)
             {
-                m_projectedReticule.position = new Ray2D(transform.position, pointerPos - transform.position).GetPoint(m_range * 2);
+                m_projectedReticule.position = new Ray2D(transform.position, pointerPos - transform.position).GetPoint(m_maxRange);
             }
 
             var reticuleDistance = Vector3.Distance(transform.position, m_projectedReticule.position);
@@ -112,10 +136,18 @@ namespace Assets.Scripts.Ships.Modules
             m_projectedReticule.localScale = m_startingReticuleScale * m_dispersion;
         }
 
+        private void MoveArmaments()
+        {
+            m_armamentsModule.FollowPosition(m_targetReticule.position);
+        }
+
         private void CheckForEnemyLock()
         {
+            //todo-P2 Check if the selected weapon type allows lock on
+            
             var shipHit = Physics2D.OverlapCircle(m_targetReticule.position, 0.1f, m_shipLayer);
-            //todo-P1 change way to lock on enemy, not using tag, maybe add feedback ex : X cannot lock on ally ship, X enemy ship is too far
+            //todo-P1 change way to lock on enemy, not using tag
+            //todo-P3 maybe add feedback ex : X cannot lock on ally ship, 
             if (shipHit is not null && shipHit.CompareTag("Enemy")) 
             {
                 m_projectedReticuleImage.sprite = m_lockReticuleSprite;

@@ -7,7 +7,6 @@ namespace Assets.Scripts.Ships.Modules
 {
     public abstract class Module : MonoBehaviour, IDamageable
     {
-        public bool IsActive = true;
         [SerializeField] private ModuleInformation m_info;
         public ModuleType Type => m_info.Type;
         public float CurrentHp { get; set; }
@@ -36,7 +35,7 @@ namespace Assets.Scripts.Ships.Modules
         public virtual void ShipSelect() {}
         public virtual void ShipDeselect() {}
         
-        public void OnImpact(Impact impact)
+        public void DamageOnImpact(Impact impact)
         {
             if (!m_info.CanBeDamaged) return;
             
@@ -52,7 +51,15 @@ namespace Assets.Scripts.Ships.Modules
             
         }
 
+        /// <summary>
+        /// Pre Update is call first even if the module is not working for any reason
+        /// </summary>
+        /// <param name="deltaTime"></param>
         protected abstract void InternalPreUpdateModule(float deltaTime);
+        /// <summary>
+        /// Update is call only if the module is working in any way
+        /// </summary>
+        /// <param name="deltaTime"></param>
         protected abstract void InternalUpdateModule(float deltaTime);
 
         protected virtual float InternalCalculateDamage(Impact impactData)
@@ -84,7 +91,7 @@ namespace Assets.Scripts.Ships.Modules
             {
                 newState = CurrentHp switch
                 {
-                    <= 0 when this is not IDestroyable or  => DamageState.Disabled,
+                    <= 0 when this is not IDestroyable => DamageState.Disabled,
                     <= 0 => DamageState.Destroyed,
                     _ => DamageState.Undamaged
                 };

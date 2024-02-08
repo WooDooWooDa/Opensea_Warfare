@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Weapons.SOs
 {
@@ -17,11 +12,12 @@ namespace Assets.Scripts.Weapons.SOs
         public Sprite Icon;
         [Space]
         [Header("Salvo")]
-        public ProjectileStats BaseProjectile;
+        
+        public Ammo[] PossibleAmmo;
         public float BaseFirepower;
         public float Cooldown;
-        public int SalvoCount;
-        public float SalvoTimeSpacing;
+        public float SwitchCooldown;
+        public int CannonCount;
         [Header("Param")] 
         public float turnSpeed;
         public bool CanAutoFire;

@@ -7,8 +7,6 @@ using UnityEngine;
 
 public class Main : MonoBehaviour
 {
-    [SerializeField] public WeaponsPrefabConfig WeaponsPrefabConfig;
-    
     private Main()
     {
         m_data = new SaveData();

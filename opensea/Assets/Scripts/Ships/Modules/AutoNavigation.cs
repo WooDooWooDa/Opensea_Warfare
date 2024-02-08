@@ -39,10 +39,13 @@ namespace Assets.Scripts.Ships.Modules
         {
             base.Initialize(attachedShip);
             
-            m_inputActions.BattleMap.RightTap.performed += ctx => AddNewWaypoint();
-
             m_steeringGear = (SteeringGear)m_ship.GetModuleOfType(ModuleType.SteeringGear);
             m_engine = (Engine)m_ship.GetModuleOfType(ModuleType.Engine);
+        }
+
+        protected override void RegisterActions()
+        {
+            m_inputActions.BattleMap.RightTap.performed += ctx => AddNewWaypoint();
         }
 
         protected override void InternalPreUpdateModule(float deltaTime)

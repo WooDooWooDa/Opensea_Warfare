@@ -9,6 +9,7 @@ namespace Assets.Scripts.Ships.Modules
             base.Initialize(attachedShip);
             
             m_inputActions = new GameInputs();
+            RegisterActions();
         }
 
         public override void ShipSelect()
@@ -20,6 +21,8 @@ namespace Assets.Scripts.Ships.Modules
         {
             m_inputActions.Disable();
         }
+
+        protected abstract void RegisterActions();
 
         protected override void InternalPreUpdateModule(float deltaTime)
         {

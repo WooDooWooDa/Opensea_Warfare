@@ -9,8 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 429777831}
+  - component: {fileID: 140653807}
+  - component: {fileID: 8120629037204208618}
+  - component: {fileID: 5240533402713881512}
   m_Layer: 5
-  m_Name: FireControl
+  m_Name: Armements
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,8 +35,62 @@ Transform:
   - {fileID: 802016965}
   - {fileID: 2319292414078299546}
   m_Father: {fileID: 4045859191189706700}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &140653807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429777830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed89929194a4401a88e531455c054a7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_info: {fileID: 11400000, guid: b203894914e63804ea6edbcff34beb2a, type: 2}
+  m_defaultAmmoByWeaponType: []
+  m_bayCapacity: 0
+--- !u!114 &8120629037204208618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429777830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2406439a7bd74b08bc03b154959133bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_info: {fileID: 11400000, guid: e1052a7a38df3304099ae645f340912f, type: 2}
+  m_targetReticuleSprite: {fileID: 21300000, guid: 8687d0f17a0aa8740ac7e29bb8dac4c1, type: 3}
+  m_lockReticuleSprite: {fileID: 21300000, guid: 0da21c415e66495418ad45c865ca47b6, type: 3}
+  m_targetReticule: {fileID: 1428168825}
+  m_projectedReticule: {fileID: 802016965}
+  m_obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  m_shipLayer:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!114 &5240533402713881512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429777830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 693657e4a5ef4fc784e31c6b6a5fb888, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_info: {fileID: 11400000, guid: 3d970a8e0613d96459a0802b1ee13224, type: 2}
+  m_armamentSlots:
+  - {fileID: 1896416772935279260}
+  - {fileID: 5951286567369226418}
 --- !u!1 &641178121
 GameObject:
   m_ObjectHideFlags: 0
@@ -67,7 +124,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4045859191189706700}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &641178126
 MonoBehaviour:
@@ -81,7 +138,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5ce69630292cd04297b3aa54e539653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsActive: 1
   m_info: {fileID: 11400000, guid: 5ba52be592e6fd94c8708ffa45ae6226, type: 2}
   m_turnSpeed: 4
 --- !u!114 &641178125
@@ -96,7 +152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f16cbafacea476b42ab0300764fb7fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsActive: 1
   m_info: {fileID: 11400000, guid: 317c58d955216ac4b9f51bd38d1542f0, type: 2}
 --- !u!114 &641178124
 MonoBehaviour:
@@ -110,7 +165,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14169b774af249979fd481887854ce72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsActive: 1
   m_info: {fileID: 11400000, guid: 38e52886b4100134fb2f1da3c08e33f3, type: 2}
   m_waypointUI: {fileID: 0}
   m_waypointUIPrefab: {fileID: 4139848539671803997, guid: 1f01f307741551b42bfb6197fb35364a, type: 3}
@@ -330,7 +384,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4045859191189706700}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &875741340
 SpriteRenderer:
@@ -478,6 +532,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1617087194}
   - component: {fileID: 1617087195}
+  - component: {fileID: 1571429953}
   m_Layer: 0
   m_Name: ShipHull
   m_TagString: Untagged
@@ -552,6 +607,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1571429953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617087193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8290c526928a4c01ba7f2efd1c144c1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_info: {fileID: 11400000, guid: 7bca67c798e761f4b85ca2ca27263022, type: 2}
 --- !u!1 &4045859191189706688
 GameObject:
   m_ObjectHideFlags: 0
@@ -564,7 +632,6 @@ GameObject:
   - component: {fileID: 4045859191189706702}
   - component: {fileID: 4045859191189706703}
   - component: {fileID: 4045859191189706699}
-  - component: {fileID: 1381740648096658275}
   m_Layer: 6
   m_Name: Destroyer
   m_TagString: Untagged
@@ -585,9 +652,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1617087194}
+  - {fileID: 641178122}
   - {fileID: 429777831}
   - {fileID: 875741339}
-  - {fileID: 641178122}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -644,20 +711,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9930e381c10f81a488ea6cae7585c45f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1381740648096658275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4045859191189706688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8290c526928a4c01ba7f2efd1c144c1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsActive: 1
-  m_info: {fileID: 11400000, guid: 7bca67c798e761f4b85ca2ca27263022, type: 2}
 --- !u!1 &4867516138960776701
 GameObject:
   m_ObjectHideFlags: 0
@@ -731,8 +784,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2319292414078299546}
-  - component: {fileID: 761666559}
-  - component: {fileID: 761666560}
   m_Layer: 0
   m_Name: Weapons
   m_TagString: Untagged
@@ -757,47 +808,6 @@ Transform:
   m_Father: {fileID: 429777831}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &761666559
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8290701889035576532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2406439a7bd74b08bc03b154959133bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsActive: 1
-  m_info: {fileID: 11400000, guid: e1052a7a38df3304099ae645f340912f, type: 2}
-  m_targetReticuleSprite: {fileID: 21300000, guid: 8687d0f17a0aa8740ac7e29bb8dac4c1, type: 3}
-  m_lockReticuleSprite: {fileID: 21300000, guid: 0da21c415e66495418ad45c865ca47b6, type: 3}
-  m_targetReticule: {fileID: 1428168825}
-  m_projectedReticule: {fileID: 802016965}
-  m_obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 2048
-  m_shipLayer:
-    serializedVersion: 2
-    m_Bits: 64
---- !u!114 &761666560
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8290701889035576532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 693657e4a5ef4fc784e31c6b6a5fb888, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsActive: 1
-  m_info: {fileID: 11400000, guid: 3d970a8e0613d96459a0802b1ee13224, type: 2}
-  m_armamentSlots:
-  - {fileID: 1896416772935279260}
-  - {fileID: 5951286567369226418}
 --- !u!1001 &1473072757103517825
 PrefabInstance:
   m_ObjectHideFlags: 0

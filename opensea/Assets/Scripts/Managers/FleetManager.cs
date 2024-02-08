@@ -11,6 +11,7 @@ namespace Assets.Scripts.Managers
     {
         [SerializeField] private List<Ship> m_ships = new List<Ship>();
 
+        public List<Ship> FleetShips => m_ships;
         public Action<Ship> OnShipSelectedChanged;
         
         private Ship m_selectedShip;

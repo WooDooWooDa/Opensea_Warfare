@@ -5,7 +5,6 @@ using Assets.Scripts.Helpers;
 using Assets.Scripts.Ships.Modules;
 using Assets.Scripts.Weapons;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace UI
 {
@@ -24,8 +23,6 @@ namespace UI
                 slotWidget.SelectionButton.onClick.AddListener(
                     () => SelectSlot(slotWidget.WeaponType));
             }
-            
-            Events.Inputs.OnSpaceBarPressed += ToggleAiming;
         }
 
         public override void UpdatePanelWithModules(List<Module> modules)
@@ -84,12 +81,6 @@ namespace UI
             {
                 slot.SetActive(selectedWeaponType);
             });
-        }
-        
-        private void ToggleAiming()
-        {
-            if (m_fireControlModule)
-                m_fireControlModule.ToggleAiming();
         }
     }
 }

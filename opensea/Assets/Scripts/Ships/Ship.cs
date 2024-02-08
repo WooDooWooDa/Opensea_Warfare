@@ -14,13 +14,14 @@ namespace Assets.Scripts.Ships
     public abstract class Ship: MonoBehaviour, ISelectable, IHittable
     {
         [SerializeField] private ShipInformations m_informations;
-        public ShipStats Stats => m_stats;
         [SerializeField] private ShipStats m_stats;
         [SerializeField] private List<Module> m_modules = new();
-
+        public ShipStats Stats => m_stats;
+        public bool IsSelected => m_isSelected;
         public Action<IHittable, Impact> OnHit { get; set; }
 
         private FleetManager m_fleetManager;
+        private bool m_isSelected;
 
         private void Start()
         {
@@ -38,11 +39,13 @@ namespace Assets.Scripts.Ships
 
         public void OnDeselect()
         {
+            m_isSelected = false;
             m_modules.ForEach(m => m.ShipDeselect());
         }
 
         public void OnSelect()
         {
+            m_isSelected = true;
             m_fleetManager.FocusOn(this);
             m_modules.ForEach(m => m.ShipSelect());
         }
@@ -51,7 +54,7 @@ namespace Assets.Scripts.Ships
         {
             //Calculate impact area
             //todo-P0 Call onImpact on the right module and the hull
-            GetModuleOfType(ModuleType.Hull)?.OnImpact(impact);
+            GetModuleOfType(ModuleType.Hull)?.DamageOnImpact(impact);
             OnHit?.Invoke(this, impact); // => camera if ship selected, shake
         }
         

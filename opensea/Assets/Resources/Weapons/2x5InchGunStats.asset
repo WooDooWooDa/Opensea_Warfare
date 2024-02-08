@@ -16,10 +16,10 @@ MonoBehaviour:
   Type: 0
   WeaponSprite: {fileID: 21300000, guid: 123b8a98e26a4cd47a6d8571bbb7f348, type: 3}
   Icon: {fileID: 21300000, guid: 8f45b7617a41c8d4f901d33e19a92b31, type: 3}
-  ProjectileSprite: {fileID: 0}
-  ProjectileSize: 0
-  ProjectileSpeed: 0
-  ProjectileCharacteristics: 
-  SalvoCount: 0
-  SalvoTimeSpacing: 0
+  PossibleAmmo: []
+  BaseFirepower: 2
+  Cooldown: 0
+  CannonCount: 0
   turnSpeed: 6
+  CanAutoFire: 0
+  LockInAccuracy: 0

@@ -13,6 +13,7 @@ namespace Assets.Scripts.Weapons
         ArmorPercing,
         AreaOfEffect,
         Boomrang,
+        Parabolic,
         Count
     }
 }

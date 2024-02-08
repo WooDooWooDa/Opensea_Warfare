@@ -10,14 +10,16 @@ namespace Assets.Scripts.Ships.Modules
         public List<Weapon> AllWeapons => m_armamentSlots;
         [SerializeField] private List<Weapon> m_armamentSlots = new();
 
+        private WeaponType m_selectedWeaponType;
         private List<Weapon> m_selectedWeapons = new();
-        
+
         public override void Initialize(Ship attachedShip)
         {
             base.Initialize(attachedShip);
+            m_armamentSlots.ForEach(w => w.Initialize(attachedShip));
         }
 
-        public void SetTargetTo(Ship targetedShip)
+        public void LockOnTo(Ship targetedShip)
         {
             foreach (var weapon in m_selectedWeapons)
             {
@@ -25,27 +27,28 @@ namespace Assets.Scripts.Ships.Modules
             }
         }
         
-        public void SetTargetTo(Vector3 coords)
+        public void SetFireTargetCoord(Vector3 coords, Vector3 projectedCoords)
         {
             foreach (var weapon in m_selectedWeapons)
             {
-                weapon.SetTargetCoord(coords);
+                weapon.SetFireTargetCoord(coords);
+            }
+        }
+
+        public void FollowPosition(Vector3 position)
+        {
+            foreach (var weapon in m_selectedWeapons)
+            {
+                weapon.Follow(position);
             }
         }
         
         public void SelectWeapon(WeaponType type)
         {
             //unselect all selected
+            m_selectedWeaponType = type;
             m_selectedWeapons = m_armamentSlots.Where(w => w.Type == type).ToList();
             //call select on newly selected
-        }
-
-        public void TryFireSelectedWeapons(float dispersion)
-        {
-            foreach (var weapon in m_selectedWeapons)
-            {
-                weapon.TryFire(dispersion);
-            }
         }
 
         protected override void InternalPreUpdateModule(float deltaTime)

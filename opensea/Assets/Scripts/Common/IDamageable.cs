@@ -11,6 +11,6 @@ namespace Assets.Scripts.Ships.Common
         public Action<IDamageable, DamageState> OnStateChanged { get; set; }
         public Action<IDamageable, float> OnDamageTaken { get; set; }
 
-        public void OnImpact(Impact impact);
+        public void DamageOnImpact(Impact impact);
     }
 }

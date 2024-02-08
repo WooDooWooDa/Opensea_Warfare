@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ed9bf3439e04c0db0a1baab9232d91e, type: 3}
+  m_Name: NormalMainShell
+  m_EditorClassIdentifier: 
+  Name: Normal Shell
+  WeaponTypeFor: 0
+  ProjectilePrefab: {fileID: 4948112235539680145, guid: c1984c16080ce2045b74b92b997a2015, type: 3}
+  ProjectileSprite: {fileID: 21300000, guid: 4f3caad363ae0cd4ab3b34e4d7de489c, type: 3}
+  TrailMaterial: {fileID: 0}
+  ProjectileSize: 1
+  ProjectileSpeed: 10
+  ProjectileCharacteristics: 
+  IsDefaultForWeaponType: 1
+  BaySpace: 0
+  PortBasePrice: 0
