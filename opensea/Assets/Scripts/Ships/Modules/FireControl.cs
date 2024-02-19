@@ -9,7 +9,7 @@ namespace Assets.Scripts.Ships.Modules
     {
         [SerializeField] private Sprite m_targetReticuleSprite;
         [SerializeField] private Sprite m_lockReticuleSprite;
-        
+
         [SerializeField] private Transform m_targetReticule;
         [SerializeField] private Transform m_projectedReticule;
         [SerializeField] private LayerMask m_obstacleLayer;
@@ -25,16 +25,16 @@ namespace Assets.Scripts.Ships.Modules
         private float m_maxRange;
         private bool m_isAiming;
         private Ship m_tryLockOnShip;
-        
+
         public override void Initialize(Ship attachedShip)
         {
             base.Initialize(attachedShip);
 
             m_attachedShipPosition = attachedShip.transform;
-            
+
             m_range = attachedShip.Stats.RNG;
             m_maxRange = m_range * 2;
-            
+
             m_armamentsModule = GetComponentInChildren<Armaments>();
             m_startingReticuleScale = m_projectedReticule.localScale;
             m_projectedReticuleImage = m_projectedReticule.GetComponentInChildren<SpriteRenderer>();
@@ -61,10 +61,12 @@ namespace Assets.Scripts.Ships.Modules
         protected override void RegisterActions()
         {
             Events.Inputs.OnSpaceBarPressed += ToggleAiming;
-            m_inputActions.BattleMap.LeftClick.performed += ctx => TryFireAt();
+            m_inputActions.BattleMap.LeftClick.performed += ctx => TryFireSingle();
         }
 
-        protected override void InternalPreUpdateModule(float deltaTime) { }
+        protected override void InternalPreUpdateModule(float deltaTime)
+        {
+        }
 
         protected override void InternalUpdateModule(float deltaTime)
         {
@@ -74,33 +76,33 @@ namespace Assets.Scripts.Ships.Modules
             MoveArmaments();
             CheckForEnemyLock();
         }
-        
+
         private void ToggleAiming()
         {
             if (!m_ship.IsSelected) return;
-            
+
             if (m_tryLockOnShip is not null)
             {
                 m_tryLockOnShip = null;
                 //notif lock on ship unlocked
+                Debug.Log("Lock on ship unlocked");
                 return;
             }
-            
+
             m_isAiming = !m_isAiming;
-            
+
             m_projectedReticule.gameObject.SetActive(m_isAiming);
             m_targetReticule.gameObject.SetActive(m_isAiming);
             Events.Ship.FireIsAiming(m_ship, m_isAiming);
         }
-        
-        private void TryFireAt() //todo-P2 Should fire only the next available gun
+
+        private void TryFireSingle()
         {
             if (!m_isAiming || !m_ship.IsSelected) return;
-
-            Debug.Log("Fire Control Fire Order");
+            
             if (m_tryLockOnShip)
             {
-                //todo-P3 Add the ship you trying to lock on enemy is too far (> range)
+                //OSW-22 check if too far
                 m_armamentsModule.LockOnTo(m_tryLockOnShip);
             }
             else
@@ -108,6 +110,11 @@ namespace Assets.Scripts.Ships.Modules
                 m_armamentsModule.SetFireTargetCoord(m_targetReticule.position, m_projectedReticule.position);
                 Debug.Log("At : " + m_targetReticule.position);
             }
+        }
+
+        private void TryFireSalvo()
+        {
+            
         }
         
         private void MoveReticule()
@@ -143,15 +150,16 @@ namespace Assets.Scripts.Ships.Modules
 
         private void CheckForEnemyLock()
         {
-            //todo-P2 Check if the selected weapon type allows lock on
+            //OSW-21 refactor method
             
             var shipHit = Physics2D.OverlapCircle(m_targetReticule.position, 0.1f, m_shipLayer);
-            //todo-P1 change way to lock on enemy, not using tag
-            //todo-P3 maybe add feedback ex : X cannot lock on ally ship, 
             if (shipHit is not null && shipHit.CompareTag("Enemy")) 
             {
-                m_projectedReticuleImage.sprite = m_lockReticuleSprite;
                 m_tryLockOnShip ??= shipHit.gameObject.GetComponent<Ship>();
+                if (m_tryLockOnShip is not null && !m_tryLockOnShip.Alive)
+                    m_projectedReticuleImage.sprite = m_lockReticuleSprite;
+                else
+                    m_tryLockOnShip = null;
             }
             else
             {

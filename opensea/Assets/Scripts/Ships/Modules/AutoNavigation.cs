@@ -39,8 +39,8 @@ namespace Assets.Scripts.Ships.Modules
         {
             base.Initialize(attachedShip);
             
-            m_steeringGear = (SteeringGear)m_ship.GetModuleOfType(ModuleType.SteeringGear);
-            m_engine = (Engine)m_ship.GetModuleOfType(ModuleType.Engine);
+            m_steeringGear = m_ship.GetModuleOfType<SteeringGear>();
+            m_engine = m_ship.GetModuleOfType<Engine>();
         }
 
         protected override void RegisterActions()

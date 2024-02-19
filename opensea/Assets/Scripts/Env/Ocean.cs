@@ -10,7 +10,7 @@ namespace Env
         
         public void OnSelect()
         {
-            Main.Instance.GetManager<FleetManager>().FocusOn(null);
+            //Main.Instance.GetManager<FleetManager>().FocusOn(null);
         }
 
         public void OnDeselect()

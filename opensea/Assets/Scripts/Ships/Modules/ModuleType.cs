@@ -10,6 +10,7 @@
         Armament,
         AutoNavigation,
         AmmunitionBay,
+        Radar,
         Count
     }
 }

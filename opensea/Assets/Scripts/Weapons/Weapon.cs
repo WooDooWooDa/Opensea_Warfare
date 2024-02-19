@@ -56,12 +56,15 @@ namespace Assets.Scripts.Weapons
             m_attachedShip = attachedShip;
 
             m_targetCoord = transform.position;
-            m_ammunitionBay = (AmmunitionBay)attachedShip.GetModuleOfType(ModuleType.AmmunitionBay);
+            m_ammunitionBay = attachedShip.GetModuleOfType<AmmunitionBay>();
             m_reloader = new Reloader();
             m_reloader.Initialize(this, m_ammunitionBay);
         }
 
-        public void DamageOnImpact(Impact impact) { }
+        public float DamageOnImpact(Impact impact)
+        {
+            return impact.BaseDamage;
+        }
 
         public void UpdateWeapon(float deltaTime)
         {
@@ -131,7 +134,6 @@ namespace Assets.Scripts.Weapons
         private Projectile SpawnProjectile(int firePoint)
         {
             var projectile = Instantiate(m_loadedAmmo.ProjectilePrefab);
-            //todo-P2 change so that fire point depends on weapon type nb cannons
             projectile.transform.SetPositionAndRotation(m_firePoint[firePoint].position, m_firePoint[firePoint].rotation);
             return projectile;
         }

@@ -16,9 +16,14 @@ MonoBehaviour:
   WeaponTypeFor: 1
   ProjectilePrefab: {fileID: 0}
   ProjectileSprite: {fileID: 0}
+  TrailMaterial: {fileID: 0}
   ProjectileSize: 0
   ProjectileSpeed: 0
   ProjectileCharacteristics: 
+  DamageHullModifier:
+  - 1
+  - 1
+  - 1
   IsDefaultForWeaponType: 1
   BaySpace: 0
   PortBasePrice: 0

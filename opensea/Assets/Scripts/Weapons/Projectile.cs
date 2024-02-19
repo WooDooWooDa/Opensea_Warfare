@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Helpers;
+﻿using System;
+using Assets.Scripts.Helpers;
 using Assets.Scripts.Ships;
 using Assets.Scripts.Ships.Common;
 using UnityEngine;
@@ -20,7 +21,6 @@ namespace Assets.Scripts.Weapons
         private float m_damage;
 
         private float m_targetEpsilon = 0.05f;
-        private float m_totalDist;
         private bool m_isParabolic;
         private float m_parabolicTrajectoryLerp;
 
@@ -31,7 +31,6 @@ namespace Assets.Scripts.Weapons
             m_isParabolic = data.Ammo.ProjectileCharacteristics.Contains(ProjectileCharacteristic.Parabolic);
 
             m_projectileData.StartPos = transform.position;
-            m_totalDist = Vector3.Distance(transform.position, m_projectileData.TargetPoint);
             m_projectileSprite.sprite = data.Ammo.ProjectileSprite;
             transform.rotation = Helper.SpriteLookAt(transform, m_projectileData.TargetPoint);
             m_projectileSprite.transform.localScale *= data.Ammo.ProjectileSize;
@@ -39,15 +38,13 @@ namespace Assets.Scripts.Weapons
 
         private void Update()
         {
-            if (m_isParabolic && m_parabolicTrajectoryLerp < 1) //todo-2 Not quite right yet
+            //OSW-23
+            /* if (m_isParabolic && m_parabolicTrajectoryLerp < 1)
             {
                 transform.position = CalculateTrajectory(m_parabolicTrajectoryLerp);
                 m_parabolicTrajectoryLerp += Time.deltaTime * (m_projectileData.Ammo.ProjectileSpeed / 4);
-            }
-            else
-            {
-                transform.position = Vector3.MoveTowards(transform.position, m_projectileData.TargetPoint, Time.deltaTime * m_projectileData.Ammo.ProjectileSpeed);
-            }
+            } */
+            transform.position = Vector3.MoveTowards(transform.position, m_projectileData.TargetPoint, Time.deltaTime * m_projectileData.Ammo.ProjectileSpeed);
             
             if (Vector3.Distance(transform.position, m_projectileData.TargetPoint) <= m_targetEpsilon)
             {
@@ -66,23 +63,35 @@ namespace Assets.Scripts.Weapons
 
         private void Miss()
         {
-            //get the water or island tile below,
             Destroy(gameObject);
-            //play splash/hit animation
+            //OSW-18 miss anim
         }
 
-        private void OnCollisionEnter2D(Collision2D other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject == m_projectileData.Sender.gameObject) return;
+            var shipHit = other.gameObject.GetComponentInParent<Ship>();
+            if (shipHit == m_projectileData.Sender) return; //no return to sender
             
-            (other as IHittable)?.Hit(new Impact()
+            var hittable = other.gameObject.GetComponentInParent<IHittable>();
+            if (hittable is null) return;
+
+            var hullPartHit = other.gameObject.GetComponent<HullPart>();
+            if (hullPartHit is null) return;
+            
+            if (shipHit.Team == m_projectileData.Sender.Team)
             {
+                Debug.Log("Watch out for friendly fire.");
+            }
+            
+            hittable?.Hit(new Impact()
+            {
+                HullPartHit = hullPartHit,
                 BaseDamage = m_damage,
                 Sender = m_projectileData.Sender,
-                Characteristics = m_projectileData.Ammo.ProjectileCharacteristics
+                AmmoUsed = m_projectileData.Ammo
             });
             
-            //play explosion or hit animation
+            //OSW-19 play explosion or hit animation at collision point
             
             Destroy(gameObject);
         }

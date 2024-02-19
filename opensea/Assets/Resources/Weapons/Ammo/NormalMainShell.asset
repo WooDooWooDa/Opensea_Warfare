@@ -20,6 +20,10 @@ MonoBehaviour:
   ProjectileSize: 1
   ProjectileSpeed: 10
   ProjectileCharacteristics: 
+  HullTypeDamageModifier:
+  - 1
+  - 0.75
+  - 0.5
   IsDefaultForWeaponType: 1
   BaySpace: 0
   PortBasePrice: 0

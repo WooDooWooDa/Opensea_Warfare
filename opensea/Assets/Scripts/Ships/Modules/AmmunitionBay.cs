@@ -105,10 +105,18 @@ namespace Assets.Scripts.Ships.Modules
             if (ammunition is not null && !ammunition.IsDefault)
             {
                 ammunition.Quantity -= quantity;
-                Debug.Log("Ammunition left : " + ammunition.Quantity);
+                Debug.Log(ammo.Name + " ammo left : " + ammunition.Quantity);
             }
 
             return true;
+        }
+        
+        protected override void ApplyState()
+        {
+            if (CurrentState is DamageState.Destroyed)
+            {
+                OnDestroyed?.Invoke(this);
+            }
         }
         
         protected override void InternalPreUpdateModule(float deltaTime)

@@ -8,6 +8,7 @@ using System.Linq;
 using Assets.Scripts.Ships.Common;
 using Assets.Scripts.Weapons;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Assets.Scripts.Ships
 {
@@ -16,12 +17,16 @@ namespace Assets.Scripts.Ships
         [SerializeField] private ShipInformations m_informations;
         [SerializeField] private ShipStats m_stats;
         [SerializeField] private List<Module> m_modules = new();
+        public bool Alive => !m_isMarkedAsDestroyed; //Change variable name
         public ShipStats Stats => m_stats;
+        public ShipTeam Team;
         public bool IsSelected => m_isSelected;
         public Action<IHittable, Impact> OnHit { get; set; }
+        public Action<Ship> OnShipDestroyed;
 
         private FleetManager m_fleetManager;
         private bool m_isSelected;
+        private bool m_isMarkedAsDestroyed;
 
         private void Start()
         {
@@ -52,20 +57,37 @@ namespace Assets.Scripts.Ships
         
         public void Hit(Impact impact)
         {
-            //Calculate impact area
-            //todo-P0 Call onImpact on the right module and the hull
-            GetModuleOfType(ModuleType.Hull)?.DamageOnImpact(impact);
+            //hit feedback, dmg total widget
             OnHit?.Invoke(this, impact); // => camera if ship selected, shake
+            
+            var hull = GetModuleOfType<Hull>();
+            var dmgTaken = hull.DamageOnImpact(impact);
+            foreach (var module in GetModulesOfType(hull.GetRelatedModuleToPart(impact.HullPartHit).ToArray()))
+            {
+                module.DamageOnImpact(impact);
+            }
+        }
+
+        private void DestroyShip()
+        {
+            m_isMarkedAsDestroyed = true; //Do not destroy ship => Mark it as destroy for fleet manager
+            //destroy animation & particule
+            //remove ship > replace with sinking animation
+            OnShipDestroyed?.Invoke(this);
         }
         
-        public IEnumerable<Module> GetModuleOfType(ModuleType[] type)
+        public IEnumerable<Module> GetModulesOfType(ModuleType[] type)
         {
             return m_modules.Where(module => type.Contains(module.Type));
         }
         
-        public Module GetModuleOfType(ModuleType type)
+        public T GetModuleOfType<T>()
         {
-            return m_modules.FirstOrDefault(module => type == module.Type);
+            foreach (var m in m_modules.Where(m => m.GetType() == typeof(T)).OfType<T>())
+            {
+                return (T)Convert.ChangeType(m, typeof(T));
+            }
+            return default;
         }
 
         private void RegisterModules()
@@ -74,18 +96,19 @@ namespace Assets.Scripts.Ships
             var modulesAttached = GetComponentsInChildren<Module>();
             m_modules.AddRange(modulesAttached);
             
-            //Saved
-            
             //BindListeners and init
             foreach (var module in m_modules)
             {
                 module.Initialize(this);
-                module.OnStateChanged += (damageable, state) => { };
-                if (module is IDestroyable isDestroyableModule)
+                module.OnStateChanged += (damageable, state) => Debug.Log("'Module " + damageable + " has change state to " + state);
+                module.OnDamageTaken += (damageable, f) =>
                 {
-                    
-                }
+                    Debug.Log("Damage taken on " + damageable + " : " + f);
+                };
             }
+
+            GetModuleOfType<Hull>().OnDestroyed += (IDestroyable) => DestroyShip();
+            GetModuleOfType<AmmunitionBay>().OnDestroyed += (IDestroyable) => DestroyShip();
         }
     }
 }

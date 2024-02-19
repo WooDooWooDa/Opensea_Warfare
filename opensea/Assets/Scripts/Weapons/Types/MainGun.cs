@@ -9,7 +9,10 @@ namespace Assets.Scripts.Weapons
 
         public override void SetFireTargetCoord(Vector3 position)
         {
-            if (m_lockOnShip is not null) return;
+            if (m_lockOnShip is not null)
+            {
+                m_lockOnShip = null;
+            }
             
             m_hasTarget = true;
             m_targetCoord = position;
@@ -17,8 +20,10 @@ namespace Assets.Scripts.Weapons
 
         public override void LockOn(Ship targetShip)
         {
-            m_hasTarget = true;
+            m_hasTarget = targetShip is not null;
             m_lockOnShip = targetShip;
+            if (targetShip is not null)
+                m_lockOnShip.OnShipDestroyed += (ship) => LockOn(null);
         }
 
         public override void Follow(Vector3 position)
@@ -30,9 +35,9 @@ namespace Assets.Scripts.Weapons
         
         protected override void InternalFire(Projectile projectile, float dispersionFactor)
         {
-            Debug.Log("Fire " + this + " at " + m_targetCoord);
+            //Debug.Log("Fire " + this + " at " + m_targetCoord);
             var dispersedTargetPoint = GetDispersionPoint(m_targetCoord, dispersionFactor);
-            Debug.Log("Dispersed at " + dispersedTargetPoint);
+            //Debug.Log("Dispersed at " + dispersedTargetPoint);
             
             projectile.SetData(new ProjectileData()
             {
@@ -57,11 +62,10 @@ namespace Assets.Scripts.Weapons
             if (m_lockOnShip is not null)
             {
                 m_targetCoord = m_lockOnShip.transform.position; 
-                //todo-P2 GetDispersionPoint(..., m_stats.LockInAccuracy / 10) at an interval otherwise looks janky???
+                //OSW-8 
             }
             
             Aim(deltaTime);
-            //todo-3 add an evelation and rotation line/circle to reticule
         }
 
         protected override bool InternalReadyToFire()
@@ -79,7 +83,7 @@ namespace Assets.Scripts.Weapons
         {
             var diff = GetDistanceDiffToTarget();
             if (diff is > 0.05f or < -0.05f)
-                m_weaponTargetReticule.localPosition += Vector3.up * (delta * Mathf.Sign(diff) * m_stats.turnSpeed / 2);
+                m_weaponTargetReticule.localPosition += Vector3.up * (delta * Mathf.Sign(diff) * m_stats.turnSpeed);
         }
 
         private void RotateTurret(float delta)
@@ -88,7 +92,7 @@ namespace Assets.Scripts.Weapons
             var angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - 90;
             var q = Quaternion.AngleAxis(angle, Vector3.forward);
             m_turret.rotation = Quaternion.RotateTowards(m_turret.rotation, q, delta * m_stats.turnSpeed * 5);
-            //todo-1 check for range of rotation
+            //OSW-1
         }
 
         private float GetDistanceDiffToTarget()

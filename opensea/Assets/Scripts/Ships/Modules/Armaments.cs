@@ -17,6 +17,7 @@ namespace Assets.Scripts.Ships.Modules
         {
             base.Initialize(attachedShip);
             m_armamentSlots.ForEach(w => w.Initialize(attachedShip));
+            SelectWeapon(m_armamentSlots.First().Type);
         }
 
         public void LockOnTo(Ship targetedShip)

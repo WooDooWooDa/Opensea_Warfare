@@ -12,7 +12,7 @@ namespace Assets.Scripts.Ships.Modules
         public float CurrentHp { get; set; }
         public DamageState CurrentState { get; set; }
         public bool CanBeRepaired => CurrentState is DamageState.Damaged or DamageState.Disabled;
-        public bool IsWorking => CurrentState is not DamageState.Disabled and DamageState.Destroyed;
+        public bool IsWorking => CurrentState is not DamageState.Destroyed and not DamageState.Disabled;
         
         public Action<IDamageable, DamageState> OnStateChanged { get; set; }
         public Action<IDamageable, float> OnDamageTaken { get; set; }
@@ -27,7 +27,7 @@ namespace Assets.Scripts.Ships.Modules
         public void UpdateModule(float deltaTime)
         {
             InternalPreUpdateModule(deltaTime);
-            if (IsWorking) return;
+            if (!IsWorking) return;
             
             InternalUpdateModule(deltaTime);
         }
@@ -35,15 +35,16 @@ namespace Assets.Scripts.Ships.Modules
         public virtual void ShipSelect() {}
         public virtual void ShipDeselect() {}
         
-        public void DamageOnImpact(Impact impact)
+        public float DamageOnImpact(Impact impact)
         {
-            if (!m_info.CanBeDamaged) return;
+            if (!m_info.CanBeDamaged || !IsWorking) return 0;
             
             TakeDamage(impact);
             ApplyStatus();
             
             CheckState();
             ApplyState();
+            return impact.BaseDamage;
         }
 
         public void Repair(float amount, bool full = false)
@@ -54,46 +55,33 @@ namespace Assets.Scripts.Ships.Modules
         /// <summary>
         /// Pre Update is call first even if the module is not working for any reason
         /// </summary>
-        /// <param name="deltaTime"></param>
         protected abstract void InternalPreUpdateModule(float deltaTime);
         /// <summary>
         /// Update is call only if the module is working in any way
         /// </summary>
-        /// <param name="deltaTime"></param>
         protected abstract void InternalUpdateModule(float deltaTime);
 
-        protected virtual float InternalCalculateDamage(Impact impactData)
+        protected virtual void TakeDamage(Impact impact)
         {
-            return impactData.BaseDamage;
-        }
-
-        protected virtual void ApplyState() { }
-        
-        protected virtual void ApplyStatus() { }
-
-        private void TakeDamage(Impact impact)
-        {
-            var damageTaken = InternalCalculateDamage(impact);
-            CurrentHp -= damageTaken;
-            OnDamageTaken?.Invoke(this, damageTaken);
+            CurrentHp -= impact.BaseDamage;
             if (CurrentHp <= 0) CurrentHp = 0;
         }
         
-        private void CheckState()
+        protected virtual void ApplyState() { }
+        
+        protected virtual void ApplyStatus() { }
+        
+        private void CheckState() //Move this to helper function so 
         {
             var lastState = CurrentState;
             
-            DamageState newState;
-            if (CurrentHp < m_info.MaxHp) {
-                newState =  DamageState.Damaged;
-            }
-            else
-            {
+            var newState = DamageState.Undamaged;
+            if (CurrentHp < m_info.MaxHp) { 
                 newState = CurrentHp switch
                 {
                     <= 0 when this is not IDestroyable => DamageState.Disabled,
                     <= 0 => DamageState.Destroyed,
-                    _ => DamageState.Undamaged
+                    _ => DamageState.Damaged
                 };
             }
             

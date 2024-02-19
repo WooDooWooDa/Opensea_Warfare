@@ -43,7 +43,7 @@ namespace Assets.Scripts.Managers
                 foreach (var shipPanel in m_shipPanels)
                 {
                     var modulesNeeded = shipPanel.ModulesTypeFor;
-                    shipPanel.UpdatePanelWithModules(m_currentSelectedShip.GetModuleOfType(modulesNeeded).ToList());
+                    shipPanel.UpdatePanelWithModules(m_currentSelectedShip.GetModulesOfType(modulesNeeded).ToList());
                     //animation
                 }
             }
