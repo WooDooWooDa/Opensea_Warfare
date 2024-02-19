@@ -62,6 +62,7 @@ namespace Assets.Scripts.Weapons
             if (m_lockOnShip is not null)
             {
                 m_targetCoord = m_lockOnShip.transform.position; 
+                //OSW-22 find a way to have max range
                 //OSW-8 
             }
             

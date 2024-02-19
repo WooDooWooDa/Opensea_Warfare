@@ -98,17 +98,15 @@ namespace Assets.Scripts.Ships.Modules
 
         private void TryFireSingle()
         {
-            if (!m_isAiming || !m_ship.IsSelected) return;
+            if (!m_isAiming) return;
             
             if (m_tryLockOnShip)
             {
-                //OSW-22 check if too far
                 m_armamentsModule.LockOnTo(m_tryLockOnShip);
             }
             else
             {
                 m_armamentsModule.SetFireTargetCoord(m_targetReticule.position, m_projectedReticule.position);
-                Debug.Log("At : " + m_targetReticule.position);
             }
         }
 
