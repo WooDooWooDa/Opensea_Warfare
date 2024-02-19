@@ -20,6 +20,11 @@ namespace Assets.Scripts.Ships.Modules
             SelectWeapon(m_armamentSlots.First().Type);
         }
 
+        public bool SelectedShipCanLockOn()
+        {
+            return m_selectedWeapons.Count > 0 && m_selectedWeapons.First().Stats.CanLockOnEnemy;
+        }
+
         public void LockOnTo(Ship targetedShip)
         {
             foreach (var weapon in m_selectedWeapons)

@@ -22,7 +22,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0d2bd4a4864d0444e8cf44063ee6cfb0, type: 2}
   BaseFirepower: 1
   Cooldown: 6
+  SwitchCooldown: 0
   CannonCount: 1
   turnSpeed: 2
-  CanAutoFire: 0
+  CanLockOnEnemy: 1
   LockInAccuracy: 5

@@ -28,6 +28,8 @@ namespace Assets.Scripts.Managers
 
         public void FocusOn(Ship ship)
         {
+            if (ship == m_selectedShip) return;
+            
             var focusedShip = m_ships.Find(x => x == ship);
             Focus(focusedShip);
         }

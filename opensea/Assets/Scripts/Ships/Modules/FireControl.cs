@@ -150,13 +150,13 @@ namespace Assets.Scripts.Ships.Modules
 
         private void CheckForEnemyLock()
         {
-            //OSW-21 refactor method
+            if (!m_armamentsModule.SelectedShipCanLockOn()) return;
             
             var shipHit = Physics2D.OverlapCircle(m_targetReticule.position, 0.1f, m_shipLayer);
             if (shipHit is not null && shipHit.CompareTag("Enemy")) 
             {
                 m_tryLockOnShip ??= shipHit.gameObject.GetComponent<Ship>();
-                if (m_tryLockOnShip is not null && !m_tryLockOnShip.Alive)
+                if (m_tryLockOnShip is not null && m_tryLockOnShip.Team == ShipTeam.Enemy && m_tryLockOnShip.Alive)
                     m_projectedReticuleImage.sprite = m_lockReticuleSprite;
                 else
                     m_tryLockOnShip = null;

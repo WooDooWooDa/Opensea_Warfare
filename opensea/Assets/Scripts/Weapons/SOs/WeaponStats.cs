@@ -20,7 +20,7 @@ namespace Assets.Scripts.Weapons.SOs
         public int CannonCount;
         [Header("Param")] 
         public float turnSpeed;
-        public bool CanAutoFire;
+        public bool CanLockOnEnemy = true;
         public float LockInAccuracy;
     }
 }

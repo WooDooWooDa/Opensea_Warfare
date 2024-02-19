@@ -30,8 +30,11 @@ namespace Assets.Scripts.Ships
 
         private void Start()
         {
-            m_fleetManager = Main.Instance.GetManager<FleetManager>();
-            m_fleetManager.RegisterShipToFleet(this);
+            if (Team == ShipTeam.Fleet)
+            {
+                m_fleetManager = Main.Instance.GetManager<FleetManager>();
+                m_fleetManager.RegisterShipToFleet(this);
+            }
             RegisterModules();
         }
 
