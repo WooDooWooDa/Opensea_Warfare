@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DestroyerStats
   m_EditorClassIdentifier: 
   HP: 1200
-  FP: 500
+  FP: 100
   Hull: 0
   SPD: 4
   RNG: 12

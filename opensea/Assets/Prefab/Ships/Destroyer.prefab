@@ -344,7 +344,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8687d0f17a0aa8740ac7e29bb8dac4c1, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -512,7 +512,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8687d0f17a0aa8740ac7e29bb8dac4c1, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -755,7 +755,7 @@ MonoBehaviour:
   m_informations: {fileID: 11400000, guid: c259c25570f250b409430d7ed51ccff7, type: 2}
   m_stats: {fileID: 11400000, guid: 13b9ec16d1e8ae54f9ce6dbbc6c3344d, type: 2}
   m_modules: []
-  IsMarkedAsDestroyed: 0
+  Team: 0
 --- !u!61 &4045859191189706703
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -804,7 +804,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2818250931879405507}
   m_Layer: 0
-  m_Name: RearMain
+  m_Name: RearMainSocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -982,7 +982,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3906143366328984428}
   m_Layer: 0
-  m_Name: FrontMain
+  m_Name: FrontMainSocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1232,6 +1232,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainGun
       objectReference: {fileID: 0}
+    - target: {fileID: 1017825472162267677, guid: c0842e460b1e4d0439a99ff19a8d8436, type: 3}
+      propertyPath: m_rangeOfRotation
+      value: 120
+      objectReference: {fileID: 0}
     - target: {fileID: 1017825472162267678, guid: c0842e460b1e4d0439a99ff19a8d8436, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1316,6 +1320,10 @@ PrefabInstance:
     - target: {fileID: 1017825472162267676, guid: c0842e460b1e4d0439a99ff19a8d8436, type: 3}
       propertyPath: m_Name
       value: MainGun
+      objectReference: {fileID: 0}
+    - target: {fileID: 1017825472162267677, guid: c0842e460b1e4d0439a99ff19a8d8436, type: 3}
+      propertyPath: m_rangeOfRotation
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 1017825472162267678, guid: c0842e460b1e4d0439a99ff19a8d8436, type: 3}
       propertyPath: m_RootOrder

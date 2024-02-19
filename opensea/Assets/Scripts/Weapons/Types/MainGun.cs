@@ -91,9 +91,9 @@ namespace Assets.Scripts.Weapons
         {
             var vectorToTarget = m_targetCoord - m_turret.position;
             var angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - 90;
-            var q = Quaternion.AngleAxis(angle, Vector3.forward);
+            var q = Quaternion.AngleAxis(Mathf.Abs(angle), Vector3.forward);
             m_turret.rotation = Quaternion.RotateTowards(m_turret.rotation, q, delta * m_stats.turnSpeed * 5);
-            //OSW-1
+            LimitRangeOfRotation(m_turret);
         }
 
         private float GetDistanceDiffToTarget()
@@ -104,6 +104,14 @@ namespace Assets.Scripts.Weapons
             if (distanceToTarget > m_attachedShip.Stats.RNG * 2)
                 distanceToTarget = m_attachedShip.Stats.RNG * 2;
             return distanceToTarget - distanceToReticule;
+        }
+
+        private void LimitRangeOfRotation(Transform turret)
+        {
+            var currentRotation = turret.localEulerAngles;
+            if(currentRotation.z > 180) { currentRotation.z -= 360; }
+            currentRotation.z = Mathf.Clamp(currentRotation.z, -m_rangeOfRotation, m_rangeOfRotation);
+            turret.localEulerAngles = currentRotation;
         }
         
         private static Vector3 GetDispersionPoint(Vector3 center, float radius) {
