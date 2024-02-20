@@ -118,12 +118,12 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""LeftClick"",
+                    ""name"": ""FireCommand"",
                     ""type"": ""Button"",
                     ""id"": ""cf7967f4-5b37-402d-80ae-6ea7600afd62"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Tap"",
+                    ""interactions"": ""Tap(duration=0.2,pressPoint=0.3)"",
                     ""initialStateCheck"": true
                 },
                 {
@@ -308,7 +308,7 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LeftClick"",
+                    ""action"": ""FireCommand"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -555,7 +555,7 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
         m_BattleMap_Select8 = m_BattleMap.FindAction("Select8", throwIfNotFound: true);
         m_BattleMap_Select9 = m_BattleMap.FindAction("Select9", throwIfNotFound: true);
         m_BattleMap_Select10 = m_BattleMap.FindAction("Select10", throwIfNotFound: true);
-        m_BattleMap_LeftClick = m_BattleMap.FindAction("LeftClick", throwIfNotFound: true);
+        m_BattleMap_FireCommand = m_BattleMap.FindAction("FireCommand", throwIfNotFound: true);
         m_BattleMap_Point = m_BattleMap.FindAction("Point", throwIfNotFound: true);
         m_BattleMap_ScrollWheel = m_BattleMap.FindAction("ScrollWheel", throwIfNotFound: true);
         m_BattleMap_RightClick = m_BattleMap.FindAction("RightClick", throwIfNotFound: true);
@@ -632,7 +632,7 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_BattleMap_Select8;
     private readonly InputAction m_BattleMap_Select9;
     private readonly InputAction m_BattleMap_Select10;
-    private readonly InputAction m_BattleMap_LeftClick;
+    private readonly InputAction m_BattleMap_FireCommand;
     private readonly InputAction m_BattleMap_Point;
     private readonly InputAction m_BattleMap_ScrollWheel;
     private readonly InputAction m_BattleMap_RightClick;
@@ -654,7 +654,7 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
         public InputAction @Select8 => m_Wrapper.m_BattleMap_Select8;
         public InputAction @Select9 => m_Wrapper.m_BattleMap_Select9;
         public InputAction @Select10 => m_Wrapper.m_BattleMap_Select10;
-        public InputAction @LeftClick => m_Wrapper.m_BattleMap_LeftClick;
+        public InputAction @FireCommand => m_Wrapper.m_BattleMap_FireCommand;
         public InputAction @Point => m_Wrapper.m_BattleMap_Point;
         public InputAction @ScrollWheel => m_Wrapper.m_BattleMap_ScrollWheel;
         public InputAction @RightClick => m_Wrapper.m_BattleMap_RightClick;
@@ -701,9 +701,9 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
                 @Select10.started -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelect10;
                 @Select10.performed -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelect10;
                 @Select10.canceled -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelect10;
-                @LeftClick.started -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnLeftClick;
-                @LeftClick.performed -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnLeftClick;
-                @LeftClick.canceled -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnLeftClick;
+                @FireCommand.started -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnFireCommand;
+                @FireCommand.performed -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnFireCommand;
+                @FireCommand.canceled -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnFireCommand;
                 @Point.started -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnPoint;
                 @Point.performed -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnPoint;
                 @Point.canceled -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnPoint;
@@ -759,9 +759,9 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
                 @Select10.started += instance.OnSelect10;
                 @Select10.performed += instance.OnSelect10;
                 @Select10.canceled += instance.OnSelect10;
-                @LeftClick.started += instance.OnLeftClick;
-                @LeftClick.performed += instance.OnLeftClick;
-                @LeftClick.canceled += instance.OnLeftClick;
+                @FireCommand.started += instance.OnFireCommand;
+                @FireCommand.performed += instance.OnFireCommand;
+                @FireCommand.canceled += instance.OnFireCommand;
                 @Point.started += instance.OnPoint;
                 @Point.performed += instance.OnPoint;
                 @Point.canceled += instance.OnPoint;
@@ -808,7 +808,7 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
         void OnSelect8(InputAction.CallbackContext context);
         void OnSelect9(InputAction.CallbackContext context);
         void OnSelect10(InputAction.CallbackContext context);
-        void OnLeftClick(InputAction.CallbackContext context);
+        void OnFireCommand(InputAction.CallbackContext context);
         void OnPoint(InputAction.CallbackContext context);
         void OnScrollWheel(InputAction.CallbackContext context);
         void OnRightClick(InputAction.CallbackContext context);

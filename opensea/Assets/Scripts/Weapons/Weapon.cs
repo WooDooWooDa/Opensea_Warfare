@@ -28,6 +28,7 @@ namespace Assets.Scripts.Weapons
         public WeaponStats Stats => m_stats;
         public WeaponType Type => m_stats.Type;
         //States
+        public bool Available => WeaponState is WeaponState.Loaded && !m_hasTarget;
         public bool ReadyToFire => WeaponState is WeaponState.Loaded && m_loadedAmmo is not null && InternalReadyToFire();
         public WeaponState WeaponState;
         public float CurrentHp { get; set; }
@@ -95,7 +96,7 @@ namespace Assets.Scripts.Weapons
         }
 
         public abstract void LockOn(Ship ship);
-        public abstract void SetFireTargetCoord(Vector3 position);
+        public abstract void FireAt(Vector3 position);
         public abstract void Follow(Vector3 position);
 
         protected abstract void InternalFire(Projectile projectile, float dispersionFactor);

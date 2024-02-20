@@ -96,12 +96,12 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "LeftClick",
+                    "name": "FireCommand",
                     "type": "Button",
                     "id": "cf7967f4-5b37-402d-80ae-6ea7600afd62",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Tap",
+                    "interactions": "Tap(duration=0.2,pressPoint=0.3)",
                     "initialStateCheck": true
                 },
                 {
@@ -286,7 +286,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LeftClick",
+                    "action": "FireCommand",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

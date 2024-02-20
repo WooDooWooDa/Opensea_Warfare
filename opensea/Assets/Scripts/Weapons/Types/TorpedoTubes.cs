@@ -10,7 +10,7 @@ namespace Assets.Scripts.Weapons
             
         }
 
-        public override void SetFireTargetCoord(Vector3 position)
+        public override void FireAt(Vector3 position)
         {
             
         }

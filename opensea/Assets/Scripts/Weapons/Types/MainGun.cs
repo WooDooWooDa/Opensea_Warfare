@@ -7,7 +7,7 @@ namespace Assets.Scripts.Weapons
     {
         [SerializeField] private Transform m_turret;
 
-        public override void SetFireTargetCoord(Vector3 position)
+        public override void FireAt(Vector3 position)
         {
             if (m_lockOnShip is not null)
             {
@@ -91,7 +91,7 @@ namespace Assets.Scripts.Weapons
         {
             var vectorToTarget = m_targetCoord - m_turret.position;
             var angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - 90;
-            var q = Quaternion.AngleAxis(Mathf.Abs(angle), Vector3.forward);
+            var q = Quaternion.AngleAxis(angle, Vector3.forward);
             m_turret.rotation = Quaternion.RotateTowards(m_turret.rotation, q, delta * m_stats.turnSpeed * 5);
             LimitRangeOfRotation(m_turret);
         }

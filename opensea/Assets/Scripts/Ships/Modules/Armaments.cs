@@ -20,12 +20,12 @@ namespace Assets.Scripts.Ships.Modules
             SelectWeapon(m_armamentSlots.First().Type);
         }
 
-        public bool SelectedShipCanLockOn()
+        public bool SelectedWeaponTypeCanLockOn()
         {
             return m_selectedWeapons.Count > 0 && m_selectedWeapons.First().Stats.CanLockOnEnemy;
         }
 
-        public void LockOnTo(Ship targetedShip)
+        public void LockOnto(Ship targetedShip)
         {
             foreach (var weapon in m_selectedWeapons)
             {
@@ -33,11 +33,23 @@ namespace Assets.Scripts.Ships.Modules
             }
         }
         
-        public void SetFireTargetCoord(Vector3 coords, Vector3 projectedCoords)
+        public void FireNextWeaponAt(Vector3 coords)
         {
+            foreach (var weapon in m_selectedWeapons.Where(weapon => weapon.Available))
+            {
+                Debug.Log("Fire single !");
+                weapon.FireAt(coords);
+                break;
+            }
+            Debug.Log("No available/ready weapons...");
+        }
+
+        public void FireAllWeaponAt(Vector3 coords)
+        {
+            Debug.Log("Fire Salvo !!");
             foreach (var weapon in m_selectedWeapons)
             {
-                weapon.SetFireTargetCoord(coords);
+                weapon.FireAt(coords);
             }
         }
 

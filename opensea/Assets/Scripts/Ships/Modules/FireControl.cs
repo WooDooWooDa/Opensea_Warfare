@@ -1,5 +1,6 @@
 using Assets.Scripts.Helpers;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Vector3 = UnityEngine.Vector3;
 
 namespace Assets.Scripts.Ships.Modules
@@ -61,7 +62,8 @@ namespace Assets.Scripts.Ships.Modules
         protected override void RegisterActions()
         {
             Events.Inputs.OnSpaceBarPressed += ToggleAiming;
-            m_inputActions.BattleMap.LeftClick.performed += ctx => TryFireSingle();
+            m_inputActions.BattleMap.FireCommand.performed += ctx => TryFireSingle();
+            m_inputActions.BattleMap.FireCommand.canceled += ctx => TryFireSalvo();
         }
 
         protected override void InternalPreUpdateModule(float deltaTime)
@@ -102,17 +104,19 @@ namespace Assets.Scripts.Ships.Modules
             
             if (m_tryLockOnShip)
             {
-                m_armamentsModule.LockOnTo(m_tryLockOnShip);
+                m_armamentsModule.LockOnto(m_tryLockOnShip);
             }
             else
             {
-                m_armamentsModule.SetFireTargetCoord(m_targetReticule.position, m_projectedReticule.position);
+                m_armamentsModule.FireNextWeaponAt(m_targetReticule.position);
             }
         }
 
         private void TryFireSalvo()
         {
+            if (!m_isAiming) return;
             
+            m_armamentsModule.FireAllWeaponAt(m_targetReticule.position);
         }
         
         private void MoveReticule()
@@ -148,7 +152,7 @@ namespace Assets.Scripts.Ships.Modules
 
         private void CheckForEnemyLock()
         {
-            if (!m_armamentsModule.SelectedShipCanLockOn()) return;
+            if (!m_armamentsModule.SelectedWeaponTypeCanLockOn()) return;
             
             var shipHit = Physics2D.OverlapCircle(m_targetReticule.position, 0.1f, m_shipLayer);
             if (shipHit is not null && shipHit.CompareTag("Enemy")) 
