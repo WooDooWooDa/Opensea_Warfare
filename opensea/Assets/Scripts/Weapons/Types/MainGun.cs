@@ -5,32 +5,6 @@ namespace Assets.Scripts.Weapons
 {
     public class MainGun : Weapon
     {
-        public override void FireAt(Vector3 position)
-        {
-            if (m_lockOnShip is not null)
-            {
-                m_lockOnShip = null;
-            }
-            
-            m_hasTarget = true;
-            m_targetCoord = position;
-        }
-
-        public override void LockOn(Ship targetShip)
-        {
-            m_hasTarget = targetShip is not null;
-            m_lockOnShip = targetShip;
-            if (targetShip is not null)
-                m_lockOnShip.OnShipDestroyed += (ship) => LockOn(null);
-        }
-
-        public override void Follow(Vector3 position)
-        {
-            if (m_hasTarget) return;
-            
-            m_targetCoord = position;
-        }
-        
         protected override void InternalFire(Projectile projectile, float dispersionFactor)
         {
             var dispersedTargetPoint = GetDispersionPoint(m_targetCoord, dispersionFactor);

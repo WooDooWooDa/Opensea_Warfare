@@ -18,6 +18,7 @@ namespace Assets.Scripts.Ships.Modules
             base.Initialize(attachedShip);
             m_armamentSlots.ForEach(w => w.Initialize(attachedShip));
             SelectWeapon(m_armamentSlots.First().Type);
+            AssignNumberToWeapons();
         }
 
         public bool SelectedWeaponTypeCanLockOn()
@@ -37,7 +38,7 @@ namespace Assets.Scripts.Ships.Modules
         {
             foreach (var weapon in m_selectedWeapons.Where(w => w.Available && w.CanFireAt(coords)))
             {
-                Debug.Log($"{m_selectedWeaponType} #{m_selectedWeapons.IndexOf(weapon)} fire single !");
+                Debug.Log($"{m_selectedWeaponType} #{weapon.Number} fire single !");
                 weapon.FireAt(coords);
                 return;
             }
@@ -79,6 +80,19 @@ namespace Assets.Scripts.Ships.Modules
             foreach (var weapon in m_armamentSlots)
             {
                 weapon.UpdateWeapon(deltaTime);
+            }
+        }
+
+        private void AssignNumberToWeapons()
+        {
+            foreach (var weaponGroup in m_armamentSlots.GroupBy(w => w.Type))
+            {
+                var number = 1;
+                foreach (var weapon in weaponGroup)
+                {
+                    weapon.Number = number;
+                    number++;
+                }
             }
         }
     }

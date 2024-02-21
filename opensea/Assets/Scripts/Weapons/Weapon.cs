@@ -5,6 +5,7 @@ using Assets.Scripts.Ships;
 using Assets.Scripts.Ships.Common;
 using Assets.Scripts.Ships.Modules;
 using Assets.Scripts.Weapons.SOs;
+using TMPro;
 using UnityEngine;
 
 namespace Assets.Scripts.Weapons
@@ -22,12 +23,23 @@ namespace Assets.Scripts.Weapons
         [SerializeField] protected Transform m_turret;
         [SerializeField] protected List<Transform> m_firePoint;
         [SerializeField] protected Transform m_weaponTargetReticule;
+        [SerializeField] private TextMeshProUGUI m_targetReticuleNumber;
         [SerializeField] protected WeaponStats m_stats;
         [SerializeField] private SpriteRenderer m_turretSprite;
         [SerializeField] protected float m_rangeOfRotation = 90f;
         public float FirePower => m_stats.BaseFirepower * m_attachedShip.Stats.FP;
         public WeaponStats Stats => m_stats;
         public WeaponType Type => m_stats.Type;
+        public int Number
+        {
+            get => m_weaponNumber;
+            set
+            {
+                m_weaponNumber = value;
+                m_targetReticuleNumber.text = m_weaponNumber.ToString();
+            }
+        }
+
         //States
         public bool Available => WeaponState is WeaponState.Loaded && !m_hasTarget;
         public bool ReadyToFire => WeaponState is WeaponState.Loaded && m_loadedAmmo is not null && InternalReadyToFire();
@@ -46,6 +58,7 @@ namespace Assets.Scripts.Weapons
         protected Ship m_lockOnShip;
         protected Ammo m_loadedAmmo;
 
+        private int m_weaponNumber;
         private int m_nbLoaded;
         private Reloader m_reloader;
         private AmmunitionBay m_ammunitionBay;
@@ -97,11 +110,35 @@ namespace Assets.Scripts.Weapons
         }
         
         public bool CanFireAt(Vector3 target) => IsInRangeOfRotation(target);
+        
+        public virtual void FireAt(Vector3 position)
+        {
+            if (m_lockOnShip is not null)
+            {
+                m_lockOnShip = null;
+            }
+            
+            m_hasTarget = true;
+            m_targetCoord = position;
+        }
 
-        public abstract void LockOn(Ship ship);
-        public abstract void FireAt(Vector3 position);
-        public abstract void Follow(Vector3 position);
+        public virtual void LockOn(Ship targetShip)
+        {
+            if (!m_stats.CanLockOnEnemy) return;
+            
+            m_hasTarget = targetShip is not null;
+            m_lockOnShip = targetShip;
+            if (targetShip is not null)
+                m_lockOnShip.OnShipDestroyed += (ship) => LockOn(null);
+        }
 
+        public virtual void Follow(Vector3 position)
+        {
+            if (m_hasTarget) return;
+            
+            m_targetCoord = position;
+        }
+        
         protected abstract void InternalFire(Projectile projectile, float dispersionFactor);
         protected abstract void InternalPreUpdateWeapon(float deltaTime);
         protected abstract void InternalUpdateWeapon(float deltaTime);
