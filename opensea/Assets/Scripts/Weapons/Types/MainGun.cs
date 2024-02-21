@@ -5,8 +5,6 @@ namespace Assets.Scripts.Weapons
 {
     public class MainGun : Weapon
     {
-        [SerializeField] private Transform m_turret;
-
         public override void FireAt(Vector3 position)
         {
             if (m_lockOnShip is not null)
@@ -35,9 +33,7 @@ namespace Assets.Scripts.Weapons
         
         protected override void InternalFire(Projectile projectile, float dispersionFactor)
         {
-            //Debug.Log("Fire " + this + " at " + m_targetCoord);
             var dispersedTargetPoint = GetDispersionPoint(m_targetCoord, dispersionFactor);
-            //Debug.Log("Dispersed at " + dispersedTargetPoint);
             
             projectile.SetData(new ProjectileData()
             {
@@ -105,17 +101,9 @@ namespace Assets.Scripts.Weapons
                 distanceToTarget = m_attachedShip.Stats.RNG * 2;
             return distanceToTarget - distanceToReticule;
         }
-
-        private void LimitRangeOfRotation(Transform turret)
-        {
-            var currentRotation = turret.localEulerAngles;
-            if(currentRotation.z > 180) { currentRotation.z -= 360; }
-            currentRotation.z = Mathf.Clamp(currentRotation.z, -m_rangeOfRotation, m_rangeOfRotation);
-            turret.localEulerAngles = currentRotation;
-        }
         
         private static Vector3 GetDispersionPoint(Vector3 center, float radius) {
-            return center + (Vector3)(Random.insideUnitCircle * radius);
+            return center + (Vector3)(Random.insideUnitCircle * (0.5f * radius));
         }
     }
 }

@@ -35,11 +35,11 @@ namespace Assets.Scripts.Ships.Modules
         
         public void FireNextWeaponAt(Vector3 coords)
         {
-            foreach (var weapon in m_selectedWeapons.Where(weapon => weapon.Available))
+            foreach (var weapon in m_selectedWeapons.Where(w => w.Available && w.CanFireAt(coords)))
             {
-                Debug.Log("Fire single !");
+                Debug.Log($"{m_selectedWeaponType} #{m_selectedWeapons.IndexOf(weapon)} fire single !");
                 weapon.FireAt(coords);
-                break;
+                return;
             }
             Debug.Log("No available/ready weapons...");
         }
@@ -47,7 +47,7 @@ namespace Assets.Scripts.Ships.Modules
         public void FireAllWeaponAt(Vector3 coords)
         {
             Debug.Log("Fire Salvo !!");
-            foreach (var weapon in m_selectedWeapons)
+            foreach (var weapon in m_selectedWeapons.Where(w => w.Available && w.CanFireAt(coords)))
             {
                 weapon.FireAt(coords);
             }

@@ -19,6 +19,7 @@ namespace Assets.Scripts.Weapons
     
     public abstract class Weapon: MonoBehaviour, IDestroyable
     {
+        [SerializeField] protected Transform m_turret;
         [SerializeField] protected List<Transform> m_firePoint;
         [SerializeField] protected Transform m_weaponTargetReticule;
         [SerializeField] protected WeaponStats m_stats;
@@ -94,6 +95,8 @@ namespace Assets.Scripts.Weapons
             
             m_reloader.ReloadSwitch(newAmmo);
         }
+        
+        public bool CanFireAt(Vector3 target) => IsInRangeOfRotation(target);
 
         public abstract void LockOn(Ship ship);
         public abstract void FireAt(Vector3 position);
@@ -103,6 +106,21 @@ namespace Assets.Scripts.Weapons
         protected abstract void InternalPreUpdateWeapon(float deltaTime);
         protected abstract void InternalUpdateWeapon(float deltaTime);
         protected abstract bool InternalReadyToFire(); //Determine if weapon is ready to fire (main -> reticule on target, torpedo -> aligned)
+
+        protected void LimitRangeOfRotation(Transform turret)
+        {
+            var currentRotation = turret.localEulerAngles;
+            if(currentRotation.z > 180) { currentRotation.z -= 360; }
+            currentRotation.z = Mathf.Clamp(currentRotation.z, -m_rangeOfRotation, m_rangeOfRotation);
+            turret.localEulerAngles = currentRotation;
+        }
+        
+        private bool IsInRangeOfRotation(Vector3 target)
+        {
+            var vectorToTarget = target - m_turret.position;
+            var targetRotation = Mathf.Abs(Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - 90);
+            return targetRotation > 180 ? 360 - targetRotation < m_rangeOfRotation : targetRotation < m_rangeOfRotation;
+        }
         
         private void TryFire()
         {
