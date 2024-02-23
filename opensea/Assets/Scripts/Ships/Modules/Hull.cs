@@ -32,7 +32,7 @@ namespace Assets.Scripts.Ships.Modules
         {
             var dmgReducedByArmor = impactData.BaseDamage * impactData.AmmoUsed.HullTypeDamageModifier[(int)m_hullType];
             var totalDmgTaken = (dmgReducedByArmor / 2);
-            totalDmgTaken += impactData.HullPartHit.DamageOnImpact(new Impact()
+            totalDmgTaken += ((HullPart)impactData.HullPartHit).DamageOnImpact(new Impact()
             {
                 BaseDamage = (dmgReducedByArmor / 2)
             });
@@ -40,7 +40,7 @@ namespace Assets.Scripts.Ships.Modules
             CurrentHp -= totalDmgTaken;
             if (CurrentHp <= 0) CurrentHp = 0;
             
-            OnDamageTaken?.Invoke(this, totalDmgTaken);
+            OnDamageTaken?.Invoke(((HullPart)impactData.HullPartHit), totalDmgTaken);
         }
 
         protected override void ApplyStatus()

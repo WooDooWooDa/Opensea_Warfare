@@ -50,8 +50,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_info: {fileID: 11400000, guid: b203894914e63804ea6edbcff34beb2a, type: 2}
-  m_defaultAmmoByWeaponType: []
-  m_bayCapacity: 0
+  m_defaultAmmoByWeaponType:
+  - {fileID: 11400000, guid: f6c73cce03367ca4081d68e19b6f29d6, type: 2}
+  - {fileID: 11400000, guid: d1242d3107fad044891b3014b795835d, type: 2}
+  m_bayCapacity: 120
 --- !u!114 &8120629037204208618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -701,6 +703,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_hullProportion: 15
+  m_armorMultProbability:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   m_relatedModules: 02000000
 --- !u!1 &4045859191189706688
 GameObject:
@@ -752,7 +778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bed0de8977272e64c88e2fdd87effabd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_informations: {fileID: 11400000, guid: c259c25570f250b409430d7ed51ccff7, type: 2}
+  m_information: {fileID: 11400000, guid: c259c25570f250b409430d7ed51ccff7, type: 2}
   m_stats: {fileID: 11400000, guid: 13b9ec16d1e8ae54f9ce6dbbc6c3344d, type: 2}
   m_modules: []
   Team: 0
@@ -817,7 +843,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4867516138960776701}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
   m_LocalPosition: {x: 0.01, y: -1.07, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
@@ -825,7 +851,7 @@ Transform:
   - {fileID: 5951286567369226417}
   m_Father: {fileID: 2319292414078299546}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!1 &5519118382152541114
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,6 +924,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_hullProportion: 20
+  m_armorMultProbability:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   m_relatedModules: 050000000400000008000000
 --- !u!1 &5598256614471089975
 GameObject:
@@ -971,6 +1021,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_hullProportion: 10
+  m_armorMultProbability:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   m_relatedModules: 
 --- !u!1 &5738576439750931322
 GameObject:
@@ -1110,6 +1184,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_hullProportion: 25
+  m_armorMultProbability:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   m_relatedModules: 010000000700000008000000
 --- !u!1 &8290701889035576532
 GameObject:
@@ -1216,6 +1314,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_hullProportion: 30
+  m_armorMultProbability:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   m_relatedModules: 050000000400000008000000
 --- !u!1001 &1473072757103517825
 PrefabInstance:
@@ -1323,7 +1445,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1017825472162267677, guid: c0842e460b1e4d0439a99ff19a8d8436, type: 3}
       propertyPath: m_rangeOfRotation
-      value: 55
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 1017825472162267678, guid: c0842e460b1e4d0439a99ff19a8d8436, type: 3}
       propertyPath: m_RootOrder

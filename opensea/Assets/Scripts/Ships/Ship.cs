@@ -63,9 +63,14 @@ namespace Assets.Scripts.Ships
             //hit feedback, dmg total widget
             OnHit?.Invoke(this, impact); // => camera if ship selected, shake
             
+            if (Team == (impact.Sender.GetComponent<Ship>()).Team)
+            {
+                Debug.Log("Watch out for friendly fire.");
+            }
+            
             var hull = GetModuleOfType<Hull>();
             var dmgTaken = hull.DamageOnImpact(impact);
-            foreach (var module in GetModulesOfType(hull.GetRelatedModuleToPart(impact.HullPartHit).ToArray()))
+            foreach (var module in GetModulesOfType(hull.GetRelatedModuleToPart(((HullPart)impact.HullPartHit)).ToArray()))
             {
                 module.DamageOnImpact(impact);
             }

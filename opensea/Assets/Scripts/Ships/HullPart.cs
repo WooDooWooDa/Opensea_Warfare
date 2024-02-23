@@ -7,9 +7,10 @@ using UnityEngine;
 
 namespace Assets.Scripts.Ships
 {
-    public class HullPart : MonoBehaviour, IDamageable
+    public class HullPart : MonoBehaviour, IDamageable, IHittablePart
     {
         [SerializeField] private float m_hullProportion;
+        [SerializeField] private AnimationCurve m_armorMultProbability;
         [SerializeField] private List<ModuleType> m_relatedModules;
         
         public float CurrentHp { get; set; }
@@ -29,7 +30,9 @@ namespace Assets.Scripts.Ships
         public float DamageOnImpact(Impact impact)
         {
             var health = CurrentHp;
-            CurrentHp -= impact.BaseDamage;
+            //var rand = Random.value; //todo based on angle of incidence???
+            //var dmgMult = m_armorMultProbability.Evaluate(rand);
+            CurrentHp -= impact.BaseDamage; //* dmgMult;
             if (CurrentHp <= 0)
             {
                 CurrentHp = 0;
