@@ -6,6 +6,7 @@
         Torpedo,
         Plane,
         DepthCharge,
+        Missile,
         Count
     }
 }

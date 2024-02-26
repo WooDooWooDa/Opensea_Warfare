@@ -22,5 +22,6 @@ namespace Assets.Scripts.Weapons.SOs
         public float turnSpeed;
         public bool CanLockOnEnemy = true;
         public float LockInAccuracy;
+        public float Accuracy = 0.5f;
     }
 }

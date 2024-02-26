@@ -4,6 +4,7 @@ using System.Linq;
 using Assets.Scripts.Ships;
 using Assets.Scripts.Ships.Common;
 using Assets.Scripts.Ships.Modules;
+using Assets.Scripts.Weapons.Projectiles;
 using Assets.Scripts.Weapons.SOs;
 using TMPro;
 using UnityEngine;

@@ -1,4 +1,4 @@
-using Assets.Scripts.Ships;
+using Assets.Scripts.Weapons.Projectiles;
 using UnityEngine;
 
 namespace Assets.Scripts.Weapons
@@ -11,7 +11,7 @@ namespace Assets.Scripts.Weapons
             
             projectile.SetData(new ProjectileData()
             {
-                Sender = m_attachedShip,
+                Sender = m_attachedShip.gameObject,
                 Ammo = m_loadedAmmo,
                 TargetPoint = dispersedTargetPoint
             }, FirePower);
@@ -41,7 +41,7 @@ namespace Assets.Scripts.Weapons
 
         protected override bool InternalReadyToFire()
         {
-            return Vector3.Distance(m_targetCoord, m_weaponTargetReticule.position) <= 0.5;
+            return Vector3.Distance(m_targetCoord, m_weaponTargetReticule.position) <= m_stats.Accuracy;
         }
 
         private void Aim(float delta)
@@ -76,8 +76,8 @@ namespace Assets.Scripts.Weapons
             return distanceToTarget - distanceToReticule;
         }
         
-        private static Vector3 GetDispersionPoint(Vector3 center, float radius) {
-            return center + (Vector3)(Random.insideUnitCircle * (0.5f * radius));
+        private Vector3 GetDispersionPoint(Vector3 center, float radius) {
+            return center + (Vector3)(Random.insideUnitCircle * (m_stats.Accuracy * radius));
         }
     }
 }

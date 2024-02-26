@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Assets.Scripts.Ships;
-using Assets.Scripts.Ships.Modules;
+using Assets.Scripts.Weapons.Projectiles;
 using UnityEngine;
 
 namespace Assets.Scripts.Weapons

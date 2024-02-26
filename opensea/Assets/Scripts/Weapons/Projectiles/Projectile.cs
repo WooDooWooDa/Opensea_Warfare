@@ -1,13 +1,12 @@
 ﻿using System;
 using Assets.Scripts.Helpers;
-using Assets.Scripts.Ships;
 using Assets.Scripts.Ships.Common;
 using UnityEngine;
 
-namespace Assets.Scripts.Weapons
+namespace Assets.Scripts.Weapons.Projectiles
 {
     public class ProjectileData {
-        public Ship Sender;
+        public GameObject Sender;
         public Ammo Ammo;
         public Vector3 StartPos;
         public Vector3 TargetPoint;
@@ -69,23 +68,17 @@ namespace Assets.Scripts.Weapons
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            var shipHit = other.gameObject.GetComponentInParent<Ship>();
-            if (shipHit == m_projectileData.Sender) return; //no return to sender
+            if (other.gameObject == m_projectileData.Sender) return; //no return to sender
             
             var hittable = other.gameObject.GetComponentInParent<IHittable>();
             if (hittable is null) return;
 
-            var hullPartHit = other.gameObject.GetComponent<HullPart>();
-            if (hullPartHit is null) return;
-            
-            if (shipHit.Team == m_projectileData.Sender.Team)
-            {
-                Debug.Log("Watch out for friendly fire.");
-            }
+            var partHit = other.gameObject.GetComponent<IHittablePart>();
+            if (partHit is null) return;
             
             hittable?.Hit(new Impact()
             {
-                HullPartHit = hullPartHit,
+                HullPartHit = partHit,
                 BaseDamage = m_damage,
                 Sender = m_projectileData.Sender,
                 AmmoUsed = m_projectileData.Ammo
