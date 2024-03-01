@@ -5,52 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f830f0c4-ba14-467a-8842-14458945bc77" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Missions.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Env/MapHazardInformation.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Helpers/DontDestroyGO.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Missions/MapInformation.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Assets/Scripts/Missions/MissionInformations.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Missions/MissionInformations.cs.meta" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Assets/Scripts/Missions/MissionManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Missions/MissionManager.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Missions/Objectives.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Missions/Objectives/Objective.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Missions/Objectives/Objective.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/HullPart.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/HullPart.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Types/ShipTeam.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Types/ShipTeam.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Missions/Objectives/Main/DestroyAllEnemyMainObjective.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Missions/Objectives/Main/DestroyStructuresMainObjectives.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Missions/Objectives/ObjectiveInformation.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Missions/Objectives/Secondary/FinishInTimeSecondaryObjective.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Missions/Objectives/Secondary/NoCasualitySecondaryObjective.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Fleet/EnemyFleet.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Fleet/PlayerFleet.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.opensea/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.opensea/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Imports/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Imports/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefab/Ships/Destroyer.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Ships/Destroyer.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/UI/BattleUI/Actions.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/UI/BattleUI/Actions.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/UI/BattleUI/StatusPos.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/UI/BattleUI/StatusPos.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/UI/BattleUI/WeaponSlotWidget.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/UI/BattleUI/WeaponSlotWidget.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/UI/BattleUI/WeaponStatusWidget.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/UI/BattleUI/WeaponStatusWidget.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Weapons/AmmoProjectile/Shell.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Weapons/AmmoProjectile/Shell.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Ships/Stats/DestroyerStats.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Ships/Stats/DestroyerStats.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Weapons/Ammo/APMainShell.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Weapons/Ammo/APMainShell.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Weapons/Ammo/HElMainShell.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Weapons/Ammo/HElMainShell.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Weapons/Ammo/NormalMainShell.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Weapons/Ammo/NormalMainShell.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Weapons/Ammo/NormalTorpedo.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Weapons/Ammo/NormalTorpedo.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Common/IDamageable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Common/IDamageable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Env/Ocean.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Env/Ocean.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Env/Port.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Env/Port.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Main.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Main.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/FleetManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/FleetManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/FleetManager.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/FleetManager.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/UIManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/AmmunitionBay.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/AmmunitionBay.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Armaments.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Armaments.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/AutoNavigation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/AutoNavigation.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/FireControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/FireControl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Hull.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Hull.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Module.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Module.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/ModuleType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/ModuleType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Missions/Objectives/Objective.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Missions/Objectives/Objective.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Enemy/Enemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Enemy/Enemy.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Ship.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Ship.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Types/Destroyer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Types/Destroyer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Types/ShipType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Types/ShipType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Weapons/Impact.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/Impact.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Weapons/Projectile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/Projectile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Weapons/SOs/Ammo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/SOs/Ammo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Weapons/Types/MainGun.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/Types/MainGun.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Weapons/Weapon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/Weapon.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Projectiles/APTrail.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Projectiles/APTrail.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Projectiles/APTrailMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Projectiles/APTrailMat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Projectiles/NormalTrail.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Projectiles/NormalTrail.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Projectiles/NormalTrailMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Projectiles/NormalTrailMat.mat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,11 +44,17 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Env/MapHazardInformation.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Helpers/DontDestroyGO.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Managers/FleetManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Missions/Objectives/Objective.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Ships/Types/Destroyer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/ArmamentShipPanel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Weapons/Projectiles/Torpedo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/523a924aba464755b1747653b71e518910fc00/20/4a6cd5db/Enumerable.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/86acb61e0d2b4b36bc20af11093be9a5157e00/86/8b97a159/Vector3.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/86acb61e0d2b4b36bc20af11093be9a5157e00/9b/f8ac2ffb/Quaternion.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/86acb61e0d2b4b36bc20af11093be9a5157e00/fe/0347303a/Random.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9aad1b3a47484d63ba2b3985692d80e946a800/ed/b365d5f8/List`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ae4a1ec73f6041bbadc2055c204f6096134e18/27/be0c8a6d/WaitForSeconds.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ae4a1ec73f6041bbadc2055c204f6096134e18/94/b71ee1f1/Vector3.cs" root0="SKIP_HIGHLIGHTING" />
@@ -125,10 +114,10 @@
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="15380">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="15380" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -181,7 +170,13 @@
       <workItem from="1707429841782" duration="729000" />
       <workItem from="1707688843481" duration="13562000" />
       <workItem from="1708033817714" duration="8602000" />
-      <workItem from="1708302390530" duration="5166000" />
+      <workItem from="1708302390530" duration="8429000" />
+      <workItem from="1708351841215" duration="8501000" />
+      <workItem from="1708436634663" duration="7583000" />
+      <workItem from="1708560745040" duration="432000" />
+      <workItem from="1708609597746" duration="24332000" />
+      <workItem from="1708725016228" duration="1648000" />
+      <workItem from="1708967761462" duration="2258000" />
     </task>
     <servers />
   </component>

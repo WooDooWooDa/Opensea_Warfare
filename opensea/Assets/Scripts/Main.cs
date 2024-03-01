@@ -42,7 +42,7 @@ public class Main : MonoBehaviour
         //Main managers
         m_saveManager = gameObject.AddComponent<SaveManager>();
         //Game related managers
-        m_managers.Add(gameObject.AddComponent<FleetManager>());
+        m_managers.Add(gameObject.GetComponentInChildren<PlayerFleet>());
 
         m_saveManager.Initialize();
         foreach (Manager manager in m_managers) {

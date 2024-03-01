@@ -11,15 +11,10 @@ namespace Env
     {
         [SerializeField] private List<Ammo> m_availableAmmoAtPort;
 
-        private void Start()
-        {
-            
-        }
-
         private void TempLoadAllShip()
         {
-            var fleetManager = Main.Instance.GetManager<FleetManager>();
-            foreach (var ship in fleetManager.FleetShips)
+            var fleetManager = Main.Instance.GetManager<PlayerFleet>();
+            foreach (var ship in fleetManager.Ships)
             {
                 var bay = ship.GetModuleOfType<AmmunitionBay>();
                 bay.LoadAmmunition(m_availableAmmoAtPort[0], 5);

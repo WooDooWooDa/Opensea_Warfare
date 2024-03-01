@@ -8,13 +8,12 @@ using System.Linq;
 using Assets.Scripts.Ships.Common;
 using Assets.Scripts.Weapons;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Assets.Scripts.Ships
 {
     public abstract class Ship: MonoBehaviour, ISelectable, IHittable
     {
-        [SerializeField] private ShipInformations m_informations;
+        [SerializeField] private ShipInformation m_information;
         [SerializeField] private ShipStats m_stats;
         [SerializeField] private List<Module> m_modules = new();
         public bool Alive => !m_isMarkedAsDestroyed; //Change variable name
@@ -24,7 +23,7 @@ namespace Assets.Scripts.Ships
         public Action<IHittable, Impact> OnHit { get; set; }
         public Action<Ship> OnShipDestroyed;
 
-        private FleetManager m_fleetManager;
+        private PlayerFleet m_playerFleet;
         private bool m_isSelected;
         private bool m_isMarkedAsDestroyed;
 
@@ -32,8 +31,8 @@ namespace Assets.Scripts.Ships
         {
             if (Team == ShipTeam.Fleet)
             {
-                m_fleetManager = Main.Instance.GetManager<FleetManager>();
-                m_fleetManager.RegisterShipToFleet(this);
+                m_playerFleet = Main.Instance.GetManager<PlayerFleet>();
+                m_playerFleet.RegisterShipToFleet(this);
             }
             RegisterModules();
         }
@@ -54,7 +53,7 @@ namespace Assets.Scripts.Ships
         public void OnSelect()
         {
             m_isSelected = true;
-            m_fleetManager.FocusOn(this);
+            m_playerFleet.FocusOn(this);
             m_modules.ForEach(m => m.ShipSelect());
         }
         

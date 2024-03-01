@@ -10,20 +10,20 @@ namespace Assets.Scripts.Managers
     {
         [SerializeField] private List<ShipPanel> m_shipPanels = new();
         
-        private FleetManager m_fleetManager;
+        private PlayerFleet m_playerFleet;
         private Ship m_currentSelectedShip;
         
         private void Start()
         {
             Main.Instance.RegisterManager(this);
 
-            m_fleetManager = Main.Instance.GetManager<FleetManager>();
-            m_fleetManager.OnShipSelectedChanged += ShipChanged;
+            m_playerFleet = Main.Instance.GetManager<PlayerFleet>();
+            m_playerFleet.OnShipSelectedChanged += ShipChanged;
         }
         
         private void OnDisable()
         {
-            m_fleetManager.OnShipSelectedChanged -= ShipChanged;
+            m_playerFleet.OnShipSelectedChanged -= ShipChanged;
         }
 
         public void RegisterPanel(ShipPanel shipPanel)
