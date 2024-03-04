@@ -1,63 +1,71 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Helpers;
+using UnityEngine;
 
 namespace Assets.Scripts.Ships.Modules
 {
-    public class Engine : Module
+    public class Engine : ActionModule
     {
-        public float CurrentSpeedPercentage => m_currentSpeed / m_maxSpeed;
+        public float CurrentSpeedPercentage => m_currentSpeed / m_shipMaxSpeed;
         public float CurrentSpeed => m_currentSpeed * 100;
-        public int CurrentSpeedIndex { get; private set; }
+        public float TargetPourcentageOfSpeed => m_currentPourcentage;
 
-        private const int NbSpeedStep = 4;
-        private const int AccelerationTime = 4;
-        private const int DecelerationTime = 6;
+        private const int AccelerationTime = 8;
+        private const int DecelerationTime = 12;
         
         private Transform m_shipTransform;
-        private float m_maxSpeed;
+        private float m_shipMaxSpeed;
+        private float m_currentMaxSpeed;
+        private float m_currentPourcentage;
         private float m_currentSpeed;
         private float m_currentTargetSpeed;
-        private float m_currentMaxSpeed;
-
-        private void Awake()
-        {
-            CurrentSpeedIndex = 4;
-        }
 
         public override void Initialize(Ship attachedShip)
         {
             base.Initialize(attachedShip);
             m_shipTransform = attachedShip.transform;
-            m_currentMaxSpeed = m_maxSpeed = attachedShip.Stats.SPD / 10;
+            m_currentMaxSpeed = m_shipMaxSpeed = attachedShip.Stats.SPD / 10;
         }
 
-        public void SetTargetSpeedTo(float speedPart, int speedIndex)
+        public void Stop()
         {
-            CurrentSpeedIndex = speedIndex;
-            m_currentTargetSpeed = m_maxSpeed * speedPart;
-            m_currentTargetSpeed = ClampTargetSpeed();
-        }
-        
-        public void SetTargetSpeedTo(float speedPart)
-        {
-            //CurrentSpeedIndex = (int)(speedPart * NbSpeedStep); //0 is full, 4 is stop, 5 is 
-            m_currentTargetSpeed = m_maxSpeed * speedPart;
-            m_currentTargetSpeed = ClampTargetSpeed();
+            m_currentPourcentage = 0;
+            EvaluateTargetSpeed();
+            Events.Ship.FireChangedSpeed(m_ship, m_currentPourcentage);
         }
 
-        protected override void InternalPreUpdateModule(float deltaTime)
+        public void ChangeSpeed(float value)
         {
-            var lerpValue = (m_currentTargetSpeed >= m_currentSpeed) ? AccelerationTime : DecelerationTime;
-            m_currentSpeed = Mathf.Lerp(m_currentSpeed, ClampTargetSpeed(), deltaTime / lerpValue);
+            if (value == 0) return;
+
+            m_currentPourcentage += 0.25f * Mathf.Sign(value);
+            m_currentPourcentage = Mathf.Clamp(m_currentPourcentage, -0.25f, 1);
+            EvaluateTargetSpeed();
+            Events.Ship.FireChangedSpeed(m_ship, m_currentPourcentage);
+        }
+
+        protected override void RegisterActions()
+        {
+            m_inputActions.BattleMap.Move.performed += ctx => ChangeSpeed(ctx.ReadValue<Vector2>().y);
         }
 
         protected override void InternalUpdateModule(float deltaTime)
         {
+            var lerpValue = (m_currentTargetSpeed >= m_currentSpeed) ? AccelerationTime : DecelerationTime;
+            //todo maybe change the lerp values to eliminate the slow lerp at the end and the fast i nthe beginning
+            m_currentSpeed = Mathf.Lerp(m_currentSpeed, ClampSpeed(), deltaTime / lerpValue);
+
             m_shipTransform.position += (deltaTime * m_currentSpeed * transform.up);
         }
 
-        private float ClampTargetSpeed()
+        private void EvaluateTargetSpeed()
         {
-            return Mathf.Clamp(m_currentTargetSpeed, -(m_maxSpeed / NbSpeedStep), m_currentMaxSpeed);
+            m_currentTargetSpeed = m_shipMaxSpeed * m_currentPourcentage;
+            m_currentTargetSpeed = ClampSpeed();
+        }
+
+        private float ClampSpeed()
+        {
+            return Mathf.Clamp(m_currentTargetSpeed, -(m_currentMaxSpeed * 0.25f), m_currentMaxSpeed);
         }
     }
 }

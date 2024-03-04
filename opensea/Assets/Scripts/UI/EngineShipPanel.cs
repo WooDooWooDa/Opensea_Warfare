@@ -22,34 +22,15 @@ namespace UI
         [SerializeField] private Color[] m_fontColors;
         
         private Engine m_engineModule;
-        private float[] m_speedPart;
-        private int m_currentSpeedIndex;
-        
-        protected  void Start()
+        private float m_currentSpeedPourcentage;
+
+        private void Start()
         {
-            var speedPart = 1f;
-            m_speedPart = new float[m_speedButtons.Count];
-            var i = 0;
-            foreach (var speedButton in m_speedButtons)
+            Events.Ship.ChangedSpeed += (ship, value) =>
             {
-                m_speedPart[i] = speedPart;
-                var respectivePart = speedPart;
-                speedButton.onClick.AddListener(() => SelectSpeed(speedButton, respectivePart));
-                if (speedPart == 0)
-                    m_currentSpeedIndex = i;
-                speedPart -= 0.25f;
-                i++;
-            }
-        }
-
-        private void OnEnable()
-        {
-            Events.Inputs.OnUpDownChanged += ChangeSpeed;
-        }
-
-        private void OnDisable()
-        {
-            Events.Inputs.OnUpDownChanged -= ChangeSpeed;
+                m_currentSpeedPourcentage = value;
+                ChangeSpeedButton();
+            };
         }
 
         public override void UpdatePanelWithModules(List<Module> modules)
@@ -61,10 +42,9 @@ namespace UI
             m_engineModule = (Engine)modules.Find(m => m.Type == ModuleType.Engine);
             
             if (m_engineModule == null) return;
-            
-            m_currentSpeedIndex = m_engineModule.CurrentSpeedIndex;
-            UnSelectAllSpeedButton();
-            SelectSpeedButton(m_speedButtons[m_currentSpeedIndex]);
+
+            m_currentSpeedPourcentage = m_engineModule.TargetPourcentageOfSpeed;
+            ChangeSpeedButton();
         }
 
         private void Update()
@@ -75,31 +55,28 @@ namespace UI
 
             var indicatorY = m_engineModule.CurrentSpeed >= 0 
                 ? Mathf.Lerp(m_zeroSpeedPos, m_maxSpeedPos, m_engineModule.CurrentSpeedPercentage) 
-                : Mathf.Lerp(m_zeroSpeedPos, m_maxReverseSpeedPos,  (-m_engineModule.CurrentSpeedPercentage) * 4);
+                : Mathf.Lerp(m_zeroSpeedPos, m_maxReverseSpeedPos, (-m_engineModule.CurrentSpeedPercentage) * 4);
             m_currentSpeedIndicator.localPosition = new Vector3(m_currentSpeedIndicator.localPosition.x, indicatorY, 0);
         }
 
-        private void ChangeSpeed(float delta)
+        private void ChangeSpeedButton()
         {
-            if (m_engineModule is null) return;
-            
-            m_currentSpeedIndex = Mathf.Clamp(m_currentSpeedIndex -= (int)delta, 0, m_speedButtons.Count - 1);
-            SelectSpeed(m_speedButtons[m_currentSpeedIndex], m_speedPart[m_currentSpeedIndex]);
-        }
-
-        private void SelectSpeed(Button btn, float speedPart)
-        {
-            if (m_engineModule is null) return;
-            
-            m_engineModule.SetTargetSpeedTo(speedPart, m_currentSpeedIndex);
-            m_currentSpeedIndex = m_speedButtons.IndexOf(btn);
             UnSelectAllSpeedButton();
-            SelectSpeedButton(btn);
+            var btnIndex = (int)(m_currentSpeedPourcentage * 4) switch
+            {
+                -1 => 5,
+                0 => 4,
+                1 => 3,
+                2 => 2,
+                3 => 1,
+                4 => 0,
+                _ => 4,
+            };
+            SelectSpeedButton(m_speedButtons[btnIndex]);
         }
 
         private void SelectSpeedButton(Button btn)
         {
-            btn.interactable = false;
             var text = btn.GetComponentInChildren<TextMeshProUGUI>();
             text.color = m_fontColors[1];
             text.fontSize = m_fontSizes[1];
@@ -109,7 +86,6 @@ namespace UI
         {
             foreach (var speedButton in m_speedButtons)
             {
-                speedButton.interactable = true;
                 var text = speedButton.GetComponentInChildren<TextMeshProUGUI>();
                 text.color = m_fontColors[0];
                 text.fontSize = m_fontSizes[0];

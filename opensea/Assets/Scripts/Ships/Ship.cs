@@ -19,7 +19,6 @@ namespace Assets.Scripts.Ships
         public bool Alive => !m_isMarkedAsDestroyed; //Change variable name
         public ShipStats Stats => m_stats;
         public ShipTeam Team;
-        public bool IsSelected => m_isSelected;
         public Action<IHittable, Impact> OnHit { get; set; }
         public Action<Ship> OnShipDestroyed;
 

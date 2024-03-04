@@ -27,7 +27,10 @@ namespace Assets.Scripts.Helpers
         public static class Ship
         {
             public static event Action<Ships.Ship, bool> IsAiming;
+            public static event Action<Ships.Ship, float> ChangedSpeed;
+
             public static void FireIsAiming(Ships.Ship ship, bool value) => IsAiming?.Invoke(ship, value);
+            public static void FireChangedSpeed(Ships.Ship ship, float value) => ChangedSpeed?.Invoke(ship, value);
         }
     }
 }

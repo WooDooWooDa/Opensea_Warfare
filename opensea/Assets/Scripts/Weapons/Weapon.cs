@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Helpers;
 using Assets.Scripts.Ships;
 using Assets.Scripts.Ships.Common;
 using Assets.Scripts.Ships.Modules;
@@ -75,6 +76,11 @@ namespace Assets.Scripts.Weapons
             m_ammunitionBay = attachedShip.GetModuleOfType<AmmunitionBay>();
             m_reloader = new Reloader();
             m_reloader.Initialize(this, m_ammunitionBay);
+            Events.Ship.IsAiming += (ship, value) =>
+            {
+                if (ship != m_attachedShip) return;
+                m_weaponTargetReticule.gameObject.SetActive(value);
+            };
         }
 
         public float DamageOnImpact(Impact impact)
@@ -87,7 +93,6 @@ namespace Assets.Scripts.Weapons
             InternalPreUpdateWeapon(deltaTime);
             if (!IsWorking) return;
 
-            m_weaponTargetReticule.gameObject.SetActive(m_attachedShip.IsSelected);
             InternalUpdateWeapon(deltaTime);
             //VV Move those 2 out of update ? VV
             TryFire();

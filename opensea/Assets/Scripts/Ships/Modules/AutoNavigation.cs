@@ -26,7 +26,7 @@ namespace Assets.Scripts.Ships.Modules
         [SerializeField] private LayerMask m_oceanLayer;
 
         private const float WaypointDistanceThreshold = 2f;
-        private const float RemoveThreshold = 0.25f;
+        private const float RemoveThreshold = 0.3f;
 
         private SteeringGear m_steeringGear;
         private Engine m_engine;
@@ -84,11 +84,11 @@ namespace Assets.Scripts.Ships.Modules
         {
             var distanceOfShip = NextWaypointDistance;
             var distanceOfWaypointFromStartPoint = Vector3.Distance(m_nextWaypoint.Destination, m_startPointFromNextWaypoint);
-            float speedPart = 0;
+            float speedPourcentage = 0;
             if (m_steeringGear.AngleDiff < 90 && distanceOfShip > WaypointDistanceThreshold)
             {
                 var traveled = distanceOfShip / distanceOfWaypointFromStartPoint; //percentage of travel done
-                speedPart = traveled switch //todo-P1 This really doesnt work on long distance
+                speedPourcentage = traveled switch //todo-P1 This really doesnt work on long distance, use animation line/graph
                 {
                     (> 0.75f) => 1,
                     (> 0.5f) => 0.75f,
@@ -96,10 +96,11 @@ namespace Assets.Scripts.Ships.Modules
                     (> 0) => 0.25f,
                     _ => 0
                 };
-                if (m_steeringGear.AngleDiff >= 45 && speedPart > 0.5f)
-                    speedPart = 0.5f;
+                if (m_steeringGear.AngleDiff >= 45 && speedPourcentage > 0.5f)
+                    speedPourcentage = 0.5f;
             }
-            m_engine.SetTargetSpeedTo(speedPart);
+
+            m_engine.ChangeSpeed(speedPourcentage);
         }
 
         private void RotateTowardsWaypoint()
@@ -147,6 +148,11 @@ namespace Assets.Scripts.Ships.Modules
                 {
                     //todo-P3 remove marker animation
                     RemoveWaypoint(toRemoved);
+                    if (!m_navigationWaypoints.Any())
+                    {
+                        m_steeringGear.ResetCourse();
+                        m_engine.Stop();
+                    }
                     return;
                 }
             }
@@ -181,12 +187,6 @@ namespace Assets.Scripts.Ships.Modules
             m_lineRenderer.SetPositions(shipPos.ToArray());
             m_nextWaypoint = null;
             //todo-P2 reorder/reassign number to all next ui waypoint instance
-        }
-        
-        private void OnDrawGizmos()
-        {
-            m_navigationWaypoints.ForEach(w => 
-                Gizmos.DrawWireSphere(w.Destination, 0.1f));
         }
     }
 }

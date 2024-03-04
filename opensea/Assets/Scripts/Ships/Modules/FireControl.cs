@@ -61,7 +61,7 @@ namespace Assets.Scripts.Ships.Modules
 
         protected override void RegisterActions()
         {
-            Events.Inputs.OnSpaceBarPressed += ToggleAiming;
+            m_inputActions.BattleMap.SpaceBar.performed += ctx => ToggleAiming();
             m_inputActions.BattleMap.FireCommand.performed += ctx => TryFireSingle();
             m_inputActions.BattleMap.FireCommand.canceled += ctx => TryFireSalvo();
         }
@@ -81,8 +81,6 @@ namespace Assets.Scripts.Ships.Modules
 
         private void ToggleAiming()
         {
-            if (!m_ship.IsSelected) return;
-
             if (m_tryLockOnShip is not null)
             {
                 m_tryLockOnShip = null;
