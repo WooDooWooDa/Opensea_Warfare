@@ -12,9 +12,14 @@ namespace Assets.Scripts.Managers
         
         private Ship m_selectedShip;
 
-        private void Start()
+        private void OnEnable()
         {
             Events.Inputs.OnNumPressed += FocusOn;
+        }
+
+        private void OnDisable()
+        {
+            Events.Inputs.OnNumPressed -= FocusOn;
         }
 
         protected override void InternalRegister(Ship ship)

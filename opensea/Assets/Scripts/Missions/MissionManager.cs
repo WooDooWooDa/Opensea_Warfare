@@ -32,6 +32,7 @@ namespace Assets.Scripts.Missions
             m_enemyFleet = GetComponent<EnemyFleet>();
             m_enemyFleet.Initialize();
             m_playerFleet = Main.Instance.GetManager<PlayerFleet>();
+            m_playerFleet.gameObject.SetActive(false);
             InitializeObjectives();
             StartCoroutine(MissionLoop());
         }
@@ -73,6 +74,7 @@ namespace Assets.Scripts.Missions
         {
             m_winConditionObjective.ActivateObjective();
             m_secondaryObjectives.ForEach(o => o.ActivateObjective());
+            m_playerFleet.gameObject.SetActive(true);
             m_playerFleet.FocusOn(1);
             debugger.Log("Mission has started!");
         }
@@ -80,6 +82,7 @@ namespace Assets.Scripts.Missions
         private IEnumerator MissionIsEnding()
         {
             m_playerFleet.FocusOn(null);
+            m_playerFleet.gameObject.SetActive(false);
 
             OnMissionIsEnding?.Invoke();
             yield return new WaitForSeconds(1);
