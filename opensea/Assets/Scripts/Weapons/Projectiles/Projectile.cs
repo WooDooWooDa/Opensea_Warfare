@@ -1,4 +1,5 @@
 ﻿using System;
+using Assets.Scripts.Common;
 using Assets.Scripts.Helpers;
 using Assets.Scripts.Ships.Common;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine;
 namespace Assets.Scripts.Weapons.Projectiles
 {
     public class ProjectileData {
-        public GameObject Sender;
+        public ISender Sender;
         public Ammo Ammo;
         public Vector3 StartPos;
         public Vector3 TargetPoint;
@@ -68,7 +69,7 @@ namespace Assets.Scripts.Weapons.Projectiles
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject == m_projectileData.Sender) return; //no return to sender
+            if (other.gameObject.GetComponentInParent<ISender>() == m_projectileData.Sender) return; //no return to sender
             
             var hittable = other.gameObject.GetComponentInParent<IHittable>();
             if (hittable is null) return;

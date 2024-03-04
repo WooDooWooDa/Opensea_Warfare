@@ -1,8 +1,6 @@
-using System.Collections.Generic;
-using Assets.Scripts.Ships;
+using Assets.Scripts.Common;
 using Assets.Scripts.Ships.Common;
 using Assets.Scripts.Weapons.SOs;
-using UnityEngine;
 
 namespace Assets.Scripts.Weapons
 {
@@ -12,6 +10,6 @@ namespace Assets.Scripts.Weapons
         public float BaseDamage { get; set; }
         public Ammo AmmoUsed { get; set; }
         public WeaponStats FiredFrom { get; set; }
-        public GameObject Sender { get; set; } //senderData -> to show indicator of direction of sender after hit
+        public ISender Sender { get; set; } //senderData -> to show indicator of direction of sender after hit
     }
 }

@@ -8,18 +8,21 @@ using System.Linq;
 using Assets.Scripts.Ships.Common;
 using Assets.Scripts.Weapons;
 using UnityEngine;
+using Assets.Scripts.Common;
 
 namespace Assets.Scripts.Ships
 {
-    public abstract class Ship: MonoBehaviour, ISelectable, IHittable
+    public abstract class Ship: MonoBehaviour, ISelectable, IHittable, ISender
     {
+        [SerializeField] private ShipTeam m_team;
         [SerializeField] private ShipInformation m_information;
         [SerializeField] private ShipStats m_stats;
         [SerializeField] private List<Module> m_modules = new();
         public bool Alive => !m_isMarkedAsDestroyed; //Change variable name
         public ShipStats Stats => m_stats;
-        public ShipTeam Team;
         public Action<IHittable, Impact> OnHit { get; set; }
+        public ShipTeam Team => m_team;
+
         public Action<Ship> OnShipDestroyed;
 
         private PlayerFleet m_playerFleet;
@@ -61,7 +64,7 @@ namespace Assets.Scripts.Ships
             //hit feedback, dmg total widget
             OnHit?.Invoke(this, impact); // => camera if ship selected, shake
             
-            if (Team == (impact.Sender.GetComponent<Ship>()).Team)
+            if (Team == impact.Sender.Team)
             {
                 Debug.Log("Watch out for friendly fire.");
             }
