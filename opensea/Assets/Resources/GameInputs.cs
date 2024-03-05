@@ -28,96 +28,6 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
             ""id"": ""b6ae9aa3-ce34-424b-a68c-2539a6e68797"",
             ""actions"": [
                 {
-                    ""name"": ""Select1"",
-                    ""type"": ""Button"",
-                    ""id"": ""23dd2e27-7fdb-4606-b488-15c2e7961f2d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Select2"",
-                    ""type"": ""Button"",
-                    ""id"": ""3d205058-db73-4131-b745-f0cc154892b6"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Select3"",
-                    ""type"": ""Button"",
-                    ""id"": ""1290ed40-9ce8-47dd-9964-75d9daeba737"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Select4"",
-                    ""type"": ""Button"",
-                    ""id"": ""f8134fe1-0adb-4665-9a94-ea01a8d4e33e"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Select5"",
-                    ""type"": ""Button"",
-                    ""id"": ""95da2f6e-22f3-42b4-a217-40bc4b67936e"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Select6"",
-                    ""type"": ""Button"",
-                    ""id"": ""c0470d92-261c-4955-bd33-a7387e961047"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Select7"",
-                    ""type"": ""Button"",
-                    ""id"": ""ab29e3b4-5fa6-42bc-8b10-80524e865e50"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Select8"",
-                    ""type"": ""Button"",
-                    ""id"": ""9efd60d7-86ad-4659-8665-d3e7841b5cfd"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Select9"",
-                    ""type"": ""Button"",
-                    ""id"": ""8181719a-b8b3-4e45-bc73-9c1ee7e34c57"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Select10"",
-                    ""type"": ""Button"",
-                    ""id"": ""cbc9f44a-18db-4375-b971-4a78f4a146f7"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""FireCommand"",
                     ""type"": ""Button"",
                     ""id"": ""cf7967f4-5b37-402d-80ae-6ea7600afd62"",
@@ -188,119 +98,18 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Tap"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SelectShip"",
+                    ""type"": ""Value"",
+                    ""id"": ""d79ef1cc-64ec-4682-b23d-3a9390edab23"",
+                    ""expectedControlType"": ""Key"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""b096b7e6-4bad-4c33-9aff-2e7366508f25"",
-                    ""path"": ""<Keyboard>/numpad1"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Select1"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f79a65a9-77e8-4fb3-8739-d4db34d2ba35"",
-                    ""path"": ""<Keyboard>/numpad2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Select2"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""68f1c4a5-873f-4af9-9f31-0845b85c9be0"",
-                    ""path"": ""<Keyboard>/numpad3"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Select3"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""7b7f645f-43e3-42de-9c83-949144689929"",
-                    ""path"": ""<Keyboard>/4"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Select4"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d49479ca-f4a6-4cab-84e2-24d3167d7014"",
-                    ""path"": ""<Keyboard>/numpad5"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Select5"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d33f2b78-00bf-45de-a049-f109897604c6"",
-                    ""path"": ""<Keyboard>/numpad6"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Select6"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6bebff9f-32b5-4ca1-808b-23ccbc573edd"",
-                    ""path"": ""<Keyboard>/7"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Select7"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""feb8a0f4-dd60-455c-80a4-5a150e724f7c"",
-                    ""path"": ""<Keyboard>/numpad8"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Select8"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""721486d9-73e4-4a91-bb9c-880c59af1d29"",
-                    ""path"": ""<Keyboard>/numpad9"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Select9"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""aa44351c-1867-4333-8265-7d789c204ce9"",
-                    ""path"": ""<Keyboard>/numpad0"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Select10"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": """",
                     ""id"": ""8e742ab7-6730-4698-9d0b-493a19fb23fc"",
@@ -531,6 +340,105 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
                     ""action"": ""RightTap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ca2bceba-3c81-4744-84ee-e61091115f88"",
+                    ""path"": ""<Keyboard>/numpad1"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale"",
+                    ""groups"": """",
+                    ""action"": ""SelectShip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f797f604-6cd7-4050-9c62-ddf475c4b149"",
+                    ""path"": ""<Keyboard>/numpad2"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale"",
+                    ""groups"": """",
+                    ""action"": ""SelectShip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fe738fea-1e63-4bcf-aa7a-d960f6657c06"",
+                    ""path"": ""<Keyboard>/numpad3"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale"",
+                    ""groups"": """",
+                    ""action"": ""SelectShip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cbd9c8de-d4c2-45a6-85b6-bf6ecc89f8d6"",
+                    ""path"": ""<Keyboard>/numpad4"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale"",
+                    ""groups"": """",
+                    ""action"": ""SelectShip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3f4cf880-ec19-4d1c-af86-0d9406d635e6"",
+                    ""path"": ""<Keyboard>/numpad5"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale"",
+                    ""groups"": """",
+                    ""action"": ""SelectShip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9fa15d38-87d9-4091-9626-89df579d40bc"",
+                    ""path"": ""<Keyboard>/numpad6"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale"",
+                    ""groups"": """",
+                    ""action"": ""SelectShip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2f17d54d-56b8-45c8-a289-182cafec77f6"",
+                    ""path"": ""<Keyboard>/numpad7"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale"",
+                    ""groups"": """",
+                    ""action"": ""SelectShip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fd6546eb-3fd6-4db0-b5e1-e68c9b29236f"",
+                    ""path"": ""<Keyboard>/numpad8"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale"",
+                    ""groups"": """",
+                    ""action"": ""SelectShip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1b9a2109-3d00-48da-9d45-188012f46b6c"",
+                    ""path"": ""<Keyboard>/numpad9"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale"",
+                    ""groups"": """",
+                    ""action"": ""SelectShip"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -545,16 +453,6 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
 }");
         // BattleMap
         m_BattleMap = asset.FindActionMap("BattleMap", throwIfNotFound: true);
-        m_BattleMap_Select1 = m_BattleMap.FindAction("Select1", throwIfNotFound: true);
-        m_BattleMap_Select2 = m_BattleMap.FindAction("Select2", throwIfNotFound: true);
-        m_BattleMap_Select3 = m_BattleMap.FindAction("Select3", throwIfNotFound: true);
-        m_BattleMap_Select4 = m_BattleMap.FindAction("Select4", throwIfNotFound: true);
-        m_BattleMap_Select5 = m_BattleMap.FindAction("Select5", throwIfNotFound: true);
-        m_BattleMap_Select6 = m_BattleMap.FindAction("Select6", throwIfNotFound: true);
-        m_BattleMap_Select7 = m_BattleMap.FindAction("Select7", throwIfNotFound: true);
-        m_BattleMap_Select8 = m_BattleMap.FindAction("Select8", throwIfNotFound: true);
-        m_BattleMap_Select9 = m_BattleMap.FindAction("Select9", throwIfNotFound: true);
-        m_BattleMap_Select10 = m_BattleMap.FindAction("Select10", throwIfNotFound: true);
         m_BattleMap_FireCommand = m_BattleMap.FindAction("FireCommand", throwIfNotFound: true);
         m_BattleMap_Point = m_BattleMap.FindAction("Point", throwIfNotFound: true);
         m_BattleMap_ScrollWheel = m_BattleMap.FindAction("ScrollWheel", throwIfNotFound: true);
@@ -563,6 +461,7 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
         m_BattleMap_Move = m_BattleMap.FindAction("Move", throwIfNotFound: true);
         m_BattleMap_SpaceBar = m_BattleMap.FindAction("SpaceBar", throwIfNotFound: true);
         m_BattleMap_RightTap = m_BattleMap.FindAction("RightTap", throwIfNotFound: true);
+        m_BattleMap_SelectShip = m_BattleMap.FindAction("SelectShip", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -622,16 +521,6 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
     // BattleMap
     private readonly InputActionMap m_BattleMap;
     private IBattleMapActions m_BattleMapActionsCallbackInterface;
-    private readonly InputAction m_BattleMap_Select1;
-    private readonly InputAction m_BattleMap_Select2;
-    private readonly InputAction m_BattleMap_Select3;
-    private readonly InputAction m_BattleMap_Select4;
-    private readonly InputAction m_BattleMap_Select5;
-    private readonly InputAction m_BattleMap_Select6;
-    private readonly InputAction m_BattleMap_Select7;
-    private readonly InputAction m_BattleMap_Select8;
-    private readonly InputAction m_BattleMap_Select9;
-    private readonly InputAction m_BattleMap_Select10;
     private readonly InputAction m_BattleMap_FireCommand;
     private readonly InputAction m_BattleMap_Point;
     private readonly InputAction m_BattleMap_ScrollWheel;
@@ -640,20 +529,11 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_BattleMap_Move;
     private readonly InputAction m_BattleMap_SpaceBar;
     private readonly InputAction m_BattleMap_RightTap;
+    private readonly InputAction m_BattleMap_SelectShip;
     public struct BattleMapActions
     {
         private @GameInputs m_Wrapper;
         public BattleMapActions(@GameInputs wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Select1 => m_Wrapper.m_BattleMap_Select1;
-        public InputAction @Select2 => m_Wrapper.m_BattleMap_Select2;
-        public InputAction @Select3 => m_Wrapper.m_BattleMap_Select3;
-        public InputAction @Select4 => m_Wrapper.m_BattleMap_Select4;
-        public InputAction @Select5 => m_Wrapper.m_BattleMap_Select5;
-        public InputAction @Select6 => m_Wrapper.m_BattleMap_Select6;
-        public InputAction @Select7 => m_Wrapper.m_BattleMap_Select7;
-        public InputAction @Select8 => m_Wrapper.m_BattleMap_Select8;
-        public InputAction @Select9 => m_Wrapper.m_BattleMap_Select9;
-        public InputAction @Select10 => m_Wrapper.m_BattleMap_Select10;
         public InputAction @FireCommand => m_Wrapper.m_BattleMap_FireCommand;
         public InputAction @Point => m_Wrapper.m_BattleMap_Point;
         public InputAction @ScrollWheel => m_Wrapper.m_BattleMap_ScrollWheel;
@@ -662,6 +542,7 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_BattleMap_Move;
         public InputAction @SpaceBar => m_Wrapper.m_BattleMap_SpaceBar;
         public InputAction @RightTap => m_Wrapper.m_BattleMap_RightTap;
+        public InputAction @SelectShip => m_Wrapper.m_BattleMap_SelectShip;
         public InputActionMap Get() { return m_Wrapper.m_BattleMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -671,36 +552,6 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_BattleMapActionsCallbackInterface != null)
             {
-                @Select1.started -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelect1;
-                @Select1.performed -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelect1;
-                @Select1.canceled -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelect1;
-                @Select2.started -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelect2;
-                @Select2.performed -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelect2;
-                @Select2.canceled -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelect2;
-                @Select3.started -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelect3;
-                @Select3.performed -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelect3;
-                @Select3.canceled -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelect3;
-                @Select4.started -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelect4;
-                @Select4.performed -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelect4;
-                @Select4.canceled -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelect4;
-                @Select5.started -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelect5;
-                @Select5.performed -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelect5;
-                @Select5.canceled -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelect5;
-                @Select6.started -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelect6;
-                @Select6.performed -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelect6;
-                @Select6.canceled -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelect6;
-                @Select7.started -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelect7;
-                @Select7.performed -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelect7;
-                @Select7.canceled -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelect7;
-                @Select8.started -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelect8;
-                @Select8.performed -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelect8;
-                @Select8.canceled -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelect8;
-                @Select9.started -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelect9;
-                @Select9.performed -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelect9;
-                @Select9.canceled -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelect9;
-                @Select10.started -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelect10;
-                @Select10.performed -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelect10;
-                @Select10.canceled -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelect10;
                 @FireCommand.started -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnFireCommand;
                 @FireCommand.performed -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnFireCommand;
                 @FireCommand.canceled -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnFireCommand;
@@ -725,40 +576,13 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
                 @RightTap.started -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnRightTap;
                 @RightTap.performed -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnRightTap;
                 @RightTap.canceled -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnRightTap;
+                @SelectShip.started -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelectShip;
+                @SelectShip.performed -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelectShip;
+                @SelectShip.canceled -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelectShip;
             }
             m_Wrapper.m_BattleMapActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Select1.started += instance.OnSelect1;
-                @Select1.performed += instance.OnSelect1;
-                @Select1.canceled += instance.OnSelect1;
-                @Select2.started += instance.OnSelect2;
-                @Select2.performed += instance.OnSelect2;
-                @Select2.canceled += instance.OnSelect2;
-                @Select3.started += instance.OnSelect3;
-                @Select3.performed += instance.OnSelect3;
-                @Select3.canceled += instance.OnSelect3;
-                @Select4.started += instance.OnSelect4;
-                @Select4.performed += instance.OnSelect4;
-                @Select4.canceled += instance.OnSelect4;
-                @Select5.started += instance.OnSelect5;
-                @Select5.performed += instance.OnSelect5;
-                @Select5.canceled += instance.OnSelect5;
-                @Select6.started += instance.OnSelect6;
-                @Select6.performed += instance.OnSelect6;
-                @Select6.canceled += instance.OnSelect6;
-                @Select7.started += instance.OnSelect7;
-                @Select7.performed += instance.OnSelect7;
-                @Select7.canceled += instance.OnSelect7;
-                @Select8.started += instance.OnSelect8;
-                @Select8.performed += instance.OnSelect8;
-                @Select8.canceled += instance.OnSelect8;
-                @Select9.started += instance.OnSelect9;
-                @Select9.performed += instance.OnSelect9;
-                @Select9.canceled += instance.OnSelect9;
-                @Select10.started += instance.OnSelect10;
-                @Select10.performed += instance.OnSelect10;
-                @Select10.canceled += instance.OnSelect10;
                 @FireCommand.started += instance.OnFireCommand;
                 @FireCommand.performed += instance.OnFireCommand;
                 @FireCommand.canceled += instance.OnFireCommand;
@@ -783,6 +607,9 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
                 @RightTap.started += instance.OnRightTap;
                 @RightTap.performed += instance.OnRightTap;
                 @RightTap.canceled += instance.OnRightTap;
+                @SelectShip.started += instance.OnSelectShip;
+                @SelectShip.performed += instance.OnSelectShip;
+                @SelectShip.canceled += instance.OnSelectShip;
             }
         }
     }
@@ -798,16 +625,6 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
     }
     public interface IBattleMapActions
     {
-        void OnSelect1(InputAction.CallbackContext context);
-        void OnSelect2(InputAction.CallbackContext context);
-        void OnSelect3(InputAction.CallbackContext context);
-        void OnSelect4(InputAction.CallbackContext context);
-        void OnSelect5(InputAction.CallbackContext context);
-        void OnSelect6(InputAction.CallbackContext context);
-        void OnSelect7(InputAction.CallbackContext context);
-        void OnSelect8(InputAction.CallbackContext context);
-        void OnSelect9(InputAction.CallbackContext context);
-        void OnSelect10(InputAction.CallbackContext context);
         void OnFireCommand(InputAction.CallbackContext context);
         void OnPoint(InputAction.CallbackContext context);
         void OnScrollWheel(InputAction.CallbackContext context);
@@ -816,5 +633,6 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnSpaceBar(InputAction.CallbackContext context);
         void OnRightTap(InputAction.CallbackContext context);
+        void OnSelectShip(InputAction.CallbackContext context);
     }
 }

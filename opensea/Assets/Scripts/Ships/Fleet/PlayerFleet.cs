@@ -2,26 +2,20 @@
 using Assets.Scripts.Ships;
 using System;
 using Assets.Scripts.Inputs;
-using UnityEngine;
 
 namespace Assets.Scripts.Managers
 {
     public class PlayerFleet : FleetManager
     {
         public Action<Ship> OnShipSelectedChanged;
-        
+
         private Ship m_selectedShip;
 
-        private void OnEnable()
+        private void Start()
         {
-            Events.Inputs.OnNumPressed += FocusOn;
+            Main.Instance.BattleMapInputs.SelectShip.performed += 
+                ctx => FocusOn(ctx.ReadValue<int>());
         }
-
-        private void OnDisable()
-        {
-            Events.Inputs.OnNumPressed -= FocusOn;
-        }
-
         protected override void InternalRegister(Ship ship)
         {
             if (m_selectedShip == ship) m_selectedShip.OnDeselect();

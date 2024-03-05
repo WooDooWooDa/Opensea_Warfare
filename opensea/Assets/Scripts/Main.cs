@@ -19,11 +19,13 @@ public class Main : MonoBehaviour
     private bool m_initialized = false;
     public bool IsInitialized => m_initialized;
     public Action OnInitialized;
+    public GameInputs.BattleMapActions BattleMapInputs => m_inputActions.BattleMap;
     private SaveData m_data;
 
     private SaveManager m_saveManager = null;
 
     private List<Manager> m_managers = new List<Manager>();
+    private GameInputs m_inputActions;
 
     private void Awake()
     {
