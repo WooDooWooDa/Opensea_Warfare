@@ -4,8 +4,6 @@ namespace Assets.Scripts.Ships.Modules
 {
     public class SteeringGear : Module
     {
-        [SerializeField] private float m_turnSpeed = 4;
-
         public float CurrentAngle => m_shipTransform.rotation.eulerAngles.z;
         public float TargetAngle => m_targetAngle;
         public float AngleDiff => Mathf.Abs(CurrentAngle - TargetAngle);
@@ -14,11 +12,13 @@ namespace Assets.Scripts.Ships.Modules
         private const float TurnSpeedStep = 11.25f;
 
         private Transform m_shipTransform;
-        
+        private float m_shipMan;
+
         public override void Initialize(Ship attachedShip)
         {
             base.Initialize(attachedShip);
             m_shipTransform = attachedShip.transform;
+            m_shipMan = attachedShip.Stats.MAN / 10;
         }
 
         public void SetTargetAngle(float angle)
@@ -28,6 +28,7 @@ namespace Assets.Scripts.Ships.Modules
 
         public void ResetCourse()
         {
+            //todo doesnt like intended
             transform.rotation.ToAngleAxis(out var shipAngle, out var axis);
             m_targetAngle = shipAngle;
         }
@@ -42,16 +43,13 @@ namespace Assets.Scripts.Ships.Modules
             m_targetAngle = nextTargetAngle;
         }
 
-        protected override void InternalPreUpdateModule(float deltaTime)
-        {
-            
-        }
+        protected override void InternalPreUpdateModule(float deltaTime) { }
 
         protected override void InternalUpdateModule(float deltaTime)
         {
             if (m_targetAngle >= 0) {
                 Quaternion angleAxis = Quaternion.AngleAxis(m_targetAngle, Vector3.forward);
-                m_shipTransform.rotation = Quaternion.RotateTowards(m_shipTransform.rotation, angleAxis, deltaTime * m_turnSpeed);
+                m_shipTransform.rotation = Quaternion.RotateTowards(m_shipTransform.rotation, angleAxis, deltaTime * m_shipMan);
             }
         }
     }

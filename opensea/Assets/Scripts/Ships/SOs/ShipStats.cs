@@ -10,9 +10,9 @@ namespace Assets.Scripts.Ships.SOs
         public float HP;
         public float FP; //maybe remove this stat
         public HullType Hull;
-        [Tooltip("Divide this value by 10 to obtain ship max speed")]
+        [Tooltip("Divide this value by 100 to obtain ship max speed")]
         public float SPD;
-        [Tooltip("Maneuvrability of the ship (turning speed, etc)")]
+        [Tooltip("Divide by 10 to obtain Maneuvrability of the ship (turning speed, etc)")]
         public float MAN;
         [Tooltip("Range in unit with 100% accuracy")]
         public float RNG;
