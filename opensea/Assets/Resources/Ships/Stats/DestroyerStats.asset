@@ -15,7 +15,8 @@ MonoBehaviour:
   HP: 1200
   FP: 1001
   Hull: 0
-  SPD: 4
+  SPD: 40
+  MAN: 50
   RNG: 12
   ACC: 8
   weaponSlots: 0000000000000000010000000100000003000000

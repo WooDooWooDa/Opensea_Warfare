@@ -22,6 +22,7 @@ namespace Assets.Scripts.Ships
         public ShipStats Stats => m_stats;
         public Action<IHittable, Impact> OnHit { get; set; }
         public ShipTeam Team => m_team;
+        public Rigidbody2D Body { get; private set; }
 
         public Action<Ship> OnShipDestroyed;
 
@@ -36,6 +37,7 @@ namespace Assets.Scripts.Ships
                 m_playerFleet = Main.Instance.GetManager<PlayerFleet>();
                 m_playerFleet.RegisterShipToFleet(this);
             }
+            Body = GetComponent<Rigidbody2D>();
             RegisterModules();
         }
 

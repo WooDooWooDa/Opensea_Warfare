@@ -6,13 +6,13 @@ namespace Assets.Scripts.Ships.Modules
     public class Engine : ActionModule
     {
         public float CurrentSpeedPercentage => m_currentSpeed / m_shipMaxSpeed;
-        public float CurrentSpeed => m_currentSpeed * 100;
+        public float CurrentSpeed => m_currentSpeed;
         public float TargetPourcentageOfSpeed => m_currentPourcentage;
 
         private const int AccelerationTime = 8;
         private const int DecelerationTime = 12;
-        
-        private Transform m_shipTransform;
+
+        private Rigidbody2D m_shipRigidBody;
         private float m_shipMaxSpeed;
         private float m_currentMaxSpeed;
         private float m_currentPourcentage;
@@ -22,8 +22,8 @@ namespace Assets.Scripts.Ships.Modules
         public override void Initialize(Ship attachedShip)
         {
             base.Initialize(attachedShip);
-            m_shipTransform = attachedShip.transform;
-            m_currentMaxSpeed = m_shipMaxSpeed = attachedShip.Stats.SPD / 10;
+            m_currentMaxSpeed = m_shipMaxSpeed = attachedShip.Stats.SPD;
+            m_shipRigidBody = attachedShip.Body;
         }
 
         public void Stop()
@@ -54,7 +54,8 @@ namespace Assets.Scripts.Ships.Modules
             //todo maybe change the lerp values to eliminate the slow lerp at the end and the fast i nthe beginning
             m_currentSpeed = Mathf.Lerp(m_currentSpeed, ClampSpeed(), deltaTime / lerpValue);
 
-            m_shipTransform.position += (deltaTime * m_currentSpeed * transform.up);
+            //m_shipTransform.position += (deltaTime * m_currentSpeed * transform.up);
+            m_shipRigidBody.velocity = deltaTime * m_currentSpeed * transform.up;
         }
 
         private void EvaluateTargetSpeed()
