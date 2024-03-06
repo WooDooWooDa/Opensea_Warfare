@@ -18,6 +18,8 @@ namespace Assets.Scripts.Ships.SOs
         public float RNG;
         [Tooltip("Divide this value by 10 to obtain radius of dispersion circle at range")]
         public float ACC;
+        [Tooltip("Effective range of radar")]
+        public float REC;
         public List<WeaponType> weaponSlots;
     }
 }
