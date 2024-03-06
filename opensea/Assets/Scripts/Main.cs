@@ -41,6 +41,8 @@ public class Main : MonoBehaviour
         if (m_initialized)
             return;
 
+        m_inputActions = new GameInputs();
+
         //Main managers
         m_saveManager = gameObject.AddComponent<SaveManager>();
         //Game related managers

@@ -84,6 +84,7 @@ namespace Assets.Scripts.Ships.Modules
             if (m_tryLockOnShip is not null)
             {
                 m_tryLockOnShip = null;
+                m_armamentsModule.LockOnto(m_tryLockOnShip);
                 //notif lock on ship unlocked
                 Debug.Log("Lock on ship unlocked");
                 return;

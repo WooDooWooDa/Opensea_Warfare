@@ -21,7 +21,7 @@ namespace Assets.Scripts.Missions.Objectives
 
         protected override void RemoveObjectiveEventHandler()
         {
-	    m_missionManager.EnemyFleet.ShipIsDestroyed -= ShipDestroyed;
+	        m_missionManager.EnemyFleet.ShipIsDestroyed -= ShipDestroyed;
             m_missionManager.EnemyFleet.FleetIsDestroyed -= CompleteObjective;
         }
         

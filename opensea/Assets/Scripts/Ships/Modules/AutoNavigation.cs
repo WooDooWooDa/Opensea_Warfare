@@ -48,16 +48,12 @@ namespace Assets.Scripts.Ships.Modules
             m_inputActions.BattleMap.RightTap.performed += ctx => AddNewWaypoint();
         }
 
-        protected override void InternalPreUpdateModule(float deltaTime)
-        {
-            if (m_navigationWaypoints.Any())
-                m_lineRenderer.SetPosition(0, m_ship.transform.position);
-        }
-
         protected override void InternalUpdateModule(float deltaTime)
         {
             if (!m_navigationWaypoints.Any()) return;
-            
+
+            m_lineRenderer.SetPosition(0, m_ship.transform.position);
+
             if (m_nextWaypoint == null)
             {
                 SetNextWaypoint();
@@ -88,7 +84,8 @@ namespace Assets.Scripts.Ships.Modules
             if (m_steeringGear.AngleDiff < 90 && distanceOfShip > WaypointDistanceThreshold)
             {
                 var traveled = distanceOfShip / distanceOfWaypointFromStartPoint; //percentage of travel done
-                speedPourcentage = traveled switch //todo-P1 This really doesnt work on long distance, use animation line/graph
+                Debug.Log("Travaled : " + traveled);
+                speedPourcentage = traveled switch //todo-P1 This really doesnt work on long distance
                 {
                     (> 0.75f) => 1,
                     (> 0.5f) => 0.75f,
@@ -133,6 +130,7 @@ namespace Assets.Scripts.Ships.Modules
             m_steeringGear.SetTargetAngle(result);
         }
 
+        #region Waypoints
         private void AddNewWaypoint()
         {
             var pointerPos = Helper.PointerPosition;
@@ -188,5 +186,6 @@ namespace Assets.Scripts.Ships.Modules
             m_nextWaypoint = null;
             //todo-P2 reorder/reassign number to all next ui waypoint instance
         }
+        #endregion
     }
 }
