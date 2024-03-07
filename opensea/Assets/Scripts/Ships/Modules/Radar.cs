@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Ships.Common;
+﻿using Assets.Scripts.Common;
+using Assets.Scripts.Ships.Common;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,9 +11,9 @@ namespace Assets.Scripts.Ships.Modules
     {
         [SerializeField] private Transform m_radarDirection;
 
-        public Action<Ship, float, Vector2> OnSpottedShip;
+        public Action<IDetectable, float, Vector2> OnSpotted;
 
-        private Dictionary<Ship, Coroutine> m_detectedShipFallout = new Dictionary<Ship, Coroutine>();
+        private Dictionary<IDetectable, Coroutine> m_detectedFallout = new Dictionary<IDetectable, Coroutine>();
 
         private float m_rotationSpeed = 180f;
         private float m_range;
@@ -24,31 +25,33 @@ namespace Assets.Scripts.Ships.Modules
         {
             base.Initialize(attachedShip);
             m_range = attachedShip.Stats.REC;
+
+            //Temp start in init... move it
             StartScan();
-            OnSpottedShip += (ship, dist, dir) =>
-            {
-                Debug.Log(ship + " spotted at " + dist + "m");
-            };
         }
 
-        protected override void InternalPreUpdateModule(float deltaTime) { }
-
-        protected override void InternalUpdateModule(float deltaTime)
+        protected override void InternalPreUpdateModule(float deltaTime) 
         {
-            //small range detection of ships
-            var colliders = Physics2D.OverlapCircleAll(transform.position, m_range / 2);
-            if (colliders.Length > 1)
+            if (CurrentState is DamageState.Destroyed)
             {
-                foreach (var col in colliders)
+                //small range detection of ships
+                var colliders = Physics2D.OverlapCircleAll(transform.position, m_range / 2);
+                foreach (var hit in colliders)
                 {
-                    var shipHit = col.gameObject.GetComponent<Ship>();
-                    if (shipHit == null) continue;
-
-                    var positionDiff = transform.position - col.transform.position;
-                    //DetectShip(shipHit, positionDiff.magnitude, positionDiff);
+                    var detectable = hit.gameObject.GetComponent<IDetectable>();
+                    if (detectable != null)
+                    {
+                        if (detectable as Ship != m_ship) //add a team filter
+                        {
+                            var positionDiff = transform.position - hit.transform.position;
+                            Detect(detectable, positionDiff.magnitude, positionDiff);
+                        }
+                    }
                 }
             }
         }
+
+        protected override void InternalUpdateModule(float deltaTime) { }
 
         protected override void ApplyState()
         {
@@ -56,7 +59,7 @@ namespace Assets.Scripts.Ships.Modules
             {
                 StopScan();
                 StopAllCoroutines();
-                m_detectedShipFallout.Clear();
+                m_detectedFallout.Clear();
             }
         }
 
@@ -92,33 +95,38 @@ namespace Assets.Scripts.Ships.Modules
         {
             var direction = GetVectorFromAngle(rotation);
             Debug.DrawRay(transform.position, direction, Color.green, 0.5f);
-            var hit = Physics2D.Raycast(transform.position, direction, m_range);
-            if (hit.collider != null)
+            var hits = Physics2D.RaycastAll(transform.position, direction, m_range);
+            foreach (var hit in hits)
             {
-                var shipHit = hit.collider.gameObject.GetComponent<Ship>();
-                if (shipHit != null && shipHit != m_ship)
-                    DetectShip(shipHit, hit.distance, direction);
+                var detectable = hit.collider.gameObject.GetComponent<IDetectable>();
+                if (detectable != null)
+                {
+                    if (detectable as Ship != m_ship) //add a team filter
+                        Detect(detectable, hit.distance, direction);
+                }
             }
         }
 
-        private void DetectShip(Ship ship, float distance, Vector2 direction)
+        private void Detect(IDetectable detected, float distance, Vector2 direction)
         {
-            if (!m_detectedShipFallout.ContainsKey(ship))
+            if (!m_detectedFallout.ContainsKey(detected))
             {
-                OnSpottedShip?.Invoke(ship, distance, direction);
+                OnSpotted?.Invoke(detected, distance, direction);
+                detected.OnDetected?.Invoke(distance, direction);
+                Debug.Log("After Spotted event!!");
             }
             else
             {
-                StopCoroutine(m_detectedShipFallout[ship]);
-                m_detectedShipFallout.Remove(ship);
+                StopCoroutine(m_detectedFallout[detected]);
+                m_detectedFallout.Remove(detected);
             }
-            m_detectedShipFallout.Add(ship, StartCoroutine(ClearDetectedShip(ship)));
+            m_detectedFallout.Add(detected, StartCoroutine(ClearDetected(detected)));
         }
 
-        private IEnumerator ClearDetectedShip(Ship ship)
+        private IEnumerator ClearDetected(IDetectable deteccted)
         {
             yield return new WaitForSeconds(5f);
-            m_detectedShipFallout.Remove(ship);
+            m_detectedFallout.Remove(deteccted);
         }
 
         private static Vector3 GetVectorFromAngle(float rotation)
