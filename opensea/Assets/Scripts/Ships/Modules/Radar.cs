@@ -2,7 +2,6 @@
 using Assets.Scripts.Ships.Common;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.Ships.Modules
@@ -11,9 +10,7 @@ namespace Assets.Scripts.Ships.Modules
     {
         [SerializeField] private Transform m_radarDirection;
 
-        public Action<IDetectable, float, Vector2> OnSpotted;
-
-        private Dictionary<IDetectable, Coroutine> m_detectedFallout = new Dictionary<IDetectable, Coroutine>();
+        public Action<IDetectable, float, Vector2> OnSpottedShip;
 
         private float m_rotationSpeed = 180f;
         private float m_range;
@@ -32,7 +29,7 @@ namespace Assets.Scripts.Ships.Modules
 
         protected override void InternalPreUpdateModule(float deltaTime) 
         {
-            if (CurrentState is DamageState.Destroyed)
+            /*if (CurrentState is DamageState.Destroyed)
             {
                 //small range detection of ships
                 var colliders = Physics2D.OverlapCircleAll(transform.position, m_range / 2);
@@ -48,7 +45,7 @@ namespace Assets.Scripts.Ships.Modules
                         }
                     }
                 }
-            }
+            }*/
         }
 
         protected override void InternalUpdateModule(float deltaTime) { }
@@ -58,16 +55,15 @@ namespace Assets.Scripts.Ships.Modules
             if (CurrentState is DamageState.Destroyed)
             {
                 StopScan();
-                StopAllCoroutines();
-                m_detectedFallout.Clear();
             }
         }
 
         private void StartScan()
         {
-            if (m_scanningRoutine != null && m_isScanning) return;
+            if (m_scanningRoutine != null || m_isScanning) return;
 
             m_scanningRoutine = StartCoroutine(Scanning());
+            m_isScanning = true;
         }
 
         private void StopScan()
@@ -78,55 +74,44 @@ namespace Assets.Scripts.Ships.Modules
 
         private IEnumerator Scanning()
         {
-            m_isScanning = true;
             var rotation = 0f;
-            while (rotation != 360f)
+            while (m_isScanning)
             {
                 Scan(rotation);
                 rotation += m_rotationSpeed * Time.deltaTime;
                 m_radarDirection.eulerAngles -= new Vector3(0, 0, rotation);
                 yield return null;
-            }
 
-            StartScan();
+                if (rotation >= 360) rotation = 0;
+            }
         }
 
         private void Scan(float rotation)
         {
             var direction = GetVectorFromAngle(rotation);
-            Debug.DrawRay(transform.position, direction, Color.green, 0.5f);
             var hits = Physics2D.RaycastAll(transform.position, direction, m_range);
             foreach (var hit in hits)
             {
                 var detectable = hit.collider.gameObject.GetComponent<IDetectable>();
-                if (detectable != null)
+                if (detectable != null && IsInSight(detectable, direction))
                 {
-                    if (detectable as Ship != m_ship) //add a team filter
-                        Detect(detectable, hit.distance, direction);
+                    Detect(detectable, hit.distance, direction);
                 }
             }
         }
 
         private void Detect(IDetectable detected, float distance, Vector2 direction)
         {
-            if (!m_detectedFallout.ContainsKey(detected))
-            {
-                OnSpotted?.Invoke(detected, distance, direction);
-                detected.OnDetected?.Invoke(distance, direction);
-                Debug.Log("After Spotted event!!");
-            }
-            else
-            {
-                StopCoroutine(m_detectedFallout[detected]);
-                m_detectedFallout.Remove(detected);
-            }
-            m_detectedFallout.Add(detected, StartCoroutine(ClearDetected(detected)));
+            //if (detected as Ship == m_ship) return; //add a team filter
+
+            OnSpottedShip?.Invoke(detected, distance, direction);
+
+            detected.Detected(distance, direction);
         }
 
-        private IEnumerator ClearDetected(IDetectable deteccted)
+        private bool IsInSight(IDetectable detectable, Vector2 dir)
         {
-            yield return new WaitForSeconds(5f);
-            m_detectedFallout.Remove(deteccted);
+
         }
 
         private static Vector3 GetVectorFromAngle(float rotation)

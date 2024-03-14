@@ -20,6 +20,9 @@ namespace Assets.Scripts.Ships.SOs
         public float ACC;
         [Tooltip("Effective range of radar")]
         public float REC;
+        [Tooltip("Concealment value, range at which the ship can be detected")]
+        public float CON_RNG;
+        public float CON_TIME;
         public List<WeaponType> weaponSlots;
     }
 }

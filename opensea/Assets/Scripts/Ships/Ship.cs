@@ -12,7 +12,7 @@ using Assets.Scripts.Common;
 
 namespace Assets.Scripts.Ships
 {
-    public abstract class Ship: MonoBehaviour, ISelectable, IHittable, ISender, IDetectable
+    public abstract class Ship: MonoBehaviour, ISelectable, IHittable, ISender
     {
         [SerializeField] private ShipTeam m_team;
         [SerializeField] private ShipInformation m_information;
@@ -23,10 +23,9 @@ namespace Assets.Scripts.Ships
         public Action<IHittable, Impact> OnHit { get; set; }
         public ShipTeam Team => m_team;
         public Rigidbody2D Body { get; private set; }
-        public float DetectableRange { get; set; }
-        public Action<float, Vector3> OnDetected { get; set; }
 
         public Action<Ship> OnShipDestroyed;
+        public bool IsSelected => m_isSelected;
 
         private PlayerFleet m_playerFleet;
         private bool m_isSelected;
@@ -40,14 +39,8 @@ namespace Assets.Scripts.Ships
                 m_playerFleet.RegisterShipToFleet(this);
             }
 
-            OnDetected += Detected;
             Body = GetComponent<Rigidbody2D>();
             RegisterModules();
-        }
-
-        void Detected(float dist, Vector3 dir)
-        {
-            Debug.Log(this + " spotted at " + dist + "m");
         }
 
         private void Update()

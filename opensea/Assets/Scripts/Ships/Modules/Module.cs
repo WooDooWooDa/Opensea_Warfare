@@ -9,6 +9,7 @@ namespace Assets.Scripts.Ships.Modules
     {
         [SerializeField] private ModuleInformation m_info;
         public ModuleType Type => m_info.Type;
+        public Ship ModuleShip => m_ship;
         public float CurrentHp { get; set; }
         public DamageState CurrentState { get; set; }
         public bool CanBeRepaired => CurrentState is DamageState.Damaged or DamageState.Disabled;

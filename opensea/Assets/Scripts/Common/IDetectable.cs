@@ -5,7 +5,7 @@ namespace Assets.Scripts.Common
 {
     public interface IDetectable
     {
-        public float DetectableRange { get; set; }
         public Action<float, Vector3> OnDetected { get; set; }
+        public void Detected(float dist, Vector2 dir);
     }
 }
