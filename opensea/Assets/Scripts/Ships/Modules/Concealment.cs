@@ -1,12 +1,15 @@
 ﻿using Assets.Scripts.Common;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.Ships.Modules
 {
     public class Concealment : Module, IDetectable
     {
+        [SerializeField] private List<Sprite> m_shipSprite;
+        
         public Action<float, Vector3> OnDetected { get; set; }
 
         private float m_detectableRange;
@@ -20,10 +23,12 @@ namespace Assets.Scripts.Ships.Modules
             m_detectableRange = attachedShip.Stats.CON_RNG;
             m_detectableTime = attachedShip.Stats.CON_TIME;
         }
-        public void Detected(float dist, Vector2 dir)
+        public bool TryDetected(float dist, Vector2 dir)
         {
-            OnDetected?.Invoke(dist, dir);
-            m_detectedFalloutTimer = StartCoroutine(DetectionFallout());
+            if (!(dist <= m_detectableRange)) return false;
+            
+            Detect(dist, dir);
+            return true;
         }
 
         protected override void InternalPreUpdateModule(float deltaTime)
@@ -36,9 +41,16 @@ namespace Assets.Scripts.Ships.Modules
             
         }
 
+        private void Detect(float dist, Vector2 dir)
+        {
+            OnDetected?.Invoke(dist, dir);
+            m_detectedFalloutTimer = StartCoroutine(DetectionFallout());
+        }
+
         private IEnumerator DetectionFallout()
         {
             yield return new WaitForSeconds(m_detectableTime);
+            m_isDetected = false;
         }
     }
 }

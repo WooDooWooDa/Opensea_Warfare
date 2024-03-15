@@ -2,6 +2,7 @@
 using Assets.Scripts.Ships.Common;
 using System;
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.Ships.Modules
@@ -92,8 +93,10 @@ namespace Assets.Scripts.Ships.Modules
             var hits = Physics2D.RaycastAll(transform.position, direction, m_range);
             foreach (var hit in hits)
             {
+                if (hit.collider.gameObject.GetComponentInParent<Ship>() == m_ship) continue;
+                
                 var detectable = hit.collider.gameObject.GetComponent<IDetectable>();
-                if (detectable != null && IsInSight(detectable, direction))
+                if (detectable != null)
                 {
                     Detect(detectable, hit.distance, direction);
                 }
@@ -102,18 +105,12 @@ namespace Assets.Scripts.Ships.Modules
 
         private void Detect(IDetectable detected, float distance, Vector2 direction)
         {
-            //if (detected as Ship == m_ship) return; //add a team filter
-
-            OnSpottedShip?.Invoke(detected, distance, direction);
-
-            detected.Detected(distance, direction);
+            if (detected.TryDetected(distance, direction))
+            {
+                OnSpottedShip?.Invoke(detected, distance, direction);
+            }
         }
-
-        private bool IsInSight(IDetectable detectable, Vector2 dir)
-        {
-
-        }
-
+        
         private static Vector3 GetVectorFromAngle(float rotation)
         {
             return Quaternion.AngleAxis(rotation, Vector3.forward) * Vector3.right; ;
