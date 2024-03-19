@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Assets.Scripts.Weapons.Projectiles
 {
     public class ProjectileData {
-        public ISender Sender;
+        public IDamageSource DamageSource;
         public Ammo Ammo;
         public Vector3 StartPos;
         public Vector3 TargetPoint;
@@ -69,7 +69,7 @@ namespace Assets.Scripts.Weapons.Projectiles
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.GetComponentInParent<ISender>() == m_projectileData.Sender) return; //no return to sender
+            if (other.gameObject.GetComponentInParent<IDamageSource>() == m_projectileData.DamageSource) return; //no return to sender
             
             var hittable = other.gameObject.GetComponentInParent<IHittable>();
             if (hittable is null) return;
@@ -81,7 +81,7 @@ namespace Assets.Scripts.Weapons.Projectiles
             {
                 HullPartHit = partHit,
                 BaseDamage = m_damage,
-                Sender = m_projectileData.Sender,
+                DamageSource = m_projectileData.DamageSource,
                 AmmoUsed = m_projectileData.Ammo
             });
             

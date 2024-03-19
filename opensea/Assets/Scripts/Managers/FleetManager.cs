@@ -15,10 +15,13 @@ namespace Assets.Scripts.Managers
         public Action FleetIsDestroyed;
         
         private List<Ship> m_markedAsDestroyedShips = new List<Ship>();
+        private List<Ship> m_onceSpottedShip = new List<Ship>();
 
         public void RegisterShipToFleet(Ship ship)
         {
-            if (!m_ships.Contains(ship)) m_ships.Add(ship);
+            if (m_ships.Contains(ship)) return;
+            
+            m_ships.Add(ship);
             ship.OnShipDestroyed += FleetShipDestroyed;
             InternalRegister(ship);
         }

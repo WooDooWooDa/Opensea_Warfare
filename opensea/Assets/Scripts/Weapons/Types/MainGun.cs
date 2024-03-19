@@ -11,7 +11,7 @@ namespace Assets.Scripts.Weapons
             
             projectile.SetData(new ProjectileData()
             {
-                Sender = m_attachedShip,
+                DamageSource = m_attachedShip,
                 Ammo = m_loadedAmmo,
                 TargetPoint = dispersedTargetPoint
             }, FirePower);

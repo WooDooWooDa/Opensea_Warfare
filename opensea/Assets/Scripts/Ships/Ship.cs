@@ -9,10 +9,11 @@ using Assets.Scripts.Ships.Common;
 using Assets.Scripts.Weapons;
 using UnityEngine;
 using Assets.Scripts.Common;
+using JetBrains.Annotations;
 
 namespace Assets.Scripts.Ships
 {
-    public abstract class Ship: MonoBehaviour, ISelectable, IHittable, ISender
+    public abstract class Ship: MonoBehaviour, ISelectable, IHittable, IDamageSource, IDetectable
     {
         [SerializeField] private ShipTeam m_team;
         [SerializeField] private ShipInformation m_information;
@@ -21,25 +22,37 @@ namespace Assets.Scripts.Ships
         public bool Alive => !m_isMarkedAsDestroyed; //Change variable name
         public ShipStats Stats => m_stats;
         public Action<IHittable, Impact> OnHit { get; set; }
+        public Action<IDetectable, float, Vector3> OnDetected { get; set; }
+        public Action<IDetectable> OnConceal { get; set; }
         public ShipTeam Team => m_team;
         public Rigidbody2D Body { get; private set; }
 
         public Action<Ship> OnShipDestroyed;
         public bool IsSelected => m_isSelected;
 
-        private PlayerFleet m_playerFleet;
+        private FleetManager m_fleet;
         private bool m_isSelected;
         private bool m_isMarkedAsDestroyed;
 
+        private Concealment m_shipConcealment;
+
         private void Start()
         {
-            if (Team == ShipTeam.Fleet)
+            switch (Team)
             {
-                m_playerFleet = Main.Instance.GetManager<PlayerFleet>();
-                m_playerFleet.RegisterShipToFleet(this);
+                case ShipTeam.Fleet:
+                    m_fleet = Main.Instance.GetManager<PlayerFleet>();
+                    m_fleet.RegisterShipToFleet(this);
+                    break;
+                case ShipTeam.Enemy:
+                    m_fleet = FindObjectOfType<EnemyFleet>();
+                    m_fleet.RegisterShipToFleet(this);
+                    break;
             }
 
             Body = GetComponent<Rigidbody2D>();
+            m_shipConcealment = new Concealment();
+            m_shipConcealment.Initialize(this);
             RegisterModules();
         }
 
@@ -59,7 +72,7 @@ namespace Assets.Scripts.Ships
         public void OnSelect()
         {
             m_isSelected = true;
-            m_playerFleet.FocusOn(this);
+            ((PlayerFleet)m_fleet).FocusOn(this);
             m_modules.ForEach(m => m.ShipSelect());
         }
         
@@ -68,7 +81,7 @@ namespace Assets.Scripts.Ships
             //hit feedback, dmg total widget
             OnHit?.Invoke(this, impact); // => camera if ship selected, shake
             
-            if (Team == impact.Sender.Team)
+            if (Team == impact.DamageSource.Team)
             {
                 Debug.Log("Watch out for friendly fire.");
             }
@@ -79,6 +92,17 @@ namespace Assets.Scripts.Ships
             {
                 module.DamageOnImpact(impact);
             }
+        }
+        
+        public bool TryDetected(float dist, Vector2 dir)
+        {
+            var detected = m_shipConcealment.TryDetected(dist, dir);
+            if (detected)
+            {
+                OnDetected?.Invoke(this, dist, dir);
+            }
+
+            return detected;
         }
 
         private void DestroyShip()
@@ -94,13 +118,10 @@ namespace Assets.Scripts.Ships
             return m_modules.Where(module => type.Contains(module.Type));
         }
         
-        public T GetModuleOfType<T>()
+        [CanBeNull]
+        public T GetModuleOfType<T>() where T : Module
         {
-            foreach (var m in m_modules.Where(m => m.GetType() == typeof(T)).OfType<T>())
-            {
-                return (T)Convert.ChangeType(m, typeof(T));
-            }
-            return default;
+            return m_modules.OfType<T>().FirstOrDefault();
         }
 
         private void RegisterModules()
@@ -120,8 +141,16 @@ namespace Assets.Scripts.Ships
                 };
             }
 
-            GetModuleOfType<Hull>().OnDestroyed += (IDestroyable) => DestroyShip();
-            GetModuleOfType<AmmunitionBay>().OnDestroyed += (IDestroyable) => DestroyShip();
+            var hull = GetModuleOfType<Hull>();
+            if (hull != null)
+            {
+                hull.OnDestroyed += (_) => DestroyShip();
+            }
+            var ammoBay = GetModuleOfType<AmmunitionBay>();
+            if (ammoBay != null)
+            {
+                ammoBay.OnDestroyed += (_) => DestroyShip();
+            }
         }
     }
 }

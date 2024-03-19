@@ -2,7 +2,7 @@
 
 namespace Assets.Scripts.Common
 {
-    public interface ISender
+    public interface IDamageSource
     {
         public ShipTeam Team { get; }
     }

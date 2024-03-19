@@ -1,8 +1,6 @@
 ﻿using Assets.Scripts.Common;
 using Assets.Scripts.Ships.Common;
 using System;
-using System.Collections;
-using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.Ships.Modules
@@ -16,6 +14,7 @@ namespace Assets.Scripts.Ships.Modules
         private float m_rotationSpeed = 180f;
         private float m_range;
 
+        private float m_currentRotation;
         private bool m_isScanning;
         private Coroutine m_scanningRoutine;
 
@@ -30,26 +29,19 @@ namespace Assets.Scripts.Ships.Modules
 
         protected override void InternalPreUpdateModule(float deltaTime) 
         {
-            /*if (CurrentState is DamageState.Destroyed)
-            {
-                //small range detection of ships
-                var colliders = Physics2D.OverlapCircleAll(transform.position, m_range / 2);
-                foreach (var hit in colliders)
-                {
-                    var detectable = hit.gameObject.GetComponent<IDetectable>();
-                    if (detectable != null)
-                    {
-                        if (detectable as Ship != m_ship) //add a team filter
-                        {
-                            var positionDiff = transform.position - hit.transform.position;
-                            Detect(detectable, positionDiff.magnitude, positionDiff);
-                        }
-                    }
-                }
-            }*/
+            
         }
 
-        protected override void InternalUpdateModule(float deltaTime) { }
+        protected override void InternalUpdateModule(float deltaTime)
+        {
+            if (!m_isScanning) return;
+            
+            Scan(m_currentRotation);
+            m_currentRotation += m_rotationSpeed * deltaTime;
+            m_radarDirection.eulerAngles -= new Vector3(0, 0, m_currentRotation);
+
+            if (m_currentRotation >= 360) m_currentRotation = 0;
+        }
 
         protected override void ApplyState()
         {
@@ -61,39 +53,22 @@ namespace Assets.Scripts.Ships.Modules
 
         private void StartScan()
         {
-            if (m_scanningRoutine != null || m_isScanning) return;
-
-            m_scanningRoutine = StartCoroutine(Scanning());
             m_isScanning = true;
         }
 
         private void StopScan()
         {
-            StopCoroutine(m_scanningRoutine);
             m_isScanning = false;
-        }
-
-        private IEnumerator Scanning()
-        {
-            var rotation = 0f;
-            while (m_isScanning)
-            {
-                Scan(rotation);
-                rotation += m_rotationSpeed * Time.deltaTime;
-                m_radarDirection.eulerAngles -= new Vector3(0, 0, rotation);
-                yield return null;
-
-                if (rotation >= 360) rotation = 0;
-            }
         }
 
         private void Scan(float rotation)
         {
             var direction = GetVectorFromAngle(rotation);
+            Debug.DrawRay(transform.position, direction, Color.green, 0.2f);
             var hits = Physics2D.RaycastAll(transform.position, direction, m_range);
             foreach (var hit in hits)
             {
-                if (hit.collider.gameObject.GetComponentInParent<Ship>() == m_ship) continue;
+                if (hit.collider.gameObject.GetComponent<Ship>().Team == m_ship.Team) continue;
                 
                 var detectable = hit.collider.gameObject.GetComponent<IDetectable>();
                 if (detectable != null)
@@ -114,6 +89,12 @@ namespace Assets.Scripts.Ships.Modules
         private static Vector3 GetVectorFromAngle(float rotation)
         {
             return Quaternion.AngleAxis(rotation, Vector3.forward) * Vector3.right; ;
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, m_range);
         }
     }
 }

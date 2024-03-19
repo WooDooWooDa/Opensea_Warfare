@@ -10,6 +10,6 @@ namespace Assets.Scripts.Weapons
         public float BaseDamage { get; set; }
         public Ammo AmmoUsed { get; set; }
         public WeaponStats FiredFrom { get; set; }
-        public ISender Sender { get; set; } //senderData -> to show indicator of direction of sender after hit
+        public IDamageSource DamageSource { get; set; } //senderData -> to show indicator of direction of sender after hit
     }
 }

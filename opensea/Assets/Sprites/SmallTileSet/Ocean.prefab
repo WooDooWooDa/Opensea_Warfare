@@ -130,7 +130,7 @@ Tilemap:
       - {fileID: 579023142, guid: 5150bf67042e6394a8f8c286ad0edd39, type: 3}
       - {fileID: 1057268756, guid: 5150bf67042e6394a8f8c286ad0edd39, type: 3}
       - {fileID: 579023142, guid: 5150bf67042e6394a8f8c286ad0edd39, type: 3}
-      m_AnimationSpeed: 2.108158
+      m_AnimationSpeed: 2.3176086
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   m_TileAssetArray:
@@ -324,5 +324,5 @@ MonoBehaviour:
   m_Name: Palette Settings
   m_EditorClassIdentifier: 
   cellSizing: 0
-  m_TransparencySortMode: 0
+  m_TransparencySortMode: 2
   m_TransparencySortAxis: {x: 0, y: 0, z: 1}
