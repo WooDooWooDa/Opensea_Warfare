@@ -68,8 +68,6 @@ namespace Assets.Scripts.Ships.Modules
             var hits = Physics2D.RaycastAll(transform.position, direction, m_range);
             foreach (var hit in hits)
             {
-                if (hit.collider.gameObject.GetComponent<Ship>().Team == m_ship.Team) continue;
-                
                 var detectable = hit.collider.gameObject.GetComponent<IDetectable>();
                 if (detectable != null)
                 {

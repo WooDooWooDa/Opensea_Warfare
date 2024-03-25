@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1017825470878269292}
   - component: {fileID: 7222414278609775463}
   - component: {fileID: 8966977571518533026}
+  - component: {fileID: 78452901875384946}
   m_Layer: 0
   m_Name: Target
   m_TagString: Untagged
@@ -102,9 +103,19 @@ RotationConstraint:
   m_AffectRotationZ: 1
   m_IsContraintActive: 1
   m_IsLocked: 1
-  m_Sources:
-  - sourceTransform: {fileID: 0}
-    weight: 1
+  m_Sources: []
+--- !u!114 &78452901875384946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017825470878269283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 828ec05aeb59d104092e7b4f7c195e77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1017825472162267676
 GameObject:
   m_ObjectHideFlags: 0
