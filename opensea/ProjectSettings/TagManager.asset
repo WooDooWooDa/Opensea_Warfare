@@ -40,14 +40,14 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: WorldBG
+    uniqueID: 1300286313
+    locked: 0
   - name: Minimap
     uniqueID: 443717653
     locked: 0
   - name: Ocean
     uniqueID: 1509487619
-    locked: 0
-  - name: OceanUI
-    uniqueID: 1922941545
     locked: 0
   - name: Default
     uniqueID: 0
@@ -57,6 +57,9 @@ TagManager:
     locked: 0
   - name: UpperMain
     uniqueID: 1010244769
+    locked: 0
+  - name: OceanUI
+    uniqueID: 1922941545
     locked: 0
   - name: UI
     uniqueID: 3877206519

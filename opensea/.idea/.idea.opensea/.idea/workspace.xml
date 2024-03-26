@@ -5,45 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f830f0c4-ba14-467a-8842-14458945bc77" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Prefab/CombatCamera.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefab/CombatCamera.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Ally.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Ally/Ally.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Ally/Ally.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.opensea/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.opensea/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Ships/Destroyer.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Ships/Destroyer.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Ships/Stats/DestroyerStats.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Ships/Stats/DestroyerStats.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Common/IDetectable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Common/IDetectable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Common/ISender.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Common/IDamageSource.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Common/ISender.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Common/IDamageSource.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/FleetManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/FleetManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/HullPart.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/HullPart.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Concealment.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Concealment.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Engine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Engine.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Hull.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Hull.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Radar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Radar.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Ship.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Ship.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Weapons/Impact.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/Impact.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Weapons/Projectiles/Projectile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/Projectiles/Projectile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Weapons/Types/MainGun.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/Types/MainGun.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Projectiles/APTrail.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Projectiles/APTrail.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Projectiles/APTrailMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Projectiles/APTrailMat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Projectiles/NormalTrail.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Projectiles/NormalTrail.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Projectiles/NormalTrailMat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Projectiles/NormalTrailMat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/SmallTileSet/DepthWater.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/SmallTileSet/DepthWater.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/SmallTileSet/Ocean.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/SmallTileSet/Ocean.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/SmallTileSet/drjamgo_hex_16x16-1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/SmallTileSet/drjamgo_hex_16x16-1.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/SmallTileSet/drjamgo_hex_16x16-2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/SmallTileSet/drjamgo_hex_16x16-2.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/SmallTileSet/drjamgo_hex_16x16_0.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/SmallTileSet/drjamgo_hex_16x16_0.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/SmallTileSet/drjamgo_hex_16x16_1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/SmallTileSet/drjamgo_hex_16x16_1.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/SmallTileSet/drjamgo_hex_16x16_2.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/SmallTileSet/drjamgo_hex_16x16_2.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/SmallTileSet/drjamgo_hex_16x16_3.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/SmallTileSet/drjamgo_hex_16x16_3.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/SmallTileSet/drjamgo_hex_16x16_5.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/SmallTileSet/drjamgo_hex_16x16_5.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/SmallTileSet/drjamgo_hex_16x16_6.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/SmallTileSet/drjamgo_hex_16x16_6.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/SmallTileSet/drjamgo_hex_16x16_7.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/SmallTileSet/drjamgo_hex_16x16_7.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,7 +154,7 @@
       <workItem from="1710447024000" duration="5424000" />
       <workItem from="1710710454612" duration="3693000" />
       <workItem from="1710716099645" duration="19000" />
-      <workItem from="1710793932914" duration="6211000" />
+      <workItem from="1710793932914" duration="6222000" />
     </task>
     <servers />
   </component>
