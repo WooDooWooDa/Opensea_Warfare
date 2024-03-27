@@ -22,6 +22,7 @@ namespace Assets.Scripts.Ships
         public bool Alive => !m_isMarkedAsDestroyed; //Change variable name
         public ShipStats Stats => m_stats;
         public Action<IHittable, Impact> OnHit { get; set; }
+        public Func<float, Vector3, bool> OnTryDetect { get; set; }
         public Action<IDetectable, float, Vector3> OnDetected { get; set; }
         public Action<IDetectable> OnConceal { get; set; }
         public ShipTeam Team => m_team;
@@ -33,8 +34,6 @@ namespace Assets.Scripts.Ships
         private FleetManager m_fleet;
         private bool m_isSelected;
         private bool m_isMarkedAsDestroyed;
-
-        private Concealment m_shipConcealment;
 
         private void Start()
         {
@@ -51,8 +50,6 @@ namespace Assets.Scripts.Ships
             }
 
             Body = GetComponent<Rigidbody2D>();
-            m_shipConcealment = new Concealment();
-            m_shipConcealment.Initialize(this);
             RegisterModules();
         }
 
@@ -96,7 +93,7 @@ namespace Assets.Scripts.Ships
         
         public bool TryDetected(float dist, Vector2 dir)
         {
-            var detected = m_shipConcealment.TryDetected(dist, dir);
+            var detected = OnTryDetect?.Invoke(dist, dir) ?? false;
             if (detected)
             {
                 OnDetected?.Invoke(this, dist, dir);

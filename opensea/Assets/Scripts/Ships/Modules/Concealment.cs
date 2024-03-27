@@ -23,6 +23,8 @@ namespace Assets.Scripts.Ships.Modules
             m_detectableRange = attachedShip.Stats.CON_RNG;
             m_detectableTime = attachedShip.Stats.CON_TIME;
             m_shipSprites = attachedShip.GetComponentsInChildren<SpriteRenderer>().ToList();
+            
+            attachedShip.OnTryDetect += (dist, dir) => TryDetected(dist, dir);
         }
         
         public bool TryDetected(float dist, Vector2 dir)
