@@ -22,11 +22,6 @@ namespace UI
         [SerializeField] private TextMeshProUGUI m_directionText;
         
         private SteeringGear m_steeringGear;
-        
-        protected  void Start()
-        {
-            
-        }
 
         private void OnEnable()
         {
@@ -48,6 +43,7 @@ namespace UI
             m_sliderFill.rotation = Quaternion.Euler(0, 0, targetAngle);
             var diff = targetAngle - currentAngle;
             m_targetAngleSlider.value = diff;
+            m_directionText.text = "> " + Helper.GetStringDirection(currentAngle);
         }
 
         public void OnPointerDown(PointerEventData eventData)

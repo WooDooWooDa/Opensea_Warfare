@@ -23,15 +23,11 @@ namespace UI
         protected virtual void OpenPanel()
         {
             if (m_isOpen) return;
-            
-            Debug.Log("Opening Panel" + this);
         }
         
         protected virtual void ClosePanel()
         {
             if (!m_isOpen) return;
-
-            Debug.Log("Closing Panel " + this);
         }
     }
 }

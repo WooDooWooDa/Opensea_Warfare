@@ -43,10 +43,6 @@ namespace Assets.Scripts.Ships
                     m_fleet = Main.Instance.GetManager<PlayerFleet>();
                     m_fleet.RegisterShipToFleet(this);
                     break;
-                case ShipTeam.Enemy:
-                    m_fleet = FindObjectOfType<EnemyFleet>();
-                    m_fleet.RegisterShipToFleet(this);
-                    break;
             }
 
             Body = GetComponent<Rigidbody2D>();
