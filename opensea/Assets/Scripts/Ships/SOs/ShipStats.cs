@@ -12,7 +12,7 @@ namespace Assets.Scripts.Ships.SOs
         public HullType Hull;
         [Tooltip("Divide this value by 100 to obtain ship max speed")]
         public float SPD;
-        [Tooltip("Divide by 10 to obtain Maneuvrability of the ship (turning speed, etc)")]
+        [Tooltip("Maneuvrability of the ship (turning speed, etc)")]
         public float MAN;
         [Tooltip("Range in unit with 100% accuracy")]
         public float RNG;

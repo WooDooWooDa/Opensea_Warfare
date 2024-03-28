@@ -43,7 +43,7 @@ namespace UI
             
             if (m_engineModule == null) return;
 
-            m_currentSpeedPourcentage = m_engineModule.TargetPourcentageOfSpeed;
+            m_currentSpeedPourcentage = m_engineModule.TargetPercentageOfSpeed;
             ChangeSpeedButton();
         }
 

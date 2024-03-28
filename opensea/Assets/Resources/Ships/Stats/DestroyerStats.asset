@@ -16,7 +16,7 @@ MonoBehaviour:
   FP: 1001
   Hull: 0
   SPD: 40
-  MAN: 50
+  MAN: 20
   RNG: 12
   ACC: 8
   REC: 10

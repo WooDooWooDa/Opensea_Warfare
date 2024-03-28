@@ -80,12 +80,11 @@ namespace Assets.Scripts.Ships.Modules
         {
             var distanceOfShip = NextWaypointDistance;
             var distanceOfWaypointFromStartPoint = Vector3.Distance(m_nextWaypoint.Destination, m_startPointFromNextWaypoint);
-            float speedPourcentage = 0;
-            if (m_steeringGear.AngleDiff < 90 && distanceOfShip > WaypointDistanceThreshold)
+            float speedPercentage = 0;
+            if (distanceOfShip > WaypointDistanceThreshold)
             {
                 var traveled = distanceOfShip / distanceOfWaypointFromStartPoint; //percentage of travel done
-                Debug.Log("Travaled : " + traveled);
-                speedPourcentage = traveled switch //todo-P1 This really doesnt work on long distance
+                speedPercentage = traveled switch //todo-P1 This really doesnt work on long distance
                 {
                     (> 0.75f) => 1,
                     (> 0.5f) => 0.75f,
@@ -93,11 +92,9 @@ namespace Assets.Scripts.Ships.Modules
                     (> 0) => 0.25f,
                     _ => 0
                 };
-                if (m_steeringGear.AngleDiff >= 45 && speedPourcentage > 0.5f)
-                    speedPourcentage = 0.5f;
             }
 
-            m_engine.ChangeSpeed(speedPourcentage);
+            m_engine.SetTargetSpeed(speedPercentage);
         }
 
         private void RotateTowardsWaypoint()

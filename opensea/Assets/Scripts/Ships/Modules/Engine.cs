@@ -7,7 +7,7 @@ namespace Assets.Scripts.Ships.Modules
     {
         public float CurrentSpeedPercentage => m_currentSpeed / m_shipMaxSpeed;
         public float CurrentSpeed => m_currentSpeed;
-        public float TargetPourcentageOfSpeed => m_currentPourcentage;
+        public float TargetPercentageOfSpeed => m_currentPercentage;
 
         private const int AccelerationTime = 8;
         private const int DecelerationTime = 12;
