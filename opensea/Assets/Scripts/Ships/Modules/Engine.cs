@@ -15,7 +15,7 @@ namespace Assets.Scripts.Ships.Modules
         private Rigidbody2D m_shipRigidBody;
         private float m_shipMaxSpeed;
         private float m_currentMaxSpeed;
-        private float m_currentPourcentage;
+        private float m_currentPercentage;
         private float m_currentSpeed;
         private float m_currentTargetSpeed;
 
@@ -28,19 +28,25 @@ namespace Assets.Scripts.Ships.Modules
 
         public void Stop()
         {
-            m_currentPourcentage = 0;
+            m_currentPercentage = 0;
             EvaluateTargetSpeed();
-            Events.Ship.FireChangedSpeed(m_ship, m_currentPourcentage);
+            Events.Ship.FireChangedSpeed(m_ship, m_currentPercentage);
+        }
+
+        public void SetTargetSpeed(float value)
+        {
+            m_currentPercentage += 0.25f * Mathf.Sign(value);
+            m_currentPercentage = Mathf.Clamp(m_currentPercentage, -0.25f, 1);
         }
 
         public void ChangeSpeed(float value)
         {
             if (value == 0) return;
 
-            m_currentPourcentage += 0.25f * Mathf.Sign(value);
-            m_currentPourcentage = Mathf.Clamp(m_currentPourcentage, -0.25f, 1);
+            m_currentPercentage += 0.25f * Mathf.Sign(value);
+            m_currentPercentage = Mathf.Clamp(m_currentPercentage, -0.25f, 1);
             EvaluateTargetSpeed();
-            Events.Ship.FireChangedSpeed(m_ship, m_currentPourcentage);
+            Events.Ship.FireChangedSpeed(m_ship, m_currentPercentage);
         }
 
         protected override void RegisterActions()
@@ -60,7 +66,7 @@ namespace Assets.Scripts.Ships.Modules
 
         private void EvaluateTargetSpeed()
         {
-            m_currentTargetSpeed = m_shipMaxSpeed * m_currentPourcentage;
+            m_currentTargetSpeed = m_shipMaxSpeed * m_currentPercentage;
             m_currentTargetSpeed = ClampSpeed();
         }
 
