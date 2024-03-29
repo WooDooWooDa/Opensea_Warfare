@@ -19,9 +19,9 @@ namespace Assets.Scripts.Managers
 
         public void RegisterShipToFleet(Ship ship)
         {
-            if (m_ships.Contains(ship)) return;
+            if (!m_ships.Contains(ship))
+                m_ships.Add(ship);
             
-            m_ships.Add(ship);
             ship.OnShipDestroyed += FleetShipDestroyed;
             InternalRegister(ship);
         }
