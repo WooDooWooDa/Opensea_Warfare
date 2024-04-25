@@ -9,6 +9,9 @@ namespace Assets.Scripts.Managers
     {
         public Action<Ship> OnShipSelectedChanged;
 
+        public Ship FlagShip => m_ships[0]; //Change with OSW-54
+        
+        public Ship SelectedShip => m_selectedShip;
         private Ship m_selectedShip;
 
         private void Start()

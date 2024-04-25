@@ -6,6 +6,5 @@ namespace Assets.Scripts.Helpers
     public class GameParametersSO : ScriptableObject
     {
         
-        public bool FocusOnObjectWhenSelected = true;
     }
 }

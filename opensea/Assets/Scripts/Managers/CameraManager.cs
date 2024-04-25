@@ -3,7 +3,6 @@ using Assets.Scripts.Inputs;
 using Assets.Scripts.Ships;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 using UnityEngine.U2D;
 
 namespace Assets.Scripts.Managers
@@ -30,6 +29,9 @@ namespace Assets.Scripts.Managers
         private bool m_easeToTarget = false;
         private Vector3 m_target;
 
+        private bool m_followSelected;
+        private Transform m_selectedObjToFollow;
+
         private void Awake()
         {
             m_mainCamera = Camera.main;
@@ -51,6 +53,7 @@ namespace Assets.Scripts.Managers
         {
             m_inputActions.BattleMap.RightClickDrag.started += OnDrag;
             m_inputActions.BattleMap.RightClickDrag.canceled += OnDrag;
+            m_inputActions.BattleMap.ScrollWheelClick.performed += (_) => ToggleFollowSelectedShip();
 
             Events.Actions.OnSelected += OnSelected;
         }
@@ -66,13 +69,19 @@ namespace Assets.Scripts.Managers
 
         private void FixedUpdate()
         {
+            if (m_followSelected)
+            {
+                transform.position = Vector3.MoveTowards(m_mainCamera.transform.position, TargetCamPosTo(m_selectedObjToFollow.position), EvaluateCameraMovement());
+                return;
+            }
+            
             if (m_isDragging) {
                 m_diff = m_mainCamera.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - transform.position;
                 transform.position = m_origin - m_diff;
             }
 
             if (m_easeToTarget) {
-                transform.position = Vector3.MoveTowards(m_mainCamera.transform.position, m_target, m_easeTimeCruve.Evaluate(1f - (m_pixelPerfectCamera.assetsPPU / m_realMaxZoom)));
+                transform.position = Vector3.MoveTowards(m_mainCamera.transform.position, m_target, EvaluateCameraMovement());
                 if (Vector3.Distance(transform.position, m_target) <= 0.5f) m_easeToTarget = false;
             }
         }
@@ -94,11 +103,31 @@ namespace Assets.Scripts.Managers
 
         private void OnSelected(Selectable obj)
         {
-            if (!GameParameters.Instance.Value.FocusOnObjectWhenSelected) return;
-
             m_easeToTarget = true;
             m_target = obj.transform.position;
-            m_target = new Vector3(m_target.x, m_target.y, m_mainCamera.transform.position.z);
+            m_target = TargetCamPosTo(m_target);
+
+            if (m_followSelected)
+                m_selectedObjToFollow = obj.transform;
+        }
+
+        private void ToggleFollowSelectedShip()
+        {
+            m_followSelected = !m_followSelected;
+
+            if (!m_followSelected) return;
+            
+            m_selectedObjToFollow = Main.Instance.GetManager<PlayerFleet>().SelectedShip.transform;
+        }
+
+        private Vector3 TargetCamPosTo(Vector3 objPos)
+        {
+            return new Vector3(objPos.x, objPos.y, m_mainCamera.transform.position.z);
+        }
+
+        private float EvaluateCameraMovement()
+        {
+            return m_easeTimeCruve.Evaluate(1f - (m_pixelPerfectCamera.assetsPPU / m_realMaxZoom));
         }
     }
 }
