@@ -50,15 +50,6 @@ namespace Assets.Scripts.Ships.Modules
             Events.Ship.FireIsAiming(m_ship, false);
         }
 
-        public override void ShipSelect()
-        {
-            base.ShipSelect();
-            m_isAiming = true;
-            m_projectedReticule.gameObject.SetActive(true);
-            m_targetReticule.gameObject.SetActive(true);
-            Events.Ship.FireIsAiming(m_ship, true);
-        }
-
         protected override void RegisterActions()
         {
             m_inputActions.BattleMap.SpaceBar.performed += ctx => ToggleAiming();
