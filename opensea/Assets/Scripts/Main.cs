@@ -47,6 +47,7 @@ public class Main : MonoBehaviour
         m_saveManager = gameObject.AddComponent<SaveManager>();
         //Game related managers
         m_managers.Add(gameObject.GetComponentInChildren<PlayerFleet>());
+        m_managers.Add(FindObjectOfType<ScreenManager>());
 
         m_saveManager.Initialize();
         foreach (Manager manager in m_managers) {

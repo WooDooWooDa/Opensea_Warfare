@@ -5,7 +5,7 @@ namespace Assets.Scripts.Managers
     public abstract class Manager : MonoBehaviour
     {
         public bool IsInitialize = false;
-        protected ScriptableObject ManagerConfig;
+        public ScriptableObject ManagerConfig;
 
         public virtual void FirstInitialization() { }
 
