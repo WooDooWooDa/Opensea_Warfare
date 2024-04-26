@@ -45,9 +45,9 @@ namespace Assets.Scripts.Managers
 
             foreach (ScreenLayer layer in Enum.GetValues(typeof(ScreenLayer))) {
                 if (layer == ScreenLayer.Base) continue;
-                var newLayer = new GameObject(layer.ToString()).transform;
-                newLayer.parent = transform;
-                m_screenLayers.Add(layer, newLayer);
+                var newLayer = Instantiate(m_config.Layer, transform);
+                newLayer.name = layer.ToString();
+                m_screenLayers.Add(layer, newLayer.transform);
             }
             
             IsInitialize = true;

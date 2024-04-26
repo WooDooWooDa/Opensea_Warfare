@@ -4,5 +4,6 @@ namespace UI
     {
         Popup,
         DialogueBox,
+        Battle
     }
 }

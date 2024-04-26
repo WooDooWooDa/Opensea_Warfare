@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6c2bc6f1964be9b2549594796cfd17, type: 3}
   m_Name: Config
   m_EditorClassIdentifier: 
-  Screens: []
+  Layer: {fileID: 2433895075473412360, guid: 099c3dd2a8220584991a0f133348b04b, type: 3}
+  Screens:
+  - {fileID: 11400000, guid: 2ef430e7c1106e14b8561e4082135cb5, type: 2}

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Managers
 {
-    public class UIManager : Manager
+    public class BattleScreen : BaseScreen
     {
         [SerializeField] private List<ShipPanel> m_shipPanels = new();
         
@@ -15,8 +15,6 @@ namespace Assets.Scripts.Managers
         
         private void Start()
         {
-            Main.Instance.RegisterManager(this);
-
             m_playerFleet = Main.Instance.GetManager<PlayerFleet>();
             m_playerFleet.OnShipSelectedChanged += ShipChanged;
         }

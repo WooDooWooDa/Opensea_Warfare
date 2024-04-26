@@ -1,6 +1,5 @@
 using Assets.Scripts.Managers;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace UI
 {

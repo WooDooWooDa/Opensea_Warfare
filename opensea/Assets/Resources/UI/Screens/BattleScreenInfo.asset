@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 57e7707e366f4dc996372ce8fd7a641d, type: 3}
-  m_Name: NewScreenInformations
+  m_Name: BattleScreenInfo
   m_EditorClassIdentifier: 
-  ScreenType: 0
-  ScreenLayer: 0
-  StaticScreen: 0
+  ScreenName: 2
+  ScreenLayer: 1
+  Screen: {fileID: 5214910915674897751, guid: 049877648f38bbf4ab723607efa0add7, type: 3}
+  StaticScreen: 1
