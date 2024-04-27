@@ -39,7 +39,7 @@ namespace Assets.Scripts.Ships
         {
             switch (Team)
             {
-                case ShipTeam.Fleet:
+                case ShipTeam.Player:
                     m_fleet = Main.Instance.GetManager<PlayerFleet>();
                     m_fleet.RegisterShipToFleet(this);
                     break;

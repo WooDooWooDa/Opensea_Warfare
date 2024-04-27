@@ -85,6 +85,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "ScrollWheelClick",
+                    "type": "Button",
+                    "id": "50670dcd-401a-47d8-968a-2b1dcb0d97d2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -415,6 +424,17 @@
                     "processors": "Scale",
                     "groups": "",
                     "action": "SelectShip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "131d2dd8-8ddf-43e2-b85d-37629e0689df",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ScrollWheelClick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

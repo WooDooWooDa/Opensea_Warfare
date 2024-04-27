@@ -107,6 +107,15 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ScrollWheelClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""50670dcd-401a-47d8-968a-2b1dcb0d97d2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -439,6 +448,17 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
                     ""action"": ""SelectShip"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""131d2dd8-8ddf-43e2-b85d-37629e0689df"",
+                    ""path"": ""<Mouse>/middleButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ScrollWheelClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -462,6 +482,7 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
         m_BattleMap_SpaceBar = m_BattleMap.FindAction("SpaceBar", throwIfNotFound: true);
         m_BattleMap_RightTap = m_BattleMap.FindAction("RightTap", throwIfNotFound: true);
         m_BattleMap_SelectShip = m_BattleMap.FindAction("SelectShip", throwIfNotFound: true);
+        m_BattleMap_ScrollWheelClick = m_BattleMap.FindAction("ScrollWheelClick", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -530,6 +551,7 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_BattleMap_SpaceBar;
     private readonly InputAction m_BattleMap_RightTap;
     private readonly InputAction m_BattleMap_SelectShip;
+    private readonly InputAction m_BattleMap_ScrollWheelClick;
     public struct BattleMapActions
     {
         private @GameInputs m_Wrapper;
@@ -543,6 +565,7 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
         public InputAction @SpaceBar => m_Wrapper.m_BattleMap_SpaceBar;
         public InputAction @RightTap => m_Wrapper.m_BattleMap_RightTap;
         public InputAction @SelectShip => m_Wrapper.m_BattleMap_SelectShip;
+        public InputAction @ScrollWheelClick => m_Wrapper.m_BattleMap_ScrollWheelClick;
         public InputActionMap Get() { return m_Wrapper.m_BattleMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -579,6 +602,9 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
                 @SelectShip.started -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelectShip;
                 @SelectShip.performed -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelectShip;
                 @SelectShip.canceled -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnSelectShip;
+                @ScrollWheelClick.started -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnScrollWheelClick;
+                @ScrollWheelClick.performed -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnScrollWheelClick;
+                @ScrollWheelClick.canceled -= m_Wrapper.m_BattleMapActionsCallbackInterface.OnScrollWheelClick;
             }
             m_Wrapper.m_BattleMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -610,6 +636,9 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
                 @SelectShip.started += instance.OnSelectShip;
                 @SelectShip.performed += instance.OnSelectShip;
                 @SelectShip.canceled += instance.OnSelectShip;
+                @ScrollWheelClick.started += instance.OnScrollWheelClick;
+                @ScrollWheelClick.performed += instance.OnScrollWheelClick;
+                @ScrollWheelClick.canceled += instance.OnScrollWheelClick;
             }
         }
     }
@@ -634,5 +663,6 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
         void OnSpaceBar(InputAction.CallbackContext context);
         void OnRightTap(InputAction.CallbackContext context);
         void OnSelectShip(InputAction.CallbackContext context);
+        void OnScrollWheelClick(InputAction.CallbackContext context);
     }
 }

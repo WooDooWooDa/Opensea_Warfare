@@ -2,7 +2,7 @@ namespace Assets.Scripts.Ships
 {
     public enum ShipTeam
     {
-        Fleet,
+        Player,
         Neutral,
         Enemy,
         Ally

@@ -1,12 +1,12 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Assets.Scripts.Missions.Objectives
 {
     public enum ObjectiveType
     {
         Main,
-        Secondary
+        Secondary,
+        Tutorial
     }
     
     [CreateAssetMenu(fileName = "NewObjectiveInformation", menuName = "SO/Objective", order = 0)]

@@ -65,7 +65,7 @@ namespace Assets.Scripts.Missions
         private IEnumerator MissionIsStarting()
         {
             //Wait X amount of time before starting
-            //
+            //or show a dialog
             yield return new WaitForSeconds(3);
             StartMission();
         }

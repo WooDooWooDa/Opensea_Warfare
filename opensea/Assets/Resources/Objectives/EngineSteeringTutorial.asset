@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0f6463c049d4c79bf2e457079941d37, type: 3}
+  m_Name: EngineSteeringTutorial
+  m_EditorClassIdentifier: 
+  Number: 0
+  Name: Learn to maneuver
+  Description: 
+  Type: 2
+  EndOfMissionCompletionCheck: 0
+  ObjectiveObj: {fileID: 6814205197957820819, guid: 573ea70d3e35030449e7ae2d0652d0ab, type: 3}
+  nbSteps: 5
+  steps:
+  - Name: Full Speed ahead!
+    Description: Reach the max speed with your ship
+  - Name: Out of sight
+    Description: Your ship is nearly out of sight, lock the camera to follow your
+      ship
+  - Name: Full Reverse!
+    Description: Watch out! Full reverse to avoid beaching on the island
+  - Name: Avoid the Island
+    Description: Now make your way around this island
+  - Name: Maneuver Through the Islands
+    Description: Reach the rendez-vous point not far ahead
