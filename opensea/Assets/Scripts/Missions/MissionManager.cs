@@ -1,15 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Assets.Scripts.Managers;
 using Assets.Scripts.Missions.Objectives;
+using UI;
 using UnityEngine;
 
 namespace Assets.Scripts.Missions
 {
     public class MissionManager : Manager
     {
+        public string MissionSigil => m_informations.Sigil;
+
         [SerializeField] private MissionInformations m_informations;
 
         public Action OnMissionIsEnding;
@@ -67,22 +69,25 @@ namespace Assets.Scripts.Missions
             //Wait X amount of time before starting
             //or show a dialog
             yield return new WaitForSeconds(3);
+            debugger.Log("Mission has started!");
             StartMission();
         }
         
         private void StartMission()
         {
-            m_winConditionObjective.ActivateObjective();
-            m_secondaryObjectives.ForEach(o => o.ActivateObjective());
             m_playerFleet.FocusOn(1);
             Main.Instance.BattleMapInputs.Enable();
-            debugger.Log("Mission has started!");
+            Main.Instance.GetManager<ScreenManager>().OpenScreen(ScreenName.Battle);
+
+            m_winConditionObjective.ActivateObjective();
+            m_secondaryObjectives.ForEach(o => o.ActivateObjective());
         }
         
         private IEnumerator MissionIsEnding()
         {
-            Main.Instance.BattleMapInputs.Disable();
             m_playerFleet.FocusOn(null);
+            Main.Instance.BattleMapInputs.Disable();
+            Main.Instance.GetManager<ScreenManager>().CloseScreen(ScreenName.Battle);
 
             OnMissionIsEnding?.Invoke();
             yield return new WaitForSeconds(1);

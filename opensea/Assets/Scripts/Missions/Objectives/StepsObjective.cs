@@ -15,12 +15,17 @@ namespace Assets.Scripts.Missions.Objectives
         {
             m_currentStepIndex = 0;
             InternalNextStep();
-            m_currentStep.StartStep();
             
             base.Initialize(manager, info);
 
             m_stepInformations = (StepsObjectiveInformations)info;
             m_currentObjectiveStep = m_stepInformations.steps[0];
+        }
+
+        public override void ActivateObjective()
+        {
+            base.ActivateObjective();
+            m_currentStep.StartStep();
         }
 
         public void CompleteStep()

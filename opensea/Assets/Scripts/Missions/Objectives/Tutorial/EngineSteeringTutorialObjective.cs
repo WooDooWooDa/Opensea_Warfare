@@ -3,6 +3,8 @@ using System.Linq;
 using Assets.Scripts.Managers;
 using Assets.Scripts.Missions.Objectives.ObjectiveComponents;
 using Assets.Scripts.Ships.Modules;
+using UI;
+using UI.Screens;
 using UnityEngine;
 
 namespace Assets.Scripts.Missions.Objectives.Tutorial
@@ -12,6 +14,8 @@ namespace Assets.Scripts.Missions.Objectives.Tutorial
         [SerializeField] public ObjectiveWaypoint m_fullSpeedWaypoint;
         [SerializeField] public ObjectiveWaypoint[] m_avoidSideWaypoint;
         [SerializeField] public ObjectiveWaypoint m_endWaypoint;
+        [Header("Dialogues")]
+        [SerializeField] private DialogueInformations m_fullSpeedDialogue;
 
         protected override void InternalNextStep()
         {
@@ -36,6 +40,14 @@ namespace Assets.Scripts.Missions.Objectives.Tutorial
                 m_shipEngine = fleet.FlagShip.GetModuleOfType<Engine>();
                 m_waypoint = objectiveWaypoint;
                 m_waypoint.Activate();
+            }
+
+            public override void StartStep()
+            {
+                Main.Instance.GetManager<ScreenManager>().OpenScreen(ScreenName.DialogueBox, new DialogueScreenOpenInfo()
+                {
+                    Dialogue = Resources.Load<DialogueInformations>("Dialogues/T1/Step1")
+                });
             }
 
             public override bool VerifyCondition()

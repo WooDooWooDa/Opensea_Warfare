@@ -15,7 +15,7 @@ namespace UI
         public Action OnBackAction;
     }
     
-    public class BaseScreen : MonoBehaviour
+    public abstract class BaseScreen : MonoBehaviour
     {
         [Header("Base")]
         [SerializeField] private Button m_backButton;
@@ -38,10 +38,10 @@ namespace UI
                 return;
             }
 
-            gameObject.SetActive(show); //disable the whole screen
+            gameObject.SetActive(show); //should disable the whole screen
         }
 
-        protected virtual void SoftEnable(bool show) //partially deactivate components
+        protected virtual void SoftEnable(bool show) //should partially deactivate components
         {
 
         }

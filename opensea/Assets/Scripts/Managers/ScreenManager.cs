@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Assets.Scripts.Helpers;
 using UI;
 using UnityEngine;
 
@@ -26,7 +25,7 @@ namespace Assets.Scripts.Managers
     {
         private Dictionary<ScreenLayer, Transform> m_screenLayers = new Dictionary<ScreenLayer, Transform>();
         private readonly Dictionary<ScreenName, ScreenInformations> m_screensInformations = new Dictionary<ScreenName, ScreenInformations>();
-        private Stack<ScreenStack> m_screenStack = new Stack<ScreenStack>();
+        private List<ScreenStack> m_screenStack = new List<ScreenStack>();
         
         private ScreenConfig m_config;
 
@@ -64,7 +63,7 @@ namespace Assets.Scripts.Managers
                 var screen = Instantiate(screenInfo.Screen, transform);
 
                 if (m_screenStack.Count > 0) {
-                    var lastScreen = m_screenStack.Peek();
+                    var lastScreen = m_screenStack[m_screenStack.Count - 1];
                     if (lastScreen.Layer != ScreenLayer.Base) {
                         lastScreen.Screen.Enable(false);
                     }
@@ -78,7 +77,7 @@ namespace Assets.Scripts.Managers
                 openInfo.Informations = screenInfo;
 
                 screen.Open(openInfo);
-                m_screenStack.Push(new ScreenStack
+                m_screenStack.Add(new ScreenStack
                 {
                     Name = screenName,
                     Layer = screenInfo.ScreenLayer,
@@ -86,7 +85,7 @@ namespace Assets.Scripts.Managers
                 });
 
                 //Events.Screen.FireScreenOpened(screenType);
-                debugger.Log("Opening screen : " + screen.name);
+                debugger.Log("Opening screen : " + screenName);
                 return screen;
             } else {
                 debugger.LogWarning("Trying to open a screen type not yet added to the config");
@@ -96,20 +95,31 @@ namespace Assets.Scripts.Managers
         
         public void CloseScreen(ScreenName screenName)
         {
-            debugger.LogWarning("No previous screen, stack is empty.");
+            if (!IsOpen(screenName, out ScreenStack screenToClose)) {
+                debugger.LogWarning("No screen with this name to close.");
+                return;
+            }
+
+            screenToClose.Screen.Close();
+            Destroy(screenToClose.Screen.gameObject);
+            m_screenStack.RemoveAt(m_screenStack.Count - 1);
+            debugger.Log("Closing screen : " + screenName);
+
+            if (m_screenStack.Count > 0) {
+                var lastScreen = m_screenStack[m_screenStack.Count - 1];
+                if (lastScreen.Layer != ScreenLayer.Base) {
+                    lastScreen.Screen.Enable(true);
+                }
+            }
         }
 
         public void Back()
         {
-            if (m_screenStack.Peek().Layer == ScreenLayer.Base) {
+            if (m_screenStack[m_screenStack.Count - 1].Layer == ScreenLayer.Base) {
                 debugger.LogWarning("No previous screen, stack is empty.");
                 return;
             }
 
-            var screenStack = m_screenStack.Pop();
-            screenStack.Screen.Close();
-
-            debugger.LogWarning("No previous screen, stack is empty.");
         }
 
         private bool IsOpen(ScreenName screenName, out ScreenStack screen)

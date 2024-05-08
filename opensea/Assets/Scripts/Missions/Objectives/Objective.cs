@@ -32,7 +32,7 @@ namespace Assets.Scripts.Missions.Objectives
             }
         }
 
-        public void ActivateObjective()
+        public virtual void ActivateObjective()
         {
             if (State is not ObjectiveState.Inactive) return;
             

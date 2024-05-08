@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd6c2bc6f1964be9b2549594796cfd17, type: 3}
-  m_Name: Config
+  m_Script: {fileID: 11500000, guid: 57e7707e366f4dc996372ce8fd7a641d, type: 3}
+  m_Name: BattleScreenInfo
   m_EditorClassIdentifier: 
-  Layer: {fileID: 2433895075473412360, guid: 099c3dd2a8220584991a0f133348b04b, type: 3}
-  Screens:
-  - {fileID: 11400000, guid: 2ef430e7c1106e14b8561e4082135cb5, type: 2}
+  ScreenName: 2
+  ScreenLayer: 1
+  Screen: {fileID: 5214910915674897751, guid: 049877648f38bbf4ab723607efa0add7, type: 3}
+  StaticScreen: 0
