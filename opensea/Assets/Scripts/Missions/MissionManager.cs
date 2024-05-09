@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Assets.Scripts.Managers;
 using Assets.Scripts.Missions.Objectives;
 using UI;
+using UI.Screens;
 using UnityEngine;
 
 namespace Assets.Scripts.Missions
@@ -22,6 +23,7 @@ namespace Assets.Scripts.Missions
         private List<Objective> m_secondaryObjectives = new List<Objective>();
         private PlayerFleet m_playerFleet;
         private EnemyFleet m_enemyFleet;
+        private bool m_missionStarted;
 
         private void Start()
         {
@@ -56,7 +58,7 @@ namespace Assets.Scripts.Missions
         private IEnumerator MissionLoop()
         {
             yield return StartCoroutine(MissionIsStarting());
-            while (m_winConditionObjective.State is ObjectiveState.Active) //wait for main win condition
+            while (!m_missionStarted || m_winConditionObjective.State is ObjectiveState.Active) //wait for main win condition
             {
                 yield return null;
             }
@@ -66,11 +68,21 @@ namespace Assets.Scripts.Missions
 
         private IEnumerator MissionIsStarting()
         {
-            //Wait X amount of time before starting
-            //or show a dialog
-            yield return new WaitForSeconds(3);
-            debugger.Log("Mission has started!");
-            StartMission();
+            if (m_informations.StartingMissionDialogue is not null)
+            {
+                /*Main.Instance.GetManager<ScreenManager>().OpenScreen(ScreenName.DialogueBox,
+                    new DialogueScreenOpenInfo()
+                    {
+                        Dialogue = m_informations.StartingMissionDialogue,
+                        EndOfDialogueCallbacks = new Action[] { StartMission }
+                    });*/
+                Main.Instance.GetManager<DialogueManager>().QueueDialogue(m_informations.StartingMissionDialogue, StartMission);
+            }
+            else
+            {
+                yield return new WaitForSeconds(m_informations.StartingTime);
+                StartMission();
+            }
         }
         
         private void StartMission()
@@ -81,6 +93,7 @@ namespace Assets.Scripts.Missions
 
             m_winConditionObjective.ActivateObjective();
             m_secondaryObjectives.ForEach(o => o.ActivateObjective());
+            m_missionStarted = true;
         }
         
         private IEnumerator MissionIsEnding()

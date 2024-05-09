@@ -44,10 +44,11 @@ namespace Assets.Scripts.Missions.Objectives.Tutorial
 
             public override void StartStep()
             {
-                Main.Instance.GetManager<ScreenManager>().OpenScreen(ScreenName.DialogueBox, new DialogueScreenOpenInfo()
+                /*Main.Instance.GetManager<ScreenManager>().OpenScreen(ScreenName.DialogueBox, new DialogueScreenOpenInfo()
                 {
                     Dialogue = Resources.Load<DialogueInformations>("Dialogues/T1/Step1")
-                });
+                });*/
+                Main.Instance.GetManager<DialogueManager>().QueueDialogue(Resources.Load<DialogueInformations>("Dialogues/T1/Step1"));
             }
 
             public override bool VerifyCondition()

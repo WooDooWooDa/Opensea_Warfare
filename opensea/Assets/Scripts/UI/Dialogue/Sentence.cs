@@ -6,6 +6,7 @@ namespace UI
     public class Sentence : ScriptableObject
     {
         public Avatar Avatar;
+        public AvatarExpression Expression;
         [TextArea] public string Text;
 
         public DialogueAction Action;

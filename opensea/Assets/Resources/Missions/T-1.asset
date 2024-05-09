@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a7f303e516846759915c9f827fd9401, type: 3}
   m_Name: T-1
   m_EditorClassIdentifier: 
-  Number: 1
+  Sigil: 
   Name: Tutorial 1
   Description: Learn how to maneuver your ship
   SingleGo: 1
@@ -22,3 +22,5 @@ MonoBehaviour:
   MainObjective: {fileID: 11400000, guid: 159bc4149b6c2334da6a321991b5efe3, type: 2}
   SecondaryObjectives: []
   EnemyShipTypesPresentInMission: []
+  StartingMissionDialogue: {fileID: 11400000, guid: da36f465dd5b6de4cb8faff5f24dfdfa, type: 2}
+  StartingTime: 0

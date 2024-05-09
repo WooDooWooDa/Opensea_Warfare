@@ -9,8 +9,6 @@ namespace UI
     {
         public DialoguePosition Position;
 
-        public bool AutoPassToNext;
-        public float TimeBeforeNext;
         public Sentence FirstSentence;
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,6 +13,7 @@ namespace UI.Screens
     public class DialogueScreenOpenInfo: OpenInfo
     {
         public DialogueInformations Dialogue;
+        public Action[] EndOfDialogueCallbacks = new Action[] { };
     }
     
     public class DialogueScreen : BaseScreen
@@ -20,6 +22,7 @@ namespace UI.Screens
         [SerializeField] private DialogueWidget m_bottomWidget;
         [SerializeField] private DialogueWidget m_cornerWidget;
 
+        private DialogueInformations m_currentDialogue;
         private DialogueWidget m_currentDialogueWidget;
         private float m_goNextSpamBuffer;
 
@@ -29,10 +32,12 @@ namespace UI.Screens
 
             var info = (DialogueScreenOpenInfo)m_openInfo;
 
+            Time.timeScale = 1;
+            
+            m_currentDialogue = info.Dialogue;
             if (info.Dialogue.Position == DialoguePosition.Bottom) {
                 m_currentDialogueWidget = m_bottomWidget;
                 Time.timeScale = 0;
-
                 //todo deactivate ships inputs
             } else {
                 m_currentDialogueWidget = m_cornerWidget;
@@ -40,7 +45,7 @@ namespace UI.Screens
             m_currentDialogueWidget.gameObject.SetActive(true);
             m_currentDialogueWidget.SetData(new DialogueWidgetData() { 
                 DialogueInformations = info.Dialogue,
-                EndOfDialogueCallback = OnClose
+                EndOfDialogueCallbacks = info.EndOfDialogueCallbacks
             });
 
             return this;
@@ -51,16 +56,19 @@ namespace UI.Screens
             var info = (DialogueScreenOpenInfo)m_openInfo;
             if (info.Dialogue.Position == DialoguePosition.Bottom) {
                 Time.timeScale = 1;
-
                 //todo reactivate inputs
             }
-            m_currentDialogueWidget.gameObject.SetActive(false);
+            
+            m_bottomWidget.gameObject.SetActive(false);
+            m_cornerWidget.gameObject.SetActive(false);
 
             base.Close();
         }
 
         private void Update()
         {
+            if (m_currentDialogue.Position is not DialoguePosition.Bottom) return;
+            
             m_goNextSpamBuffer += Time.unscaledDeltaTime;
             if (m_goNextSpamBuffer >= 1f && (Keyboard.current.anyKey.isPressed || Mouse.current.leftButton.isPressed || Mouse.current.rightButton.isPressed)) {
                 m_currentDialogueWidget.GoNext();

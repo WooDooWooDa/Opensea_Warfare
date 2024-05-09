@@ -29,5 +29,6 @@ namespace Assets.Scripts.Missions
         public List<ShipInformation> EnemyShipTypesPresentInMission;
         private List<MapHazardInformation> MapHazardsPresentInMission;
         public DialogueInformations StartingMissionDialogue;
+        public float StartingTime;
     }
 }

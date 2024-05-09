@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 107d7bfd955a4314bd80085fdfbb7fc4, type: 3}
-  m_Name: Step1-TryFullSpeed
+  m_Name: Welcome-Goal
   m_EditorClassIdentifier: 
   Avatar: {fileID: 11400000, guid: b3136cd512ec7c14c8e82d17632479c7, type: 2}
   Expression: 0
-  Text: First! Let's fire up those engines. Crank your speed to the max using [W
-    or UP] and reach your ship's max speed.
+  Text: This here mission will help your learn how to maneuver your ship throught
+    the opensea.
   Action: {fileID: 0}
-  NextSentence: {fileID: 11400000, guid: 05a000b722dfcd543830dde9719f0013, type: 2}
+  NextSentence: {fileID: 0}

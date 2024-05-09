@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Assets.Scripts.Managers;
 using UnityEngine;
 using UnityEngine.UI;
@@ -63,7 +64,7 @@ namespace UI
             }
         }
         
-        protected void OnBack()
+        private void OnBack()
         {
             if (!m_openInfo.HasBack) return;
             
@@ -71,9 +72,9 @@ namespace UI
             Main.Instance.GetManager<ScreenManager>().Back();
         }
 
-        protected void OnClose()
+        private void OnClose()
         {
-            Main.Instance.GetManager<ScreenManager>().CloseScreen(m_informations.ScreenName);
+            Main.Instance.GetManager<ScreenManager>().CloseScreen(this);
         }
     }
 }

@@ -63,7 +63,7 @@ namespace Assets.Scripts.Managers
                 var screen = Instantiate(screenInfo.Screen, transform);
 
                 if (m_screenStack.Count > 0) {
-                    var lastScreen = m_screenStack[m_screenStack.Count - 1];
+                    var lastScreen = m_screenStack[^1];
                     if (lastScreen.Layer != ScreenLayer.Base) {
                         lastScreen.Screen.Enable(false);
                     }
@@ -95,27 +95,35 @@ namespace Assets.Scripts.Managers
         
         public void CloseScreen(ScreenName screenName)
         {
-            if (!IsOpen(screenName, out ScreenStack screenToClose)) {
+            if (!IsOpen(screenName, out var screenToClose)) {
                 debugger.LogWarning("No screen with this name to close.");
                 return;
             }
 
             screenToClose.Screen.Close();
+            m_screenStack.Remove(m_screenStack.Find(x => x.Name == screenName));
             Destroy(screenToClose.Screen.gameObject);
-            m_screenStack.RemoveAt(m_screenStack.Count - 1);
             debugger.Log("Closing screen : " + screenName);
 
             if (m_screenStack.Count > 0) {
-                var lastScreen = m_screenStack[m_screenStack.Count - 1];
+                var lastScreen = m_screenStack[^1];
                 if (lastScreen.Layer != ScreenLayer.Base) {
                     lastScreen.Screen.Enable(true);
                 }
             }
         }
 
+        public void CloseScreen(BaseScreen screenToClose)
+        {
+            screenToClose.Close();
+            m_screenStack.Remove(m_screenStack.Find(x => x.Screen == screenToClose));
+            Destroy(screenToClose.gameObject);
+            debugger.Log("Closing screen : " + screenToClose);
+        }
+
         public void Back()
         {
-            if (m_screenStack[m_screenStack.Count - 1].Layer == ScreenLayer.Base) {
+            if (m_screenStack[^1].Layer == ScreenLayer.Base) {
                 debugger.LogWarning("No previous screen, stack is empty.");
                 return;
             }
