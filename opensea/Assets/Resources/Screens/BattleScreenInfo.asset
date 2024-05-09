@@ -15,4 +15,4 @@ MonoBehaviour:
   ScreenName: 2
   ScreenLayer: 1
   Screen: {fileID: 5214910915674897751, guid: 049877648f38bbf4ab723607efa0add7, type: 3}
-  StaticScreen: 0
+  StaticScreen: 1

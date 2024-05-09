@@ -2099,6 +2099,7 @@ GameObject:
   - component: {fileID: 1339758253}
   - component: {fileID: 1339758252}
   - component: {fileID: 1339758251}
+  - component: {fileID: 1339758255}
   m_Layer: 11
   m_Name: Obstacle
   m_TagString: Untagged
@@ -3130,6 +3131,27 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!50 &1339758255
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339758249}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1483211752
 GameObject:
   m_ObjectHideFlags: 0
@@ -14437,7 +14459,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2084928036}
-  m_BodyType: 1
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
