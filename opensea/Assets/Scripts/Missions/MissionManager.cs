@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Assets.Scripts.Managers;
 using Assets.Scripts.Missions.Objectives;
 using UI;
-using UI.Screens;
 using UnityEngine;
 
 namespace Assets.Scripts.Missions
@@ -63,7 +62,6 @@ namespace Assets.Scripts.Missions
                 yield return null;
             }
             yield return StartCoroutine(MissionIsEnding());
-            ReturnToPort();
         }
 
         private IEnumerator MissionIsStarting()
@@ -76,6 +74,7 @@ namespace Assets.Scripts.Missions
                         Dialogue = m_informations.StartingMissionDialogue,
                         EndOfDialogueCallbacks = new Action[] { StartMission }
                     });*/
+                Time.timeScale = 0;
                 Main.Instance.GetManager<DialogueManager>().QueueDialogue(m_informations.StartingMissionDialogue, StartMission);
             }
             else
@@ -87,6 +86,7 @@ namespace Assets.Scripts.Missions
         
         private void StartMission()
         {
+            Time.timeScale = 1;
             m_playerFleet.FocusOn(1);
             Main.Instance.BattleMapInputs.Enable();
             Main.Instance.GetManager<ScreenManager>().OpenScreen(ScreenName.Battle);
@@ -98,6 +98,7 @@ namespace Assets.Scripts.Missions
         
         private IEnumerator MissionIsEnding()
         {
+            Time.timeScale = 0;
             m_playerFleet.FocusOn(null);
             Main.Instance.BattleMapInputs.Disable();
             Main.Instance.GetManager<ScreenManager>().CloseScreen(ScreenName.Battle);
@@ -111,10 +112,15 @@ namespace Assets.Scripts.Missions
         private void EndMission()
         {
             debugger.Log("Mission has ended...");
+            Main.Instance.GetManager<ScreenManager>().OpenScreen(ScreenName.MissionReport, new OpenInfo()
+            {
+                OnCloseScreen = ReturnToPort
+            });
         }
 
         private void ReturnToPort()
         {
+            Time.timeScale = 1;
             debugger.Log("Returning to port...");
         }
     }

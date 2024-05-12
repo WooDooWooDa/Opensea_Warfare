@@ -31,14 +31,10 @@ namespace UI.Screens
             base.Open(openInfo);
 
             var info = (DialogueScreenOpenInfo)m_openInfo;
-
-            Time.timeScale = 1;
             
             m_currentDialogue = info.Dialogue;
             if (info.Dialogue.Position == DialoguePosition.Bottom) {
                 m_currentDialogueWidget = m_bottomWidget;
-                Time.timeScale = 0;
-                //todo deactivate ships inputs
             } else {
                 m_currentDialogueWidget = m_cornerWidget;
             }
@@ -53,11 +49,7 @@ namespace UI.Screens
 
         public override void Close()
         {
-            var info = (DialogueScreenOpenInfo)m_openInfo;
-            if (info.Dialogue.Position == DialoguePosition.Bottom) {
-                Time.timeScale = 1;
-                //todo reactivate inputs
-            }
+            Time.timeScale = 1; //ensure the time is reset even if not needed after dialogue
             
             m_bottomWidget.gameObject.SetActive(false);
             m_cornerWidget.gameObject.SetActive(false);

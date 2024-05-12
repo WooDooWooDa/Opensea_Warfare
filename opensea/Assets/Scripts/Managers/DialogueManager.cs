@@ -32,6 +32,21 @@ namespace Assets.Scripts.Managers
             if (m_dialoguesQueue.Count == 1 && !m_openedScreen)
                 ShowNextDialogue();
         }
+        
+        public void StartDialogueNow(DialogueInformations dialogue, Action endOfDialogueCallBack = null)
+        {
+            m_dialoguesQueue.Clear();
+            m_dialoguesQueue.Enqueue(new DialogueQueueItem() { info = dialogue, callback = endOfDialogueCallBack});
+            if (m_dialoguesQueue.Count == 1 && !m_openedScreen)
+                ShowNextDialogue();
+        }
+
+        public void ClearDialogue()
+        {
+            m_dialoguesQueue.Clear();
+            if (m_openedScreen) 
+                m_screenManager.CloseScreen(m_openedScreen);
+        }
 
         private void ShowNextDialogue()
         {

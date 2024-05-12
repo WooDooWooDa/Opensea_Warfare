@@ -15,6 +15,7 @@ MonoBehaviour:
   Sigil: 
   Name: Tutorial 1
   Description: Learn how to maneuver your ship
+  MissionSceneName: T1-EngineSteeringTutorial
   SingleGo: 1
   MapInfo:
     XMapSize: 0

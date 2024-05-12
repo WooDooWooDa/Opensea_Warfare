@@ -17,4 +17,4 @@ MonoBehaviour:
   Text: First! Let's fire up those engines. Crank your speed to the max using [W
     or UP] and reach your ship's max speed.
   Action: {fileID: 0}
-  NextSentence: {fileID: 11400000, guid: 05a000b722dfcd543830dde9719f0013, type: 2}
+  NextSentence: {fileID: 0}

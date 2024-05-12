@@ -5,6 +5,7 @@ namespace UI
         Popup,
         DialogueBox,
         Battle,
-        LevelSelect
+        LevelSelect,
+        MissionReport
     }
 }

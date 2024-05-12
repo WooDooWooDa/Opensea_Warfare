@@ -6,6 +6,7 @@ using Assets.Scripts.Ships.Modules;
 using UI;
 using UI.Screens;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.Missions.Objectives.Tutorial
 {
@@ -61,9 +62,26 @@ namespace Assets.Scripts.Missions.Objectives.Tutorial
         {
             public StepToggleFollowShipCamera(StepsObjective obj) : base(obj) { }
             
+            public override void StartStep()
+            {
+                Time.timeScale = 0;
+                Main.Instance.GetManager<DialogueManager>().StartDialogueNow(Resources.Load<DialogueInformations>("Dialogues/T1/Step2"));
+            }
+
+            public override void EndStep()
+            {
+                Time.timeScale = 1;
+                Main.Instance.BattleMapInputs.ScrollWheelClick.performed -= CompleteStep;
+            }
+
             public override void SetupEventHandler()
             {
-                Main.Instance.BattleMapInputs.ScrollWheelClick.performed += (_) => Objective.CompleteStep();
+                Main.Instance.BattleMapInputs.ScrollWheelClick.performed += CompleteStep;
+            }
+
+            private void CompleteStep(InputAction.CallbackContext ctx)
+            {
+                Objective.CompleteStep();
             }
         }
         
@@ -76,6 +94,11 @@ namespace Assets.Scripts.Missions.Objectives.Tutorial
                 m_shipEngine = fleet.FlagShip.GetModuleOfType<Engine>();
             }
 
+            public override void StartStep()
+            {
+                Main.Instance.GetManager<DialogueManager>().StartDialogueNow(Resources.Load<DialogueInformations>("Dialogues/T1/Step3"));
+            }
+            
             public override bool VerifyCondition()
             {
                 return m_shipEngine.CurrentSpeedPercentage <= -0.15f;
@@ -89,6 +112,11 @@ namespace Assets.Scripts.Missions.Objectives.Tutorial
             {
                 m_waypoints = objectiveWaypoints.ToList();
                 m_waypoints.ForEach(w => w.Activate());
+            }
+            
+            public override void StartStep()
+            {
+                Main.Instance.GetManager<DialogueManager>().StartDialogueNow(Resources.Load<DialogueInformations>("Dialogues/T1/Step4"));
             }
             
             public override void SetupEventHandler()
@@ -110,6 +138,12 @@ namespace Assets.Scripts.Missions.Objectives.Tutorial
                 m_waypoint = objectiveWaypoint;
                 m_waypoint.Activate();
                 m_waypoint.ShowBox();
+            }
+            
+            public override void StartStep()
+            {
+                Time.timeScale = 0;
+                Main.Instance.GetManager<DialogueManager>().StartDialogueNow(Resources.Load<DialogueInformations>("Dialogues/T1/Step5"));
             }
             
             public override void SetupEventHandler()
