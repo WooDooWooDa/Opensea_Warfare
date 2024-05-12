@@ -5,9 +5,54 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f830f0c4-ba14-467a-8842-14458945bc77" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Dialogues/T1/Step2-Control.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Dialogues/T1/Step2-Control.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Dialogues/T1/Step2-WatchOut.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Dialogues/T1/Step2-WatchOut.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Dialogues/T1/Step2.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Dialogues/T1/Step2.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Dialogues/T1/Step3-Reverse-2.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Dialogues/T1/Step3-Reverse-2.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Dialogues/T1/Step3-Reverse.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Dialogues/T1/Step3-Reverse.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Dialogues/T1/Step3.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Dialogues/T1/Step3.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Dialogues/T1/Step4-Avoid-2.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Dialogues/T1/Step4-Avoid-2.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Dialogues/T1/Step4-Avoid.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Dialogues/T1/Step4-Avoid.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Dialogues/T1/Step4.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Dialogues/T1/Step4.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Dialogues/T1/Step5-Maneuver.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Dialogues/T1/Step5-Maneuver.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Dialogues/T1/Step5.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Resources/Dialogues/T1/Step5.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Env/MapBorder.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Env/MapBorder.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.opensea/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.opensea/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Font/Retro Gaming UIFont.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Font/Retro Gaming UIFont.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Font/Retro Gaming WorldFont.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Font/Retro Gaming WorldFont.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Font/Toriko SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Font/Toriko SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Font/upheavtt SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Font/upheavtt SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Imports/TextMesh Pro/Resources/TMP Settings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Imports/TextMesh Pro/Resources/TMP Settings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Objectives/EgineSteeringTutorialObjective.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Objectives/EgineSteeringTutorialObjective.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Dialogues/T1/Step1-TryFullSpeed.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Dialogues/T1/Step1-TryFullSpeed.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Dialogues/T1/Welcome-Introduction.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Dialogues/T1/Welcome-Introduction.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Missions/T-1.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Missions/T-1.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Tutorials/T1-EngineSteeringTutorial.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Tutorials/T1-EngineSteeringTutorial.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/DialogueManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/DialogueManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Missions/MissionInformations.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Missions/MissionInformations.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Missions/MissionManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Missions/MissionManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Missions/Objectives/Tutorial/EngineSteeringTutorialObjective.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Missions/Objectives/Tutorial/EngineSteeringTutorialObjective.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/HullPart.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/HullPart.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Engine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Engine.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Hull.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/Hull.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Screens/BattleScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Screens/BattleScreen.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Screens/DialogueScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Screens/DialogueScreen.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Screens/ScreenName.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Screens/ScreenName.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Weapons/Projectiles/Projectile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/Projectiles/Projectile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Hologram/Frame/UI_Hologram_Frame_Lite_01a.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Hologram/Frame/UI_Hologram_Frame_Lite_01a.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Hologram/Frame/UI_Hologram_Frame_Lite_02a.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Hologram/Frame/UI_Hologram_Frame_Lite_02a.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Hologram/Frame/UI_Hologram_Frame_Standard_01a.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Hologram/Frame/UI_Hologram_Frame_Standard_01a.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Hologram/Frame/UI_Hologram_Frame_Vertical_02a.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Hologram/Frame/UI_Hologram_Frame_Vertical_02a.png.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +69,10 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Missions/Objectives/Objective.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Ships/Types/Destroyer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/ArmamentShipPanel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Avatar.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Weapons/Projectiles/Torpedo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/523a924aba464755b1747653b71e518910fc00/20/4a6cd5db/Enumerable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/b0/57991e3a/Action`2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/86acb61e0d2b4b36bc20af11093be9a5157e00/86/8b97a159/Vector3.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/86acb61e0d2b4b36bc20af11093be9a5157e00/9b/f8ac2ffb/Quaternion.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/86acb61e0d2b4b36bc20af11093be9a5157e00/fe/0347303a/Random.cs" root0="SKIP_HIGHLIGHTING" />
@@ -88,10 +135,10 @@
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="2220">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="2220" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -155,6 +202,17 @@
       <workItem from="1710710454612" duration="3693000" />
       <workItem from="1710716099645" duration="19000" />
       <workItem from="1710793932914" duration="6222000" />
+      <workItem from="1711571405162" duration="13563000" />
+      <workItem from="1713903109241" duration="7532000" />
+      <workItem from="1714001809608" duration="8146000" />
+      <workItem from="1714058594070" duration="11226000" />
+      <workItem from="1714164820672" duration="5399000" />
+      <workItem from="1714953358018" duration="19000" />
+      <workItem from="1715036471150" duration="380000" />
+      <workItem from="1715120613303" duration="3534000" />
+      <workItem from="1715207864932" duration="5856000" />
+      <workItem from="1715289924318" duration="7175000" />
+      <workItem from="1715452220688" duration="7221000" />
     </task>
     <servers />
   </component>
