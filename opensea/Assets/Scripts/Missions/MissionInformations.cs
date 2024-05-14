@@ -22,7 +22,8 @@ namespace Assets.Scripts.Missions
         public string Sigil;
         public string Name;
         public string Description;
-        public string MissionSceneName; 
+        public string MissionSceneName;
+        public MissionInformations NextMisssion;
         public bool SingleGo; //means that the mission can only be played once after being completed ex: tutorial mission, hidden mission
         public MapInformation MapInfo;
         public ObjectiveInformation MainObjective;

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4a7f303e516846759915c9f827fd9401, type: 3}
-  m_Name: T-2
+  m_Name: T-3
   m_EditorClassIdentifier: 
   Sigil: T
-  Name: Tutorial 2
-  Description: Learn how to open fire on your foes
+  Name: Tutorial 3
+  Description: Learn how to operate your fleet
   MissionSceneName: 
-  NextMisssion: {fileID: 11400000, guid: e93d7672890766f4abb7d3ee4098bcbd, type: 2}
+  NextMisssion: {fileID: 0}
   SingleGo: 0
   MapInfo:
     XMapSize: 0

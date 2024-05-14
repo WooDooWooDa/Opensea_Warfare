@@ -4,7 +4,6 @@ using Assets.Scripts.Managers;
 using Assets.Scripts.Missions.Objectives.ObjectiveComponents;
 using Assets.Scripts.Ships.Modules;
 using UI;
-using UI.Screens;
 using UnityEngine;
 using UnityEngine.InputSystem;
 

@@ -10,6 +10,7 @@ namespace UI
     {
         public ScreenInformations Informations;
         public bool HasBack = false;
+        public bool Focus = false;
 
         //Events
         public Action OnCloseScreen;

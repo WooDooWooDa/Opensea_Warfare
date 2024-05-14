@@ -4,10 +4,18 @@ using System.Collections.Generic;
 using Assets.Scripts.Managers;
 using Assets.Scripts.Missions.Objectives;
 using UI;
+using UI.Screens;
 using UnityEngine;
 
 namespace Assets.Scripts.Missions
 {
+    public class MissionReport
+    {
+        public ObjectiveState MainObjectiveStatus;
+        public ObjectiveState[] SideObjectivesStatus;
+        public float TimeRemaining;
+    }
+    
     public class MissionManager : Manager
     {
         public string MissionSigil => m_informations.Sigil;
@@ -112,16 +120,12 @@ namespace Assets.Scripts.Missions
         private void EndMission()
         {
             debugger.Log("Mission has ended...");
-            Main.Instance.GetManager<ScreenManager>().OpenScreen(ScreenName.MissionReport, new OpenInfo()
+            //Calculate mission report
+            Main.Instance.GetManager<ScreenManager>().OpenScreen(ScreenName.MissionReport, new MissionReportOpenInfo()
             {
-                OnCloseScreen = ReturnToPort
+                MissionInformation = m_informations,
+                OnCloseScreen = () => { Time.timeScale = 1; }
             });
-        }
-
-        private void ReturnToPort()
-        {
-            Time.timeScale = 1;
-            debugger.Log("Returning to port...");
         }
     }
 }

@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a7f303e516846759915c9f827fd9401, type: 3}
   m_Name: T-1
   m_EditorClassIdentifier: 
-  Sigil: 
+  Sigil: T
   Name: Tutorial 1
   Description: Learn how to maneuver your ship
   MissionSceneName: T1-EngineSteeringTutorial
+  NextMisssion: {fileID: 11400000, guid: e1b2c860bd971de4596b55a1b2d119e6, type: 2}
   SingleGo: 1
   MapInfo:
     XMapSize: 0

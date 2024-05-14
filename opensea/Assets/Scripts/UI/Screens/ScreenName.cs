@@ -6,6 +6,7 @@ namespace UI
         DialogueBox,
         Battle,
         LevelSelect,
-        MissionReport
+        MissionReport,
+        Loading
     }
 }
