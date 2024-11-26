@@ -62,19 +62,16 @@ namespace Assets.Scripts.Managers
 
                 var screen = Instantiate(screenInfo.Screen, transform);
 
-                if (m_screenStack.Count > 0) {
-                    var lastScreen = m_screenStack[^1];
-                    if (lastScreen.Layer != ScreenLayer.Base) {
-                        lastScreen.Screen.Enable(false);
-                    }
-                }
-
                 if (m_screenLayers.TryGetValue(screenInfo.ScreenLayer, out var parentLayer)) {
                     screen.transform.SetParent(parentLayer);
                 }
 
                 openInfo ??= new OpenInfo();
                 openInfo.Informations = screenInfo;
+                
+                if (m_screenStack.Count > 0 && openInfo.Focus) {
+                    m_screenStack.ForEach(s => s.Screen.Enable(false));
+                }
 
                 screen.Open(openInfo);
                 m_screenStack.Add(new ScreenStack
@@ -105,12 +102,7 @@ namespace Assets.Scripts.Managers
             Destroy(screenToClose.Screen.gameObject);
             debugger.Log("Closing screen : " + screenName);
 
-            if (m_screenStack.Count > 0) {
-                var lastScreen = m_screenStack[^1];
-                if (lastScreen.Layer != ScreenLayer.Base) {
-                    lastScreen.Screen.Enable(true);
-                }
-            }
+            m_screenStack.ForEach(s => s.Screen.Enable(true));
         }
 
         public void CloseScreen(BaseScreen screenToClose)
@@ -119,6 +111,8 @@ namespace Assets.Scripts.Managers
             m_screenStack.Remove(m_screenStack.Find(x => x.Screen == screenToClose));
             Destroy(screenToClose.gameObject);
             debugger.Log("Closing screen : " + screenToClose);
+            
+            m_screenStack.ForEach(s => s.Screen.Enable(true));
         }
 
         public void Back()
@@ -128,6 +122,7 @@ namespace Assets.Scripts.Managers
                 return;
             }
 
+            m_screenStack.ForEach(s => s.Screen.Enable(true));
         }
 
         private bool IsOpen(ScreenName screenName, out ScreenStack screen)

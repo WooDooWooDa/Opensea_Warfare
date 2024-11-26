@@ -439,6 +439,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "GodMap",
+            "id": "1af0741a-071d-485d-995a-4e91c0854197",
+            "actions": [
+                {
+                    "name": "PassCurrentMainObjective",
+                    "type": "Button",
+                    "id": "f857cabc-8eb3-4ae6-b4bc-b1e6dcc98cd1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "40c8d483-ea93-4d25-ada4-14d46296af9b",
+                    "path": "<Keyboard>/rightCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PassCurrentMainObjective",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

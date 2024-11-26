@@ -6,7 +6,7 @@ namespace Assets.Scripts.Managers
 {
     public class MissionSceneManager : Manager
     {
-        private const string PORT_SCENE_NAME = "port_scene";
+        private const string PORT_SCENE_NAME = "PortScene";
         
         private ScreenManager m_screenManager;
 

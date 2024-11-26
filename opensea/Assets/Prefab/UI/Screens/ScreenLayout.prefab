@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 8858008828800269397}
   - component: {fileID: 8858008828800269393}
   m_Layer: 5
-  m_Name: Screen
+  m_Name: ScreenLayout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

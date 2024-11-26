@@ -2185,6 +2185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsInitialize: 0
+  ManagerConfig: {fileID: 0}
   m_ships: []
 --- !u!1001 &927657853
 PrefabInstance:
@@ -2922,7 +2923,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdcf0182ec374ab9af15bc41b82d9db3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsInitialize: 1
+  m_backButton: {fileID: 0}
+  m_closeButton: {fileID: 0}
   m_shipPanels:
   - {fileID: 453522582}
   - {fileID: 342699121}
@@ -4333,6 +4335,7 @@ GameObject:
   - component: {fileID: 1530636524}
   - component: {fileID: 1530636523}
   - component: {fileID: 1530636522}
+  - component: {fileID: 1530636525}
   m_Layer: 0
   m_Name: Screen
   m_TagString: Untagged
@@ -4396,6 +4399,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1530636525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1530636520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bba1f7b757a243c59281d2c3222e76ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsInitialize: 0
+  ManagerConfig: {fileID: 11400000, guid: 2ef430e7c1106e14b8561e4082135cb5, type: 2}
 --- !u!1 &1706446854
 GameObject:
   m_ObjectHideFlags: 0

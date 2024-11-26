@@ -461,6 +461,34 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""GodMap"",
+            ""id"": ""1af0741a-071d-485d-995a-4e91c0854197"",
+            ""actions"": [
+                {
+                    ""name"": ""PassCurrentMainObjective"",
+                    ""type"": ""Button"",
+                    ""id"": ""f857cabc-8eb3-4ae6-b4bc-b1e6dcc98cd1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""40c8d483-ea93-4d25-ada4-14d46296af9b"",
+                    ""path"": ""<Keyboard>/rightCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PassCurrentMainObjective"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -483,6 +511,9 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
         m_BattleMap_RightTap = m_BattleMap.FindAction("RightTap", throwIfNotFound: true);
         m_BattleMap_SelectShip = m_BattleMap.FindAction("SelectShip", throwIfNotFound: true);
         m_BattleMap_ScrollWheelClick = m_BattleMap.FindAction("ScrollWheelClick", throwIfNotFound: true);
+        // GodMap
+        m_GodMap = asset.FindActionMap("GodMap", throwIfNotFound: true);
+        m_GodMap_PassCurrentMainObjective = m_GodMap.FindAction("PassCurrentMainObjective", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -643,6 +674,39 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
         }
     }
     public BattleMapActions @BattleMap => new BattleMapActions(this);
+
+    // GodMap
+    private readonly InputActionMap m_GodMap;
+    private IGodMapActions m_GodMapActionsCallbackInterface;
+    private readonly InputAction m_GodMap_PassCurrentMainObjective;
+    public struct GodMapActions
+    {
+        private @GameInputs m_Wrapper;
+        public GodMapActions(@GameInputs wrapper) { m_Wrapper = wrapper; }
+        public InputAction @PassCurrentMainObjective => m_Wrapper.m_GodMap_PassCurrentMainObjective;
+        public InputActionMap Get() { return m_Wrapper.m_GodMap; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(GodMapActions set) { return set.Get(); }
+        public void SetCallbacks(IGodMapActions instance)
+        {
+            if (m_Wrapper.m_GodMapActionsCallbackInterface != null)
+            {
+                @PassCurrentMainObjective.started -= m_Wrapper.m_GodMapActionsCallbackInterface.OnPassCurrentMainObjective;
+                @PassCurrentMainObjective.performed -= m_Wrapper.m_GodMapActionsCallbackInterface.OnPassCurrentMainObjective;
+                @PassCurrentMainObjective.canceled -= m_Wrapper.m_GodMapActionsCallbackInterface.OnPassCurrentMainObjective;
+            }
+            m_Wrapper.m_GodMapActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @PassCurrentMainObjective.started += instance.OnPassCurrentMainObjective;
+                @PassCurrentMainObjective.performed += instance.OnPassCurrentMainObjective;
+                @PassCurrentMainObjective.canceled += instance.OnPassCurrentMainObjective;
+            }
+        }
+    }
+    public GodMapActions @GodMap => new GodMapActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -664,5 +728,9 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
         void OnRightTap(InputAction.CallbackContext context);
         void OnSelectShip(InputAction.CallbackContext context);
         void OnScrollWheelClick(InputAction.CallbackContext context);
+    }
+    public interface IGodMapActions
+    {
+        void OnPassCurrentMainObjective(InputAction.CallbackContext context);
     }
 }

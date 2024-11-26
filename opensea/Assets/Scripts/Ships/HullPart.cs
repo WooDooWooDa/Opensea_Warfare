@@ -40,5 +40,21 @@ namespace Assets.Scripts.Ships
             }
             return health - CurrentHp;
         }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.gameObject.layer == LayerMask.GetMask("Land"))
+            {
+                
+            }
+        }
+        
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (other.gameObject.layer == LayerMask.GetMask("Land"))
+            {
+                
+            }
+        }
     }
 }

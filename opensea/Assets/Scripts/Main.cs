@@ -20,6 +20,7 @@ public class Main : MonoBehaviour
     public bool IsInitialized => m_initialized;
     public Action OnInitialized;
     public GameInputs.BattleMapActions BattleMapInputs => m_inputActions.BattleMap;
+    public GameInputs.GodMapActions God => m_inputActions.GodMap;
     private SaveData m_data;
 
     private SaveManager m_saveManager = null;
@@ -42,6 +43,7 @@ public class Main : MonoBehaviour
             return;
 
         m_inputActions = new GameInputs();
+        m_inputActions.GodMap.Enable();
 
         //Main managers
         m_saveManager = gameObject.AddComponent<SaveManager>();

@@ -80,6 +80,7 @@ namespace Assets.Scripts.Weapons
             {
                 if (ship != m_attachedShip) return;
                 m_weaponTargetReticule.gameObject.SetActive(value);
+                if (!value) m_hasTarget = false;
             };
         }
 

@@ -67,6 +67,8 @@ namespace Assets.Scripts.Weapons.Projectiles
             //OSW-18 miss anim
         }
 
+        //todo change this to on !collision! enter
+        //todo move hit behaviour in child classes
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.gameObject.GetComponentInParent<IDamageSource>() == m_projectileData.DamageSource) return; //no return to sender

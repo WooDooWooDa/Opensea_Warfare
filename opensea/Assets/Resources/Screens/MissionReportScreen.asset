@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScreenName: 4
   ScreenLayer: 1
-  Screen: {fileID: 0}
+  Screen: {fileID: 4337852003014465707, guid: 63852d21e96096440a82842043bbf3c8, type: 3}
   StaticScreen: 0

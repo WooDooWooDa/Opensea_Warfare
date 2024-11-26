@@ -1,18 +1,21 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Managers;
 using Assets.Scripts.Missions.Objectives;
 using UI;
 using UI.Screens;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Assets.Scripts.Missions
 {
     public class MissionReport
     {
         public ObjectiveState MainObjectiveStatus;
-        public ObjectiveState[] SideObjectivesStatus;
+        public int nbSidesObj;
+        public List<ObjectiveState> SideObjectivesStatus;
         public float TimeRemaining;
     }
     
@@ -35,6 +38,9 @@ namespace Assets.Scripts.Missions
         private void Start()
         {
             Initialize(); //todo move this out of start
+            //GOD
+            Main.Instance.God.PassCurrentMainObjective.performed +=
+                (_) => m_winConditionObjective.State = ObjectiveState.Completed;
         }
 
         public override void Initialize()
@@ -95,6 +101,7 @@ namespace Assets.Scripts.Missions
         private void StartMission()
         {
             Time.timeScale = 1;
+            m_playerFleet.gameObject.SetActive(true);
             m_playerFleet.FocusOn(1);
             Main.Instance.BattleMapInputs.Enable();
             Main.Instance.GetManager<ScreenManager>().OpenScreen(ScreenName.Battle);
@@ -106,25 +113,33 @@ namespace Assets.Scripts.Missions
         
         private IEnumerator MissionIsEnding()
         {
-            Time.timeScale = 0;
+            m_playerFleet.gameObject.SetActive(false);
             m_playerFleet.FocusOn(null);
             Main.Instance.BattleMapInputs.Disable();
-            Main.Instance.GetManager<ScreenManager>().CloseScreen(ScreenName.Battle);
-
+            yield return new WaitForSecondsRealtime(2f);
+            
             OnMissionIsEnding?.Invoke();
-            yield return new WaitForSeconds(1);
-            //wait then show end mission screen win or lose depending on main objective condition
+            Main.Instance.GetManager<ScreenManager>().CloseScreen(ScreenName.Battle);
+            Main.Instance.GetManager<DialogueManager>().ClearDialogue(); //todo move to OnMissionEnding event in dialogue manager ?
             EndMission();
         }
 
         private void EndMission()
         {
+            Time.timeScale = 0;
             debugger.Log("Mission has ended...");
-            //Calculate mission report
+            
+            var report = new MissionReport()
+            {
+                nbSidesObj = m_informations.SecondaryObjectives.Count,
+                MainObjectiveStatus = m_winConditionObjective.State,
+                SideObjectivesStatus = m_secondaryObjectives.Select(s => s.State).ToList()
+            };
             Main.Instance.GetManager<ScreenManager>().OpenScreen(ScreenName.MissionReport, new MissionReportOpenInfo()
             {
                 MissionInformation = m_informations,
-                OnCloseScreen = () => { Time.timeScale = 1; }
+                OnCloseScreen = () => { Time.timeScale = 1; },
+                Report = report
             });
         }
     }

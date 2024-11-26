@@ -67,7 +67,8 @@ namespace Assets.Scripts.Managers
             var openInfo = new DialogueScreenOpenInfo()
             {
                 Dialogue = dialogue.info,
-                EndOfDialogueCallbacks = new[] { dialogue.callback, ShowNextDialogue }
+                EndOfDialogueCallbacks = new[] { dialogue.callback, ShowNextDialogue },
+                Focus = dialogue.info.Position == DialoguePosition.Bottom
             };
             
             m_openedScreen = m_screenManager.OpenScreen(ScreenName.DialogueBox, openInfo);

@@ -23,6 +23,7 @@ namespace Assets.Scripts.Managers
                 m_ships.Add(ship);
             
             ship.OnShipDestroyed += FleetShipDestroyed;
+            ship.gameObject.transform.SetParent(this.transform);
             InternalRegister(ship);
         }
         

@@ -17,11 +17,12 @@ namespace Assets.Scripts.Managers
         {
             m_playerFleet = Main.Instance.GetManager<PlayerFleet>();
             m_playerFleet.OnShipSelectedChanged += ShipChanged;
+            ShipChanged(m_playerFleet.SelectedShip);
         }
         
         private void OnDisable()
         {
-            m_playerFleet.OnShipSelectedChanged -= ShipChanged;
+            //m_playerFleet.OnShipSelectedChanged -= ShipChanged;
         }
 
         public void RegisterPanel(ShipPanel shipPanel)
