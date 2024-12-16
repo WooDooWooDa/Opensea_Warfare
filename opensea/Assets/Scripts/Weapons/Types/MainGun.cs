@@ -5,9 +5,9 @@ namespace Assets.Scripts.Weapons
 {
     public class MainGun : Weapon
     {
-        protected override void InternalFire(Projectile projectile, float dispersionFactor)
+        protected override void InternalFire(Projectile projectile, Vector3 at)
         {
-            var dispersedTargetPoint = GetDispersionPoint(m_targetCoord, dispersionFactor);
+            var dispersedTargetPoint = m_targetingSystem.GetDispersedTargetPoint();
             
             projectile.SetData(new ProjectileData()
             {
@@ -15,11 +15,6 @@ namespace Assets.Scripts.Weapons
                 Ammo = m_loadedAmmo,
                 TargetPoint = dispersedTargetPoint
             }, FirePower);
-            
-            if (m_lockOnShip is null) //reset target if not locked on, single shot
-            {
-                m_hasTarget = false;
-            }
         }
 
         protected override void InternalPreUpdateWeapon(float deltaTime)
@@ -29,19 +24,12 @@ namespace Assets.Scripts.Weapons
 
         protected override void InternalUpdateWeapon(float deltaTime)
         {
-            if (m_lockOnShip is not null)
-            {
-                m_targetCoord = m_lockOnShip.transform.position; 
-                //OSW-22 find a way to have max range
-                //OSW-8 
-            }
-            
             Aim(deltaTime);
         }
 
         protected override bool InternalReadyToFire()
         {
-            return Vector3.Distance(m_targetCoord, m_weaponTargetReticule.position) <= m_stats.Accuracy;
+            return Vector3.Distance(m_targetingSystem.Target, m_weaponTargetReticule.position) <= m_stats.Accuracy;
         }
 
         private void Aim(float delta)
@@ -59,25 +47,18 @@ namespace Assets.Scripts.Weapons
 
         private void RotateTurret(float delta)
         {
-            var vectorToTarget = m_targetCoord - m_turret.position;
+            var vectorToTarget = m_targetingSystem.Target - WeaponTransform.position;
             var angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - 90;
             var q = Quaternion.AngleAxis(angle, Vector3.forward);
-            m_turret.rotation = Quaternion.RotateTowards(m_turret.rotation, q, delta * m_stats.turnSpeed * 5);
-            LimitRangeOfRotation(m_turret);
+            WeaponTransform.rotation = Quaternion.RotateTowards(WeaponTransform.rotation, q, delta * m_stats.turnSpeed * 5);
+            LimitRangeOfRotation(WeaponTransform);
         }
 
         private float GetDistanceDiffToTarget()
         {
-            var turretPosition = m_turret.position;
-            var distanceToTarget = Vector3.Distance(turretPosition, m_targetCoord);
-            var distanceToReticule = Vector3.Distance(turretPosition, m_weaponTargetReticule.position);
-            if (distanceToTarget > m_attachedShip.Stats.RNG * 2)
-                distanceToTarget = m_attachedShip.Stats.RNG * 2;
+            var distanceToTarget = m_targetingSystem.DistanceToTarget();
+            var distanceToReticule = Vector3.Distance(WeaponTransform.position, m_weaponTargetReticule.position);
             return distanceToTarget - distanceToReticule;
-        }
-        
-        private Vector3 GetDispersionPoint(Vector3 center, float radius) {
-            return center + (Vector3)(Random.insideUnitCircle * (m_stats.Accuracy * radius));
         }
     }
 }

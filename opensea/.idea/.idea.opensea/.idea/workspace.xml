@@ -5,43 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f830f0c4-ba14-467a-8842-14458945bc77" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Prefab/UI/Screens/ScreenLayout.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefab/UI/Screens/ScreenLayout.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/PortScene.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/PortScene.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/TargetingSystem.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/TargetingSystem.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.opensea/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.opensea/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Font/Retro Gaming UIFont.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Font/Retro Gaming UIFont.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Font/Retro Gaming WorldFont.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Font/Retro Gaming WorldFont.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Font/Toriko SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Font/Toriko SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Font/Toriko.ttf.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Font/Toriko.ttf.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Font/upheavtt SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Font/upheavtt SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Imports/TextMesh Pro/Resources/TMP Settings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Imports/TextMesh Pro/Resources/TMP Settings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/UI/Screens/BattleScreen.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/UI/Screens/BattleScreen.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/UI/Screens/MissionReportScreen.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/UI/Screens/MissionReportScreen.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/UI/Screens/Screen.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/UI/Screens/Screen.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/GameInputs.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/GameInputs.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/GameInputs.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/GameInputs.inputactions" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Screens/Config.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Screens/Config.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Screens/MissionReportScreen.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Screens/MissionReportScreen.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Weapons/Ammo/APMainShell.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Weapons/Ammo/APMainShell.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MissionTemplate.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MissionTemplate.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Ships/Destroyer.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Ships/Destroyer.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Weapons/MainGun.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Weapons/MainGun.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Main.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Main.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/DialogueManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/DialogueManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/FleetManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/FleetManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/MissionSceneManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/MissionSceneManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/ScreenManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/ScreenManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Missions/MissionManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Missions/MissionManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/HullPart.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/HullPart.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Screens/BattleScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Screens/BattleScreen.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Screens/MissionReportScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Screens/MissionReportScreen.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Weapons/Projectiles/Projectile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/Projectiles/Projectile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/FireControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/FireControl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Weapons/Types/MainGun.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/Types/MainGun.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Weapons/Types/TorpedoTubes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/Types/TorpedoTubes.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Weapons/Weapon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/Weapon.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Hologram/Frame/UI_Hologram_Frame_Lite_01a.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Hologram/Frame/UI_Hologram_Frame_Lite_01a.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Hologram/Frame/UI_Hologram_Frame_Lite_02a.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Hologram/Frame/UI_Hologram_Frame_Lite_02a.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Hologram/Frame/UI_Hologram_Frame_Standard_01a.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Hologram/Frame/UI_Hologram_Frame_Standard_01a.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Hologram/Frame/UI_Hologram_Frame_Vertical_02a.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Hologram/Frame/UI_Hologram_Frame_Vertical_02a.png.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,10 +97,10 @@
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="6980">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="13908">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="6980" />
+      <option name="pid" value="13908" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -206,6 +179,7 @@
       <workItem from="1715641981305" duration="6076000" />
       <workItem from="1715820123722" duration="4431000" />
       <workItem from="1732635516889" duration="4303000" />
+      <workItem from="1734380664522" duration="6764000" />
     </task>
     <servers />
   </component>
@@ -245,6 +219,32 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Weapons/Weapon.cs</url>
+          <line>171</line>
+          <properties documentPath="A:\UNITY_GAME\Opensea_Warfare\opensea\Assets\Scripts\Weapons\Weapon.cs" initialLine="171" containingFunctionPresentation="Method 'TryFire'">
+            <startOffsets>
+              <option value="6175" />
+            </startOffsets>
+            <endOffsets>
+              <option value="6182" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Weapons/Weapon.cs</url>
+          <line>169</line>
+          <properties documentPath="A:\UNITY_GAME\Opensea_Warfare\opensea\Assets\Scripts\Weapons\Weapon.cs" initialLine="169" containingFunctionPresentation="Method 'TryFire'">
+            <startOffsets>
+              <option value="6136" />
+            </startOffsets>
+            <endOffsets>
+              <option value="6153" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

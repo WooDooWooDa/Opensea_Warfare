@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1017825470878269292
 Transform:
   m_ObjectHideFlags: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1509487619
-  m_SortingLayer: -2
+  m_SortingLayer: -1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 6f43888cefaf76e439e9c62da312cefe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.5882353}
@@ -161,14 +161,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6ec0497889d476da249e72b32cd13d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_turret: {fileID: 2680796180274279475}
+  WeaponTransform: {fileID: 2680796180274279475}
   m_firePoint:
   - {fileID: 3768898222615159635}
   m_weaponTargetReticule: {fileID: 1017825470878269292}
   m_targetReticuleNumber: {fileID: 5792210353912524288}
   m_stats: {fileID: 11400000, guid: 1bafb381497196c42984df98ba028b0c, type: 2}
   m_turretSprite: {fileID: 361762533322340874}
-  m_rangeOfRotation: 90
+  m_rangeOfRotation: 120
   WeaponState: 0
 --- !u!1 &1824070679706737105
 GameObject:

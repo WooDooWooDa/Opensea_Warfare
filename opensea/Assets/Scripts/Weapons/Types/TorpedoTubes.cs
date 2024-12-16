@@ -21,7 +21,7 @@ namespace Assets.Scripts.Weapons
             
         }
 
-        protected override void InternalFire(Projectile projectile, float dispersionFactor)
+        protected override void InternalFire(Projectile projectile, Vector3 at)
         {
            
         }

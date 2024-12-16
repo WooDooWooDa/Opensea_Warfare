@@ -9,6 +9,7 @@ using Assets.Scripts.Weapons.Projectiles;
 using Assets.Scripts.Weapons.SOs;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Assets.Scripts.Weapons
 {
@@ -22,7 +23,7 @@ namespace Assets.Scripts.Weapons
     
     public abstract class Weapon: MonoBehaviour, IDestroyable
     {
-        [SerializeField] protected Transform m_turret;
+        [SerializeField] public Transform WeaponTransform;
         [SerializeField] protected List<Transform> m_firePoint;
         [SerializeField] protected Transform m_weaponTargetReticule;
         [SerializeField] private TextMeshProUGUI m_targetReticuleNumber;
@@ -43,8 +44,9 @@ namespace Assets.Scripts.Weapons
         }
 
         //States
-        public bool Available => WeaponState is WeaponState.Loaded && !m_hasTarget;
-        public bool ReadyToFire => WeaponState is WeaponState.Loaded && m_loadedAmmo is not null && InternalReadyToFire();
+        public bool Available => WeaponState is WeaponState.Loaded && !m_fireCommandReceived;
+        public bool ReadyToFire => WeaponState is WeaponState.Loaded && m_loadedAmmo is not null && m_targetingSystem.HasTarget
+                                    && m_fireCommandReceived && InternalReadyToFire();
         public WeaponState WeaponState;
         public float CurrentHp { get; set; }
         public bool IsWorking => CurrentState is not DamageState.Disabled and not DamageState.Destroyed;
@@ -55,15 +57,14 @@ namespace Assets.Scripts.Weapons
         public Action<IDestroyable> OnDestroyed { get; set; }
 
         protected Ship m_attachedShip;
-        protected bool m_hasTarget;
-        protected Vector3 m_targetCoord;
-        protected Ship m_lockOnShip;
         protected Ammo m_loadedAmmo;
 
         private int m_weaponNumber;
         private int m_nbLoaded;
         private Reloader m_reloader;
+        protected TargetingSystem m_targetingSystem;
         private AmmunitionBay m_ammunitionBay;
+        private bool m_fireCommandReceived;
         
         public void Initialize(Ship attachedShip)
         {
@@ -71,16 +72,20 @@ namespace Assets.Scripts.Weapons
                 m_turretSprite.sprite = m_stats.WeaponSprite;
 
             m_attachedShip = attachedShip;
-
-            m_targetCoord = transform.position;
+            
             m_ammunitionBay = attachedShip.GetModuleOfType<AmmunitionBay>();
+            
             m_reloader = new Reloader();
             m_reloader.Initialize(this, m_ammunitionBay);
+
+            m_targetingSystem = new TargetingSystem();
+            m_targetingSystem.Initialize(this, attachedShip);
+            
             Events.Ship.IsAiming += (ship, value) =>
             {
                 if (ship != m_attachedShip) return;
                 m_weaponTargetReticule.gameObject.SetActive(value);
-                if (!value) m_hasTarget = false;
+                //if (!value) m_hasTarget = false;
             };
         }
 
@@ -94,6 +99,7 @@ namespace Assets.Scripts.Weapons
             InternalPreUpdateWeapon(deltaTime);
             if (!IsWorking) return;
 
+            m_targetingSystem.Update(deltaTime);
             InternalUpdateWeapon(deltaTime);
             //VV Move those 2 out of update ? VV
             TryFire();
@@ -120,33 +126,26 @@ namespace Assets.Scripts.Weapons
         
         public virtual void FireAt(Vector3 position)
         {
-            if (m_lockOnShip is not null)
-            {
-                m_lockOnShip = null;
-            }
-            
-            m_hasTarget = true;
-            m_targetCoord = position;
+            m_targetingSystem.SetTarget(position);
+            m_fireCommandReceived = true;
         }
 
         public virtual void LockOn(Ship targetShip)
         {
             if (!m_stats.CanLockOnEnemy) return;
             
-            m_hasTarget = targetShip is not null;
-            m_lockOnShip = targetShip;
-            if (targetShip is not null)
-                m_lockOnShip.OnShipDestroyed += (ship) => LockOn(null);
+            m_targetingSystem.LockOn(targetShip);
+            m_fireCommandReceived = true;
         }
 
         public virtual void Follow(Vector3 position)
         {
-            if (m_hasTarget) return;
+            if (m_fireCommandReceived) return;
             
-            m_targetCoord = position;
+            m_targetingSystem.SetTarget(position);
         }
         
-        protected abstract void InternalFire(Projectile projectile, float dispersionFactor);
+        protected abstract void InternalFire(Projectile projectile, Vector3 at);
         protected abstract void InternalPreUpdateWeapon(float deltaTime);
         protected abstract void InternalUpdateWeapon(float deltaTime);
         protected abstract bool InternalReadyToFire(); //Determine if weapon is ready to fire (main -> reticule on target, torpedo -> aligned)
@@ -161,16 +160,16 @@ namespace Assets.Scripts.Weapons
         
         private bool IsInRangeOfRotation(Vector3 target)
         {
-            var vectorToTarget = target - m_turret.position;
+            var vectorToTarget = target - WeaponTransform.position;
             var targetRotation = Mathf.Abs(Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - 90);
             return targetRotation > 180 ? 360 - targetRotation < m_rangeOfRotation : targetRotation < m_rangeOfRotation;
         }
         
         private void TryFire()
         {
-            if (!m_hasTarget || !ReadyToFire) return;
+            if (!ReadyToFire) return;
 
-            Fire(1);
+            Fire();
         }
 
         private void TryAutoReload()
@@ -180,18 +179,20 @@ namespace Assets.Scripts.Weapons
             m_reloader.Reload();
         }
         
-        private void Fire(float dispersionFactor)
+        private void Fire()
         {
             m_ammunitionBay.UnreserveForWeapon(m_loadedAmmo, m_nbLoaded);
             for (var i = 0; i < m_nbLoaded; i++)
             {
                 var projectile = SpawnProjectile(i);
-                InternalFire(projectile, dispersionFactor);
+                InternalFire(projectile, m_targetingSystem.Target);
                 m_ammunitionBay.UnloadAmmunition(m_loadedAmmo);
             }
 
             WeaponState = WeaponState.Empty;
             m_loadedAmmo = null;
+            m_targetingSystem.CancelTarget();
+            if (!m_targetingSystem.IsLocked) m_fireCommandReceived = false;
         }
         
         private Projectile SpawnProjectile(int firePoint)

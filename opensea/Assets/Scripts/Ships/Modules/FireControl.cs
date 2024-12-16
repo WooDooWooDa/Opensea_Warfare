@@ -26,6 +26,8 @@ namespace Assets.Scripts.Ships.Modules
         private float m_maxRange;
         private bool m_isAiming;
         private Ship m_tryLockOnShip;
+        private bool m_obstructed;
+        private bool m_aimingOutOfRange;
 
         public override void Initialize(Ship attachedShip)
         {
@@ -52,7 +54,7 @@ namespace Assets.Scripts.Ships.Modules
 
         protected override void RegisterActions()
         {
-            m_inputActions.BattleMap.SpaceBar.performed += ctx => ToggleAiming();
+            m_inputActions.BattleMap.SpaceBar.performed += ctx => ToggleAimingInformation();
             m_inputActions.BattleMap.FireCommand.performed += ctx => TryFireSingle();
             m_inputActions.BattleMap.FireCommand.canceled += ctx => TryFireSalvo();
         }
@@ -70,17 +72,8 @@ namespace Assets.Scripts.Ships.Modules
             CheckForEnemyLock();
         }
 
-        private void ToggleAiming()
+        private void ToggleAimingInformation()
         {
-            if (m_tryLockOnShip is not null)
-            {
-                m_tryLockOnShip = null;
-                m_armamentsModule.LockOnto(m_tryLockOnShip);
-                //notif lock on ship unlocked
-                Debug.Log("Lock on ship unlocked");
-                return;
-            }
-
             m_isAiming = !m_isAiming;
 
             m_projectedReticule.gameObject.SetActive(m_isAiming);
@@ -98,7 +91,8 @@ namespace Assets.Scripts.Ships.Modules
             }
             else
             {
-                m_armamentsModule.FireNextWeaponAt(m_targetReticule.position);
+                m_armamentsModule.FireNextWeaponAt(m_projectedReticule.position);
+                //projectedreticule doesnt work with obstructed fire
             }
         }
 
@@ -106,12 +100,11 @@ namespace Assets.Scripts.Ships.Modules
         {
             if (!m_isAiming) return;
             
-            m_armamentsModule.FireAllWeaponAt(m_targetReticule.position);
+            m_armamentsModule.FireAllWeaponAt(m_projectedReticule.position);
         }
         
         private void MoveReticule()
         {
-            
             var pointerPos = Helper.PointerPosition;
             m_projectedReticule.position = new Vector3(pointerPos.x, pointerPos.y, 0);
             var pointerDistance = Vector3.Distance(transform.position, m_projectedReticule.position);
@@ -120,14 +113,18 @@ namespace Assets.Scripts.Ships.Modules
             m_targetReticule.localScale = m_startingReticuleScale * Mathf.Clamp(pointerDistance / m_range, 1, 2);
             
             var fromShip = Physics2D.Raycast(transform.position, pointerPos - transform.position, pointerDistance, m_obstacleLayer);
+            m_obstructed = false;
+            m_aimingOutOfRange = false;
             if (fromShip.collider is not null)
             {
                 Debug.DrawRay(transform.position, pointerPos - transform.position, Color.blue);
                 m_projectedReticule.position = new Vector3(fromShip.point.x, fromShip.point.y, 0);
+                m_obstructed = true;
             }
             else if (pointerDistance > m_maxRange)
             {
                 m_projectedReticule.position = new Ray2D(transform.position, pointerPos - transform.position).GetPoint(m_maxRange);
+                m_aimingOutOfRange = true;
             }
 
             var reticuleDistance = Vector3.Distance(transform.position, m_projectedReticule.position);
@@ -137,7 +134,10 @@ namespace Assets.Scripts.Ships.Modules
 
         private void MoveArmaments()
         {
-            m_armamentsModule.FollowPosition(m_targetReticule.position);
+            if (m_aimingOutOfRange)
+                m_armamentsModule.FollowPosition(m_projectedReticule.position);
+            else 
+                m_armamentsModule.FollowPosition(m_targetReticule.position);
         }
 
         private void CheckForEnemyLock()
