@@ -12,7 +12,6 @@ namespace Assets.Scripts.Weapons.SOs
         public Sprite Icon;
         [Space]
         [Header("Salvo")]
-        
         public Ammo[] PossibleAmmo;
         public float BaseFirepower;
         public float Cooldown;
@@ -21,7 +20,8 @@ namespace Assets.Scripts.Weapons.SOs
         [Header("Param")] 
         public float turnSpeed;
         public bool CanLockOnEnemy = true;
-        public float LockInAccuracy;
-        public float Accuracy = 0.5f;
+        public float EffectiveRange;
+        public float MaxRange;
+        public float Accuracy = 1;
     }
 }

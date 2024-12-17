@@ -45,8 +45,6 @@ namespace Assets.Scripts.Weapons
 
         //States
         public bool Available => WeaponState is WeaponState.Loaded && !m_fireCommandReceived;
-        public bool ReadyToFire => WeaponState is WeaponState.Loaded && m_loadedAmmo is not null && m_targetingSystem.HasTarget
-                                    && m_fireCommandReceived && InternalReadyToFire();
         public WeaponState WeaponState;
         public float CurrentHp { get; set; }
         public bool IsWorking => CurrentState is not DamageState.Disabled and not DamageState.Destroyed;
@@ -58,12 +56,14 @@ namespace Assets.Scripts.Weapons
 
         protected Ship m_attachedShip;
         protected Ammo m_loadedAmmo;
-
-        private int m_weaponNumber;
-        private int m_nbLoaded;
         private Reloader m_reloader;
         protected TargetingSystem m_targetingSystem;
         private AmmunitionBay m_ammunitionBay;
+
+        private int m_weaponNumber;
+        private int m_nbLoaded;
+        private bool ReadyToFire => WeaponState is WeaponState.Loaded && m_loadedAmmo is not null && m_targetingSystem.HasTarget
+                                   && m_fireCommandReceived && InternalReadyToFire();
         private bool m_fireCommandReceived;
         
         public void Initialize(Ship attachedShip)
@@ -79,13 +79,12 @@ namespace Assets.Scripts.Weapons
             m_reloader.Initialize(this, m_ammunitionBay);
 
             m_targetingSystem = new TargetingSystem();
-            m_targetingSystem.Initialize(this, attachedShip);
+            m_targetingSystem.Initialize(this);
             
             Events.Ship.IsAiming += (ship, value) =>
             {
                 if (ship != m_attachedShip) return;
                 m_weaponTargetReticule.gameObject.SetActive(value);
-                //if (!value) m_hasTarget = false;
             };
         }
 

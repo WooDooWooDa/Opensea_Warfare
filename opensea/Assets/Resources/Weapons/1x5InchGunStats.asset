@@ -26,4 +26,6 @@ MonoBehaviour:
   CannonCount: 1
   turnSpeed: 2
   CanLockOnEnemy: 1
-  LockInAccuracy: 5
+  EffectiveRange: 12
+  MaxRange: 24
+  Accuracy: 1

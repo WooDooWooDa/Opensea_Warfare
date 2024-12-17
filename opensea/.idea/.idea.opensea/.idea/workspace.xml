@@ -5,15 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f830f0c4-ba14-467a-8842-14458945bc77" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/TargetingSystem.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/TargetingSystem.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.opensea/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.opensea/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Ships/Destroyer.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Ships/Destroyer.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefab/Weapons/MainGun.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefab/Weapons/MainGun.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Weapons/1x5InchGunStats.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Weapons/1x5InchGunStats.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/FireControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Ships/Modules/FireControl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Weapons/Types/MainGun.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/Types/MainGun.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Weapons/Types/TorpedoTubes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/Types/TorpedoTubes.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Weapons/SOs/WeaponStats.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/SOs/WeaponStats.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Weapons/TargetingSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/TargetingSystem.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Weapons/Weapon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Weapons/Weapon.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -179,7 +175,7 @@
       <workItem from="1715641981305" duration="6076000" />
       <workItem from="1715820123722" duration="4431000" />
       <workItem from="1732635516889" duration="4303000" />
-      <workItem from="1734380664522" duration="6764000" />
+      <workItem from="1734380664522" duration="9858000" />
     </task>
     <servers />
   </component>
@@ -219,32 +215,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Weapons/Weapon.cs</url>
-          <line>171</line>
-          <properties documentPath="A:\UNITY_GAME\Opensea_Warfare\opensea\Assets\Scripts\Weapons\Weapon.cs" initialLine="171" containingFunctionPresentation="Method 'TryFire'">
-            <startOffsets>
-              <option value="6175" />
-            </startOffsets>
-            <endOffsets>
-              <option value="6182" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Weapons/Weapon.cs</url>
-          <line>169</line>
-          <properties documentPath="A:\UNITY_GAME\Opensea_Warfare\opensea\Assets\Scripts\Weapons\Weapon.cs" initialLine="169" containingFunctionPresentation="Method 'TryFire'">
-            <startOffsets>
-              <option value="6136" />
-            </startOffsets>
-            <endOffsets>
-              <option value="6153" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -21,9 +21,6 @@ namespace Assets.Scripts.Ships.Modules
 
         private SpriteRenderer m_projectedReticuleImage;
         private Vector3 m_startingReticuleScale;
-        private float m_dispersion;
-        private float m_range;
-        private float m_maxRange;
         private bool m_isAiming;
         private Ship m_tryLockOnShip;
         private bool m_obstructed;
@@ -34,9 +31,6 @@ namespace Assets.Scripts.Ships.Modules
             base.Initialize(attachedShip);
 
             m_attachedShipPosition = attachedShip.transform;
-
-            m_range = attachedShip.Stats.RNG;
-            m_maxRange = m_range * 2;
 
             m_armamentsModule = GetComponentInChildren<Armaments>();
             m_startingReticuleScale = m_projectedReticule.localScale;
@@ -91,8 +85,7 @@ namespace Assets.Scripts.Ships.Modules
             }
             else
             {
-                m_armamentsModule.FireNextWeaponAt(m_projectedReticule.position);
-                //projectedreticule doesnt work with obstructed fire
+                m_armamentsModule.FireNextWeaponAt(m_targetReticule.position);
             }
         }
 
@@ -100,7 +93,7 @@ namespace Assets.Scripts.Ships.Modules
         {
             if (!m_isAiming) return;
             
-            m_armamentsModule.FireAllWeaponAt(m_projectedReticule.position);
+            m_armamentsModule.FireAllWeaponAt(m_targetReticule.position);
         }
         
         private void MoveReticule()
@@ -110,34 +103,20 @@ namespace Assets.Scripts.Ships.Modules
             var pointerDistance = Vector3.Distance(transform.position, m_projectedReticule.position);
             
             m_targetReticule.position = new Vector3(pointerPos.x, pointerPos.y, 0);
-            m_targetReticule.localScale = m_startingReticuleScale * Mathf.Clamp(pointerDistance / m_range, 1, 2);
             
             var fromShip = Physics2D.Raycast(transform.position, pointerPos - transform.position, pointerDistance, m_obstacleLayer);
             m_obstructed = false;
-            m_aimingOutOfRange = false;
             if (fromShip.collider is not null)
             {
                 Debug.DrawRay(transform.position, pointerPos - transform.position, Color.blue);
                 m_projectedReticule.position = new Vector3(fromShip.point.x, fromShip.point.y, 0);
                 m_obstructed = true;
             }
-            else if (pointerDistance > m_maxRange)
-            {
-                m_projectedReticule.position = new Ray2D(transform.position, pointerPos - transform.position).GetPoint(m_maxRange);
-                m_aimingOutOfRange = true;
-            }
-
-            var reticuleDistance = Vector3.Distance(transform.position, m_projectedReticule.position);
-            m_dispersion = Mathf.Clamp(reticuleDistance / m_range, 1, 2);
-            m_projectedReticule.localScale = m_startingReticuleScale * m_dispersion;
         }
 
         private void MoveArmaments()
         {
-            if (m_aimingOutOfRange)
-                m_armamentsModule.FollowPosition(m_projectedReticule.position);
-            else 
-                m_armamentsModule.FollowPosition(m_targetReticule.position);
+            m_armamentsModule.FollowPosition(m_targetReticule.position);
         }
 
         private void CheckForEnemyLock()

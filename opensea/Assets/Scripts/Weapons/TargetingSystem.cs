@@ -11,22 +11,25 @@ namespace Assets.Scripts.Weapons
         
         private Weapon m_associatedWeapon;
         private Ship m_ship;
-        
+
+        private bool m_aimingOutOfRange;
         private bool m_isLockedOnShip;
         private Ship m_lockedOnShip;
         private bool m_hasTarget;
         private Vector3 m_target;
 
-        private float m_range;
-        private float m_maxRange => m_range * 2;
+        private Vector3 m_weaponPosition;
+        private float m_effectiveRange;
+        private float m_maxRange;
         private float m_accuracy;
 
-        public void Initialize(Weapon weapon, Ship ship)
+        public void Initialize(Weapon weapon)
         {
             m_associatedWeapon = weapon;
-            m_ship = ship;
-            m_range = ship.Stats.RNG;
-            m_accuracy = ship.Stats.ACC / 10;
+            m_weaponPosition = weapon.WeaponTransform.position; 
+            m_effectiveRange = weapon.Stats.EffectiveRange;
+            m_maxRange = weapon.Stats.MaxRange;
+            m_accuracy = weapon.Stats.Accuracy;
         }
 
         public void Update(float delta)
@@ -37,21 +40,30 @@ namespace Assets.Scripts.Weapons
             }
 
             //Target out of range ?
-            if (m_isLockedOnShip && DistanceToTarget() > m_maxRange)
+            if (OutOfRange(m_target))
             {
-                CancelLockOn(m_lockedOnShip);
+                CancelTarget();
+                if (m_isLockedOnShip)
+                    CancelLockOn(m_lockedOnShip);
             }
         }
 
         public float DistanceToTarget()
         {
-            return (m_associatedWeapon.WeaponTransform.position - m_target).magnitude;
+            return (m_weaponPosition - m_target).magnitude;
         }
         
         public void SetTarget(Vector3 position)
         {
+            m_aimingOutOfRange = false;
             m_hasTarget = true;
             m_target = position;
+            if (OutOfRange(position))
+            {
+                m_aimingOutOfRange = true;
+                var dir = (position - m_weaponPosition).normalized;
+                m_target = m_weaponPosition + (dir * m_maxRange);
+            }
         }
 
         public void LockOn(Ship targetShip)
@@ -68,21 +80,15 @@ namespace Assets.Scripts.Weapons
         public void CancelTarget()
         {
             m_hasTarget = false;
-            //m_target = Vector3.zero;
-        }
-
-        public void CancelLockOn()
-        {
-            m_isLockedOnShip = false;
-            m_lockedOnShip.OnShipDestroyed -= CancelLockOn;
-            m_lockedOnShip = null;
         }
         
         public Vector3 GetDispersedTargetPoint() {
-            return m_target + (Vector3)(Random.insideUnitCircle * GetDispersionValue());
+            return m_target + (Vector3)(Random.insideUnitCircle * DispersionValue());
         }
 
-        public float GetDispersionValue() => (m_accuracy * DistanceToTarget()) / m_range;
+        private float DispersionValue() {
+            return Mathf.InverseLerp(m_effectiveRange, m_maxRange, DistanceToTarget());
+        }
 
         private void CancelLockOn(Ship ship)
         {
@@ -91,6 +97,11 @@ namespace Assets.Scripts.Weapons
             m_isLockedOnShip = false;
             m_lockedOnShip.OnShipDestroyed -= CancelLockOn;
             m_lockedOnShip = null;
+        }
+
+        private bool OutOfRange(Vector3 targetPoint)
+        {
+            return (targetPoint - m_weaponPosition).magnitude > m_maxRange;
         }
     }
 }
